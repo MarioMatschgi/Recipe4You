@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "recipe4you-b756e": {
+      "hosting": {
+        "recipe4you": [
+          "recipe4you-b756e"
+        ]
+      }
+    }
+  }
+}
