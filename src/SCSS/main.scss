@@ -1,0 +1,59 @@
+/* VARIABLES */
+:root {
+  --colors-red: #eb4d4b;
+  --colors-blue: #7188da;
+  --colors-light-blue: #2b99b1;
+  --colors-turquise: lightseagreen;
+  --colors-black: #202225;
+  --colors-dark-gray: #2f3136;
+  --colors-gray: #40444b;
+  --colors-light-gray: #b0b0b0;
+  --colors-white: #e6e6e6;
+
+  --color-background: var(--colors-black);
+  --color-foreground: var(--colors-dark-gray);
+  --color-highlight: var(--colors-gray);
+  --color-font: var(--colors-light-gray);
+  --color-font-headline: var(--colors-white);
+  --color-accent: var(--colors-light-blue);
+  --color-selection: var(--colors-red);
+
+  --unit-large: 4rem;
+  --unit-normal: 2rem;
+  --unit-small: 1rem;
+  --unit-tiny: 0.5rem;
+}
+
+/* GENERAL */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-background);
+}
+
+main {
+  padding: var(--unit-large);
+}
+
+/* BOX */
+.box {
+  padding: var(--unit-normal);
+
+  background-color: var(--color-foreground);
+
+  border-radius: var(--unit-normal);
+}
+
+.box,
+.container {
+  & :first-child {
+    margin-top: 0;
+  }
+  & :last-child {
+    margin-bottom: 0;
+  }
+}

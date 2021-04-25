@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300");
+
+:root {
+  --font-size-h1: 1.5em;
+  --font-size-h2: 1.25em;
+}
+
+html,
+body {
+  font-family: "Roboto", Times, serif;
+  font-size: calc(0.5em + 1.2vmin);
+  /* https://bits.theorem.co/css-pro-tips-responsive-font-sizes-and-when-to-use-which-units/ */
+
+  color: var(--color-font);
+}
+
+::selection {
+  color: var(--color-selection);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-font-headline);
+}
+h1 {
+  font-size: var(--font-size-h1);
+}
+h2 {
+  font-size: var(--font-size-h2);
+}
