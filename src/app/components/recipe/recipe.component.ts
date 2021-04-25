@@ -6,6 +6,7 @@ type Recipe = {
   ingredients: string; // TODO: ARR OF INGREDIENTS OBJECTS
   method: string;
   notes?: string;
+  images?: string;  // TODO: IMAGES
 };
 
 @Component({
@@ -19,7 +20,7 @@ export class RecipeComponent implements OnInit {
   constructor() {
     this.data = {
       name: 'Pfannkuchen',
-      description: 'Lecker lecker palatschinken! beschte Essen LOOOL',
+      description: 'Lecker lecker Palatschinken! Beschte Essen LOOOL',
       ingredients: 'Mehl, Eier, Milch, ...',
       method: 'Alles zusammenmixen!',
       notes: 'LOL, wenn du das verkackts, ne?? :kek:',
