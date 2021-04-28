@@ -17,11 +17,11 @@ export class DatabaseService {
     this.recipesCol = this.db.collection('recipes');
   }
 
-  get_all_recipes() {
+  get_all_recipes(): Observable<RecipeModel[]> {
     return this.recipesCol.valueChanges();
   }
 
-  get_recipe(id: string) {
+  get_recipe(id: string): Observable<RecipeModel> {
     return this.recipesCol.doc(id).valueChanges();
   }
 
@@ -29,7 +29,13 @@ export class DatabaseService {
     return this.recipesCol.add(data.to_object());
   }
 
-  edit_recipe(id: string, newData: RecipeModel) {}
+  edit_recipe(id: string, newData: RecipeModel) {
+    this.recipesCol.doc(id).set(newData.to_object());
+  }
+
+  remove_recipe(id: string) {
+    this.recipesCol.doc(id).delete();
+  }
 
   async recipe_exists(name: string): Promise<RecipeModel> {
     let a = await this.db
