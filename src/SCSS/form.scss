@@ -1,0 +1,167 @@
+/* CSS */
+/* TODO: ERROR BOX IN NEXT LINE*/
+form div {
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+}
+form div > * {
+  flex-grow: 1;
+}
+form label {
+  flex-basis: 100%;
+
+  /*margin-top: var(--padding);*/
+  padding: 0 var(--unit-small);
+  padding-bottom: var(--margin-p);
+}
+
+form div:not(:first-child),
+form label:not(:first-child) {
+  margin-top: var(--unit-small);
+}
+
+form button[type="submit"] {
+  flex-basis: 100%;
+  margin-top: var(--unit-small);
+}
+
+form label.required::before {
+  content: "*";
+  color: var(--colors-red);
+}
+
+/* ALERT STYLING */
+form .alert {
+  flex-basis: 100%;
+
+  padding: var(--unit-small);
+  margin: 0 !important;
+  margin-bottom: var(--margin-p) !important;
+
+  background-color: var(--color-highlight);
+  border-radius: var(--unit-small);
+}
+form .alert.alert-danger {
+  box-shadow: 0 0 0 2px var(--colors-red) inset;
+}
+
+/* TEXT AREA */
+textarea {
+  height: 2em;
+
+  &.vertical {
+    resize: vertical;
+  }
+  &.horizontal {
+    resize: horizontal;
+  }
+
+  &.small {
+    height: 1em;
+  }
+  &.normal {
+    height: 5em;
+  }
+  &.large {
+    height: 10em;
+  }
+  &.xlarge {
+    height: 15em;
+  }
+}
+
+textarea::-webkit-scrollbar {
+  -webkit-appearance: none;
+  background-color: var(--color-foreground);
+}
+textarea::-webkit-scrollbar-thumb {
+  -webkit-appearance: none;
+  background-color: var(--color-background);
+  border-radius: 10000em;
+}
+textarea::-webkit-scrollbar-corner {
+  -webkit-appearance: none;
+  background-color: var(--color-foreground);
+}
+textarea::-webkit-resizer {
+  // -webkit-appearance: none;
+  border-width: 8px;
+  border-style: solid;
+  border-color: transparent var(--color-background) var(--color-background)
+    transparent;
+}
+
+/* INPUT STYLING */
+form input,
+button,
+textarea {
+  background-color: var(--color-highlight);
+  border: none;
+  color: var(--color-font);
+  font-size: 1em;
+  padding: var(--unit-small);
+  border-radius: var(--unit-small);
+
+  cursor: pointer;
+
+  transition: box-shadow 0.4s;
+}
+form input:focus,
+form input:hover:not(:disabled),
+button:focus,
+button:hover:not(:disabled),
+textarea:focus,
+textarea:hover:not(:disabled) {
+  box-shadow: 0 0 0 2px var(--colors-red);
+  outline: none;
+}
+form input:-webkit-autofill,
+button:-webkit-autofill,
+textarea:-webkit-autofill {
+  -webkit-text-fill-color: var(--colors-dark-gray) !important;
+  box-shadow: 0 0 0 transparent, 0 0 0 1000px var(--colors-light-blue) inset !important;
+}
+form input:focus:-webkit-autofill,
+form input:hover:not(:disabled):-webkit-autofill,
+button:focus:-webkit-autofill,
+button:hover:not(:disabled):-webkit-autofill,
+textarea:focus:-webkit-autofill,
+textarea:hover:not(:disabled):-webkit-autofill {
+  transition: box-shadow 0.4s;
+  box-shadow: 0 0 0 2px var(--colors-red),
+    0 0 0 1000px var(--colors-light-blue) inset !important;
+}
+
+/* SIGNIN BUTTONS */
+button.signin {
+  display: flex;
+  align-items: center;
+}
+
+button.signin * {
+  display: inline-block;
+  flex-grow: 0;
+}
+button.signin img {
+  height: 1.5em;
+  margin-right: 0.5em;
+}
+button.signin.google {
+  background-color: white;
+  color: #737373;
+}
+button.signin.email {
+  background-color: #34495e;
+}
+
+/* NO ARROWS */
+input.noarrows::-webkit-outer-spin-button,
+input.noarrows::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input.noarrows[type="number"] {
+  -moz-appearance: textfield;
+}

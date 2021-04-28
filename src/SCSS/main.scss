@@ -22,6 +22,8 @@
   --unit-normal: 2rem;
   --unit-small: 1rem;
   --unit-tiny: 0.5rem;
+
+  --margin-p: var(--unit-tiny);
 }
 
 /* GENERAL */
@@ -56,4 +58,10 @@ main {
   & :last-child {
     margin-bottom: 0;
   }
+}
+
+/* FLEX */
+.no-stretch {
+  flex-grow: 0 !important;
+  flex-basis: unset !important;
 }

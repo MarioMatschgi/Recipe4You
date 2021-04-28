@@ -1,0 +1,32 @@
+<p>DEBUG {{ recipe | json }}</p>
+
+<ng-template [ngIf]="setup" [ngIfElse]="loading">
+  <ng-template [ngIf]="recipe" [ngIfElse]="no_recipe">
+    <article class="recipe box">
+      <section class="title">
+        <h2>{{ recipe.name }}</h2>
+        <p>{{ recipe.description }}</p>
+      </section>
+      <section class="ingredients">
+        <h2>Ingredients</h2>
+        <p>{{ recipe.ingredients }}</p>
+      </section>
+      <section class="method">
+        <h2>Method</h2>
+        <p>{{ recipe.method }}</p>
+      </section>
+      <section class="notes" *ngIf="recipe.notes">
+        <h2>Notes</h2>
+        <p>{{ recipe.notes }}</p>
+      </section>
+    </article>
+  </ng-template>
+
+  <ng-template #no_recipe>
+    <p>NO RECIPE</p>
+  </ng-template>
+</ng-template>
+
+<ng-template #loading>
+  <p>LOADING DATA</p>
+</ng-template>
