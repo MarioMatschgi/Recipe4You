@@ -11,22 +11,20 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  /* HOME */
   { path: '', component: HomeComponent },
-  {
-    path: 'recipe',
-    component: RecipeComponent,
-    children: [
-      { path: 'edit/:name', component: EditComponent },
-      { path: 'delete/:name', component: DeleteComponent },
-      { path: 'create', redirectTo: 'create/new' },
-      { path: 'create/new', component: CreateComponent },
-    ],
-  },
-  {
-    path: 'recipes',
-    component: RecipesComponent,
-    children: [{ path: ':name', component: RecipeViewComponent }],
-  },
+
+  /* RECIPE */
+  { path: 'recipe/edit/:id', component: EditComponent },
+  { path: 'recipe/delete/:id', component: DeleteComponent },
+  { path: 'recipe/create/new', component: CreateComponent },
+  { path: 'recipe/create', redirectTo: 'recipe/create/new' },
+
+  /* RECIPES */
+  { path: 'recipes', component: RecipesComponent },
+  { path: 'recipes/:id', component: RecipeViewComponent },
+
+  /* NOT FOUND */
   { path: '**', component: NotFoundComponent },
 ];
 

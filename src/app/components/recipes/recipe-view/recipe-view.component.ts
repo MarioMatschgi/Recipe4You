@@ -18,14 +18,14 @@ export class RecipeViewComponent implements OnInit {
   recipe_date_edited: string;
 
   constructor(
-    public route: ActivatedRoute,
     public db: DatabaseService,
-    public router: RouterService
+    public router: RouterService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      this.recipe_id = params['name'];
+      this.recipe_id = params['id'];
     });
 
     this.db.get_recipe(this.recipe_id).subscribe((recipe) => {
