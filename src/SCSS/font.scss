@@ -8,8 +8,11 @@
 html,
 body {
   font-family: "Roboto", Times, serif;
-  font-size: calc(0.5em + 1.2vmin);
-  /* https://bits.theorem.co/css-pro-tips-responsive-font-sizes-and-when-to-use-which-units/ */
+  font-size: calc(1em + 0.25vmin);
+  /*  EM are for bottom out (small on small devices) 
+      VH Are for growing with device size (large on large devices)
+    https://bits.theorem.co/css-pro-tips-responsive-font-sizes-and-when-to-use-which-units/
+  */
 
   color: var(--color-font);
 }

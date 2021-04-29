@@ -38,7 +38,7 @@ body {
 }
 
 main {
-  margin: 2em max(calc(10em - 150px), 0px);
+  margin: 2em max(calc(1em + 20vmin - 120px), 0px);
   margin-bottom: 0;
 }
 a:not(.no-style) {
