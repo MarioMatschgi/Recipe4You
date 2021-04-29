@@ -22,8 +22,12 @@ export class RouterService {
   nav_recipe(id: string) {
     this.router.navigate(['recipes', id]);
   }
-  nav_edit(id: string) {}
-  nav_delete(id: string) {}
+  nav_edit(id: string) {
+    this.router.navigate(['recipe', 'edit', id]);
+  }
+  nav_delete(id: string) {
+    this.router.navigate(['recipe', 'delete', id]);
+  }
   nav_create() {
     this.router.navigate(['recipe', 'create']);
   }
