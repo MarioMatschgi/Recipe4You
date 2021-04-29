@@ -30,7 +30,7 @@ export class RecipeComponent implements OnInit {
   async setup() {
     if (this.type == 'create') {
       this.recipe = new RecipeModel();
-    } else if (this.type == 'edit') {
+    } else if (this.type == 'edit' || this.type == 'delete') {
       const params = await this.route.params.pipe(take(1)).toPromise();
 
       this.recipe = await this.db
@@ -57,8 +57,15 @@ export class RecipeComponent implements OnInit {
           this.router.nav_recipe(doc.id);
         }
       } else if (this.type == 'edit') {
+        this.recipe.date_edited = new Date();
+
         await this.db.edit_recipe(this.recipe.id, this.recipe);
         this.router.nav_recipe(this.recipe.id);
+      } else if (this.type == 'delete') {
+        if (confirm('Are you sure you want to delete the recipe?')) {
+          this.db.remove_recipe(this.recipe.id);
+          this.router.nav_home();
+        }
       }
     }
   }

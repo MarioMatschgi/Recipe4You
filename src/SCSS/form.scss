@@ -1,5 +1,9 @@
 /* CSS */
 /* TODO: ERROR BOX IN NEXT LINE*/
+form {
+  text-align: center;
+}
+
 form div {
   display: flex;
   flex-wrap: wrap;
@@ -8,6 +12,7 @@ form div {
 }
 form div > * {
   flex-grow: 1;
+  flex-basis: 100%;
 }
 form label {
   flex-basis: 100%;
