@@ -21,6 +21,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FormsModule } from '@angular/forms';
 import { PreviewComponent } from './components/recipe/preview/preview.component';
+import { MenubarComponent } from './components/menubar/menubar.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { PreviewComponent } from './components/recipe/preview/preview.component'
     RecipesComponent,
     RecipeViewComponent,
     PreviewComponent,
+    MenubarComponent,
   ],
   imports: [
     BrowserModule,

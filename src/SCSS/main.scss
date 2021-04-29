@@ -38,10 +38,13 @@ body {
 }
 
 main {
-  margin: max(calc(10em - 150px), 0px);
+  margin: 2em max(calc(10em - 150px), 0px);
+  margin-bottom: 0;
 }
 a:not(.no-style) {
   color: var(--color-accent);
+}
+a {
   cursor: pointer;
 }
 

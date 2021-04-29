@@ -1,5 +1,3 @@
-<p>DEBUG {{ recipe | json }}</p>
-
 <ng-template [ngIf]="setup" [ngIfElse]="loading">
   <ng-template [ngIf]="recipe" [ngIfElse]="no_recipe">
     <div class="box">
@@ -9,12 +7,12 @@
       <div class="top toolbar">
         <p>%Author%</p>
         <div class="flex-spacer"></div>
-        <a class="no-style" (click)="router.nav_edit(recipe_id)"
-          ><i class="fas" aria-hidden="true">&#xf044;</i></a
-        >
-        <a class="no-style" (click)="router.nav_delete(recipe_id)"
-          ><i class="fas" aria-hidden="true">&#xf2ed;</i></a
-        >
+        <a class="no-style" (click)="router.nav_edit(recipe_id)">
+          <i class="fas" aria-hidden="true">&#xf044;</i>
+        </a>
+        <a class="no-style" (click)="router.nav_delete(recipe_id)">
+          <i class="fas" aria-hidden="true">&#xf2ed;</i>
+        </a>
       </div>
 
       <div class="spacer"></div>
@@ -61,3 +59,5 @@
 <ng-template #loading>
   <p>LOADING DATA</p>
 </ng-template>
+
+<p>DEBUG {{ recipe | json }}</p>
