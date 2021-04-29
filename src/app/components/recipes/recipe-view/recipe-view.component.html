@@ -2,24 +2,55 @@
 
 <ng-template [ngIf]="setup" [ngIfElse]="loading">
   <ng-template [ngIf]="recipe" [ngIfElse]="no_recipe">
-    <article class="recipe box">
-      <section class="title">
-        <h2>{{ recipe.name }}</h2>
-        <p>{{ recipe.description }}</p>
-      </section>
-      <section class="ingredients">
-        <h2>Ingredients</h2>
-        <p>{{ recipe.ingredients }}</p>
-      </section>
-      <section class="method">
-        <h2>Method</h2>
-        <p>{{ recipe.method }}</p>
-      </section>
-      <section class="notes" *ngIf="recipe.notes">
-        <h2>Notes</h2>
-        <p>{{ recipe.notes }}</p>
-      </section>
-    </article>
+    <div class="box">
+      <!-- 
+        TOP-TOOLBAR
+       -->
+      <div class="top toolbar">
+        <p>%Author%</p>
+        <div class="flex-spacer"></div>
+        <a (click)="router.nav_edit(recipe_id)"
+          ><i class="fas" aria-hidden="true">&#xf044;</i></a
+        >
+        <a (click)="router.nav_delete(recipe_id)"
+          ><i class="fas" aria-hidden="true">&#xf2ed;</i></a
+        >
+      </div>
+
+      <div class="spacer"></div>
+
+      <!-- 
+        RECIPE
+       -->
+      <article class="recipe">
+        <section class="title">
+          <h2>{{ recipe.name }}</h2>
+          <p>{{ recipe.description }}</p>
+        </section>
+        <section class="ingredients">
+          <h2>Ingredients</h2>
+          <p>{{ recipe.ingredients }}</p>
+        </section>
+        <section class="method">
+          <h2>Method</h2>
+          <p>{{ recipe.method }}</p>
+        </section>
+        <section class="notes" *ngIf="recipe.notes">
+          <h2>Notes</h2>
+          <p>{{ recipe.notes }}</p>
+        </section>
+      </article>
+
+      <div class="spacer"></div>
+
+      <!-- 
+        TOP-TOOLBAR
+       -->
+      <div class="bottom toolbar">
+        <p id="created">created on<br />{{ recipe_date_added }}</p>
+        <p id="edited">edited on<br />{{ recipe_date_edited }}</p>
+      </div>
+    </div>
   </ng-template>
 
   <ng-template #no_recipe>

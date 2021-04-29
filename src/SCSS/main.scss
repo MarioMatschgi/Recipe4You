@@ -65,3 +65,13 @@ main {
   flex-grow: 0 !important;
   flex-basis: unset !important;
 }
+.flex-spacer {
+  width: auto;
+  flex-grow: 1;
+}
+
+.spacer {
+  width: 0;
+  height: 0;
+  margin: var(--unit-small);
+}

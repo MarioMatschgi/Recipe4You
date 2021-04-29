@@ -5,7 +5,7 @@ import {
   DocumentReference,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { RecipeModel } from '../model/recipe.model';
+import { RecipeHelper, RecipeModel } from '../model/recipe.model';
 
 @Injectable({
   providedIn: 'root',
@@ -26,11 +26,11 @@ export class DatabaseService {
   }
 
   add_recipe(data: RecipeModel): Promise<DocumentReference<any>> {
-    return this.recipesCol.add(data.to_object());
+    return this.recipesCol.add(RecipeHelper.to_object(data));
   }
 
   edit_recipe(id: string, newData: RecipeModel) {
-    this.recipesCol.doc(id).set(newData.to_object());
+    this.recipesCol.doc(id).set(RecipeHelper.to_object(newData));
   }
 
   remove_recipe(id: string) {
