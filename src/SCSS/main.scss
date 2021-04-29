@@ -40,6 +40,27 @@ body {
 main {
   padding: var(--unit-large);
 }
+a:not(.no-style) {
+  color: var(--color-accent);
+  cursor: pointer;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+/* LIST */
+ul.no-style {
+  padding-left: 0 !important;
+  list-style-type: none;
+}
+
+/* CONTAINER */
+.container {
+  *:not(:last-child) {
+    margin-bottom: var(--margin-p);
+  }
+}
 
 /* BOX */
 .box {
@@ -48,6 +69,25 @@ main {
   background-color: var(--color-foreground);
 
   border-radius: var(--unit-normal);
+
+  transition: transform 0.4s;
+
+  &.tiny {
+    padding: var(--unit-tiny);
+    border-radius: var(--unit-tiny);
+  }
+  &.small {
+    padding: var(--unit-small);
+    border-radius: var(--unit-small);
+  }
+  &.large {
+    padding: var(--unit-large);
+    border-radius: var(--unit-large);
+  }
+
+  &.clickable:hover {
+    transform: scale(1.05);
+  }
 }
 
 .box,

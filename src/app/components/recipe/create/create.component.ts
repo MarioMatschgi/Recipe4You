@@ -28,6 +28,9 @@ export class CreateComponent implements OnInit {
         this.recipe.date_edited = this.recipe.date_added;
         const doc = await this.db.add_recipe(this.recipe);
 
+        this.recipe.id = doc.id;
+        await this.db.edit_recipe(doc.id, this.recipe);
+
         this.router.nav_recipe(doc.id);
       }
     }

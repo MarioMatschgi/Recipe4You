@@ -1,1 +1,7 @@
-<recipe></recipe>
+<div class="container">
+  <ul class="no-style">
+    <li *ngFor="let recipe of recipes | async; index as i">
+      <recipe-preview [recipe]="recipe"></recipe-preview>
+    </li>
+  </ul>
+</div>

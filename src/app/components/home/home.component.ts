@@ -1,15 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { RecipeModel } from 'src/app/model/recipe.model';
+import { DatabaseService } from 'src/app/services/database.service';
 
 @Component({
-  selector: 'app-home',
+  selector: 'home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  recipes: Observable<RecipeModel[]>;
 
-  constructor() { }
+  constructor(public db: DatabaseService) {}
 
   ngOnInit(): void {
+    this.recipes = this.db.get_all_recipes();
   }
-
 }

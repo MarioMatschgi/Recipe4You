@@ -1,0 +1,21 @@
+.recipe {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  .text {
+    flex-basis: 50%;
+    flex-grow: 1;
+  }
+  .image {
+    flex-basis: 0;
+    flex-grow: 1;
+    min-width: 15em;
+    max-height: 10em;
+    text-align: right;
+  }
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}

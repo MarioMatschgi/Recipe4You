@@ -1,4 +1,6 @@
 export class RecipeModel {
+  id: string;
+
   name: string;
   description: string;
   ingredients: string;

@@ -20,6 +20,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FormsModule } from '@angular/forms';
+import { PreviewComponent } from './components/recipe/preview/preview.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { FormsModule } from '@angular/forms';
     DeleteComponent,
     RecipesComponent,
     RecipeViewComponent,
+    PreviewComponent,
   ],
   imports: [
     BrowserModule,
