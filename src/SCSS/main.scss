@@ -38,7 +38,7 @@ body {
 }
 
 main {
-  padding: var(--unit-large);
+  margin: max(calc(10em - 150px), 0px);
 }
 a:not(.no-style) {
   color: var(--color-accent);
