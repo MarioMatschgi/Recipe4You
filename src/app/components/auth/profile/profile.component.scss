@@ -1,0 +1,30 @@
+.profile {
+  img {
+    width: 1em;
+    height: 1em;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+  }
+
+  .popover {
+    background-color: var(--color-highlight);
+    text-align: center;
+    z-index: 999;
+
+    position: absolute;
+    right: 0;
+
+    img {
+      width: 3em;
+      height: 3em;
+      border-radius: 25%;
+      cursor: unset;
+    }
+
+    button {
+      background-color: var(--color-foreground);
+    }
+  }
+}

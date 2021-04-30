@@ -9,6 +9,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
 
 const routes: Routes = [
   /* HOME */
@@ -23,6 +25,10 @@ const routes: Routes = [
   /* RECIPES */
   { path: 'recipes', component: RecipesComponent },
   { path: 'recipes/:id', component: RecipeViewComponent },
+
+  /* AUTH */
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
 
   /* NOT FOUND */
   { path: '**', component: NotFoundComponent },

@@ -22,10 +22,16 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FormsModule } from '@angular/forms';
 import { PreviewComponent } from './components/recipe/preview/preview.component';
 import { MenubarComponent } from './components/menubar/menubar.component';
+import { AuthComponent } from './components/auth/auth.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { ProfileComponent } from './components/auth/profile/profile.component';
+import { ClickOutsideDirective } from './directives/click-outside.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ClickOutsideDirective,
     RecipeComponent,
     NotFoundComponent,
     HomeComponent,
@@ -36,6 +42,10 @@ import { MenubarComponent } from './components/menubar/menubar.component';
     RecipeViewComponent,
     PreviewComponent,
     MenubarComponent,
+    AuthComponent,
+    LoginComponent,
+    RegisterComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

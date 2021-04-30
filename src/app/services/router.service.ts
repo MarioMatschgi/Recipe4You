@@ -19,6 +19,10 @@ export class RouterService {
     this.location.forward();
   }
 
+  nav_login() {
+    this.router.navigate(['login']);
+  }
+
   nav_recipe(id: string) {
     this.router.navigate(['recipes', id]);
   }

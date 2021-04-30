@@ -7,7 +7,6 @@
 
 html,
 body {
-  font-family: "Roboto", Times, serif;
   font-size: calc(1em + 0.25vmin);
   /*  EM are for bottom out (small on small devices) 
       VH Are for growing with device size (large on large devices)
@@ -18,6 +17,7 @@ body {
 }
 
 * {
+  font-family: "Roboto", Times, serif;
   line-height: 1;
 }
 

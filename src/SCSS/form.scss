@@ -113,6 +113,11 @@ textarea {
   cursor: pointer;
 
   transition: box-shadow 0.4s;
+
+  &.tiny {
+    padding: var(--unit-tiny);
+    border-radius: var(--unit-tiny);
+  }
 }
 form input:focus,
 form input:hover:not(:disabled),
