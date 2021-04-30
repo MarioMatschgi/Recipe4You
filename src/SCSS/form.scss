@@ -16,6 +16,7 @@ form div > * {
 }
 form label {
   flex-basis: 100%;
+  text-align: left;
 
   /*margin-top: var(--padding);*/
   padding: 0 var(--unit-small);
