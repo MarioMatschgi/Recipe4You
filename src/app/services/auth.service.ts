@@ -1,17 +1,14 @@
-import { User } from './../model/user.model';
+import { take } from 'rxjs/operators';
+import { UserData, AuthData, Role } from './../model/user.model';
 import { RouterService } from './router.service';
-import {
-  AngularFirestore,
-  AngularFirestoreDocument,
-} from '@angular/fire/firestore';
-import { Injectable, NgZone } from '@angular/core';
-import { Event, NavigationEnd, NavigationStart, Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { EventEmitter, Injectable } from '@angular/core';
+import { Event, Router, RouterLink } from '@angular/router';
 
 import firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
-
-import { Observable, of } from 'rxjs';
-import { switchMap, take } from 'rxjs/operators';
+import { DatabaseService } from './database.service';
+import { RecipeModel } from '../model/recipe.model';
 
 type Error = { code: string; message: string };
 
@@ -19,7 +16,12 @@ type Error = { code: string; message: string };
   providedIn: 'root',
 })
 export class AuthService {
-  userData: User;
+  authData: AuthData;
+  userData: UserData;
+
+  is_auth_setup = false;
+  is_user_setup = false;
+  setup_event = new EventEmitter();
 
   error: { code: string; message: string } = undefined;
 
@@ -30,18 +32,44 @@ export class AuthService {
     private afs: AngularFirestore,
     private ar: Router,
     private router: RouterService,
-    private ngZone: NgZone
+    private db: DatabaseService
   ) {
-    this.userData = JSON.parse(localStorage.getItem('user'));
+    this.authData = JSON.parse(localStorage.getItem('authData'));
+    this.userData = JSON.parse(localStorage.getItem('userData'));
 
     this.afAuth.authState.subscribe((user) => {
-      this.userData = user;
+      this.authData = user;
+
+      if (!this.is_auth_setup) this.setup_event.emit();
+      this.is_auth_setup = true;
+
       if (user) {
-        localStorage.setItem('user', JSON.stringify(this.userData));
+        localStorage.setItem('authData', JSON.stringify(this.authData));
       } else {
-        localStorage.setItem('user', null);
+        localStorage.setItem('authData', null);
+        this.authData = null;
       }
     });
+
+    if (this.loggedIn) {
+      this.setup_event.subscribe(() => {
+        this.db.db
+          .collection('users')
+          .doc(this.authData.uid)
+          .valueChanges()
+          .subscribe((data) => {
+            this.userData = data;
+            this.is_user_setup = true;
+
+            if (data) {
+              localStorage.setItem('userData', JSON.stringify(this.userData));
+            } else {
+              localStorage.setItem('userData', null);
+              this.userData = null;
+            }
+          });
+      });
+    }
   }
 
   private debugUsers = ['mariomatschgi@gmail.com', 'marioelsnig@gmail.com'];
@@ -55,7 +83,7 @@ export class AuthService {
     });
 
     // Debug user
-    this.isDebugUser = this.debugUsers.includes(this.userData.email);
+    this.isDebugUser = this.debugUsers.includes(this.authData.email);
   }
 
   /*
@@ -101,22 +129,30 @@ export class AuthService {
   /*
     USER STUFF
   */
+  is_author_or_admin(author): boolean {
+    return this.is_author(author) || this.is_admin();
+  }
+  is_author(author): boolean {
+    return this.is_user(author);
+  }
+  is_admin(): boolean {
+    return this.userData.role == Role.admin;
+  }
+
   get_name(): string {
-    return this.userData.displayName || this.userData.email;
+    return this.authData.displayName || this.authData.email;
   }
   is_user(id: string): boolean {
     if (!this.loggedIn) return false;
 
-    return this.userData.uid === id;
+    return this.authData.uid === id;
   }
 
   get loggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user'));
-
-    return user !== null ? true : false;
+    return this.authData !== null ? true : false;
   }
 
-  getEmptyUser(): User {
+  getEmptyUser(): AuthData {
     return { uid: null, email: null };
   }
 
@@ -125,7 +161,7 @@ export class AuthService {
    */
   private successfullySignedIn(auth: string) {
     this.error = undefined;
-    console.log('AUTH: successfully signed in with ' + auth);
+    // console.log('AUTH: successfully signed in with ' + auth);
 
     this.router.nav_home();
   }

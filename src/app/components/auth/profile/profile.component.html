@@ -1,8 +1,8 @@
 <div class="profile" (clickOutside)="popover = false">
   <div *ngIf="auth.loggedIn; else notLoggedIn" (click)="popover = !popover">
     <img
-      *ngIf="auth.userData.photoURL; else noProfileImg"
-      [src]="auth.userData.photoURL"
+      *ngIf="auth.authData.photoURL; else noProfileImg"
+      [src]="auth.authData.photoURL"
       alt="profile"
     />
 
@@ -15,7 +15,7 @@
   </ng-template>
 
   <div class="popover box small" *ngIf="popover">
-    <img [src]="auth.userData.photoURL" alt="profile" />
+    <img [src]="auth.authData.photoURL" alt="profile" />
     <h3>{{ auth.get_name() }}</h3>
     <button (click)="auth.signOut(); popover = false">logout</button>
   </div>

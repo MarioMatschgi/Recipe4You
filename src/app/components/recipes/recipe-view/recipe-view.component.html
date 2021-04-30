@@ -8,7 +8,7 @@
         <p>%Author%</p>
         <div class="flex-spacer"></div>
 
-        <div *ngIf="this.auth.is_user(this.recipe.author)">
+        <div *ngIf="auth.is_author_or_admin(recipe.author)">
           <a class="no-style" (click)="router.nav_edit(recipe_id)">
             <i class="fas" aria-hidden="true">&#xf044;</i>
           </a>

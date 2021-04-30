@@ -36,15 +36,16 @@ export class RecipeComponent implements OnInit {
     if (this.type == 'create') {
       this.recipe = new RecipeModel();
     } else if (this.type == 'edit' || this.type == 'delete') {
-      // IF NOT RECIPE AUTHOR RETURN
-      if (!this.auth.is_user(this.recipe.author)) this.router.nav_login();
-
       const params = await this.route.params.pipe(take(1)).toPromise();
 
       this.recipe = await this.db
         .get_recipe(params['id'])
         .pipe(take(1))
         .toPromise();
+
+      // IF NOT RECIPE AUTHOR RETURN
+      if (!this.auth.is_author_or_admin(this.recipe.author))
+        this.router.nav_login();
     }
   }
 
@@ -61,7 +62,7 @@ export class RecipeComponent implements OnInit {
       if (!recipe) {
         this.recipe.date_added = new Date();
         this.recipe.date_edited = this.recipe.date_added;
-        this.recipe.author = this.auth.userData.uid;
+        this.recipe.author = this.auth.authData.uid;
         const doc = await this.db.add_recipe(this.recipe);
 
         this.recipe.id = doc.id;
@@ -73,7 +74,7 @@ export class RecipeComponent implements OnInit {
       }
     } else if (this.type == 'edit') {
       // IF NOT RECIPE AUTHOR RETURN
-      if (!this.auth.is_user(this.recipe.author)) return;
+      if (!this.auth.is_author_or_admin(this.recipe.author)) return;
 
       this.recipe.date_edited = new Date();
 
@@ -81,7 +82,7 @@ export class RecipeComponent implements OnInit {
       this.router.nav_recipe(this.recipe.id);
     } else if (this.type == 'delete') {
       // IF NOT RECIPE AUTHOR RETURN
-      if (!this.auth.is_user(this.recipe.author)) return;
+      if (!this.auth.is_author_or_admin(this.recipe.author)) return;
 
       if (confirm('Are you sure you want to delete the recipe?')) {
         this.db.remove_recipe(this.recipe.id);

@@ -17,22 +17,4 @@ export class CreateComponent implements OnInit {
   ngOnInit(): void {
     this.recipe = new RecipeModel();
   }
-
-  async onSubmit(form: NgForm) {
-    form.form.markAllAsTouched();
-
-    if (form.valid) {
-      let recipe = await this.db.recipe_exists(this.recipe.name);
-      if (!recipe) {
-        this.recipe.date_added = new Date();
-        this.recipe.date_edited = this.recipe.date_added;
-        const doc = await this.db.add_recipe(this.recipe);
-
-        this.recipe.id = doc.id;
-        await this.db.edit_recipe(doc.id, this.recipe);
-
-        this.router.nav_recipe(doc.id);
-      }
-    }
-  }
 }
