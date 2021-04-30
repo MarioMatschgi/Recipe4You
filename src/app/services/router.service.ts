@@ -24,6 +24,10 @@ export class RouterService {
     this.router.navigate(['login']);
   }
 
+  nav_bookmarks() {
+    this.router.navigate(['bookmarks']);
+  }
+
   nav_recipe(id: string) {
     this.router.navigate(['recipes', id]);
   }

@@ -26,6 +26,9 @@ const routes: Routes = [
   { path: 'recipes', component: RecipesComponent },
   { path: 'recipes/:id', component: RecipeViewComponent },
 
+  /* BOOKMARKS */
+  { path: 'bookmarks', component: HomeComponent },
+
   /* AUTH */
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
