@@ -149,6 +149,9 @@ textarea:hover:not(:disabled):-webkit-autofill {
 button.signin {
   display: flex;
   align-items: center;
+
+  flex-grow: unset;
+  flex-basis: unset;
 }
 
 button.signin * {
@@ -157,7 +160,8 @@ button.signin * {
 }
 button.signin img {
   height: 1.5em;
-  margin-right: 0.5em;
+  margin: 0 !important;
+  margin-right: 0.5em !important;
 }
 button.signin.google {
   background-color: white;

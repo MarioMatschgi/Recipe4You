@@ -38,16 +38,9 @@ export class AuthService {
       this.userData = user;
       if (user) {
         localStorage.setItem('user', JSON.stringify(this.userData));
-
-        console.log('USER NOW SET TO ');
-        console.log(this.userData);
       } else {
         localStorage.setItem('user', null);
-
-        console.log('USER NOW UNSET');
       }
-      console.log('USER DATA');
-      console.log(this.userData);
     });
   }
 
