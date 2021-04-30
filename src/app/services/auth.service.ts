@@ -101,6 +101,15 @@ export class AuthService {
   /*
     USER STUFF
   */
+  get_name(): string {
+    return this.userData.displayName || this.userData.email;
+  }
+  is_user(id: string): boolean {
+    if (!this.loggedIn) return false;
+
+    return this.userData.uid === id;
+  }
+
   get loggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
 

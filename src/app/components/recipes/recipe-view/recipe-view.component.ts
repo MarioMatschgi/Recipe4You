@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RecipeHelper, RecipeModel } from 'src/app/model/recipe.model';
 import { RouterService } from 'src/app/services/router.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'recipe-view',
@@ -20,7 +21,8 @@ export class RecipeViewComponent implements OnInit {
   constructor(
     public db: DatabaseService,
     public router: RouterService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private auth: AuthService
   ) {}
 
   ngOnInit(): void {

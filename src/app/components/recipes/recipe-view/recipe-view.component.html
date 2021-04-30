@@ -7,12 +7,16 @@
       <div class="top toolbar">
         <p>%Author%</p>
         <div class="flex-spacer"></div>
-        <a class="no-style" (click)="router.nav_edit(recipe_id)">
-          <i class="fas" aria-hidden="true">&#xf044;</i>
-        </a>
-        <a class="no-style" (click)="router.nav_delete(recipe_id)">
-          <i class="fas" aria-hidden="true">&#xf2ed;</i>
-        </a>
+
+        <div *ngIf="this.auth.is_user(this.recipe.author)">
+          <a class="no-style" (click)="router.nav_edit(recipe_id)">
+            <i class="fas" aria-hidden="true">&#xf044;</i>
+          </a>
+          &nbsp;
+          <a class="no-style" (click)="router.nav_delete(recipe_id)">
+            <i class="fas" aria-hidden="true">&#xf2ed;</i>
+          </a>
+        </div>
       </div>
 
       <div class="spacer"></div>
