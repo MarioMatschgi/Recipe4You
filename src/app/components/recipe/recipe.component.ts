@@ -55,6 +55,8 @@ export class RecipeComponent implements OnInit {
           await this.db.edit_recipe(doc.id, this.recipe);
 
           this.router.nav_recipe(doc.id);
+        } else {
+          alert('A recipe with this name already exists!');
         }
       } else if (this.type == 'edit') {
         this.recipe.date_edited = new Date();
