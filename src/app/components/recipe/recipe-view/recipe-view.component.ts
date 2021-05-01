@@ -58,15 +58,36 @@ export class RecipeViewComponent implements OnInit {
 
       this.setups.recipe = true;
     });
-    this.auth.setup_userPrivate_event.subscribe(() => {
+
+    // TODO: REFACTOR
+    if (this.auth.is_userPrivate_setup) {
       this.bookmarked = this.auth.userPrivateData.bookmarks.includes(
         this.recipe_id
       );
       this.setups.bookmark = true;
-    });
+    } else
+      this.auth.setup_userPrivate_event.subscribe(() => {
+        this.bookmarked = this.auth.userPrivateData.bookmarks.includes(
+          this.recipe_id
+        );
+
+        this.setups.bookmark = true;
+      });
   }
 
   bookmark() {
     this.bookmarked = !this.bookmarked;
+    if (this.bookmarked)
+      this.auth.userPrivateData.bookmarks.push(this.recipe_id);
+    else
+      for (let i = 0; i < this.auth.userPrivateData.bookmarks.length; i++) {
+        if (this.auth.userPrivateData.bookmarks[i] === this.recipe_id)
+          this.auth.userPrivateData.bookmarks.splice(i, 1);
+      }
+
+    this.db.db
+      .collection('users-private')
+      .doc(this.auth.userPublicData.uid)
+      .update({ bookmarks: this.auth.userPrivateData.bookmarks });
   }
 }
