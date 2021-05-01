@@ -1,5 +1,5 @@
 article {
-  & section {
+  section {
     margin: var(--unit-normal) 0;
 
     &:first-of-type {
@@ -7,7 +7,7 @@ article {
       text-align: center;
       margin: 0 auto;
 
-      & h2 {
+      h2 {
         font-size: var(--font-size-h1);
       }
     }

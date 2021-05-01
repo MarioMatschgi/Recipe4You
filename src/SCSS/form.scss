@@ -1,60 +1,56 @@
-/* CSS */
-/* TODO: ERROR BOX IN NEXT LINE*/
 form {
   text-align: center;
-}
 
-form .no-stretch {
-  margin-bottom: 0 !important;
-}
+  .no-stretch {
+    margin-bottom: 0 !important;
+  }
+  div {
+    display: flex;
+    flex-wrap: wrap;
 
-form div {
-  display: flex;
-  flex-wrap: wrap;
+    justify-content: center;
+  }
+  div > * {
+    flex-grow: 1;
+    flex-basis: 100%;
+  }
+  label {
+    flex-basis: 100%;
+    text-align: left;
 
-  justify-content: center;
-}
-form div > * {
-  flex-grow: 1;
-  flex-basis: 100%;
-}
-form label {
-  flex-basis: 100%;
-  text-align: left;
+    padding: 0 var(--unit-small);
+    padding-bottom: var(--margin-p);
+  }
 
-  /*margin-top: var(--padding);*/
-  padding: 0 var(--unit-small);
-  padding-bottom: var(--margin-p);
-}
+  div:not(:first-child),
+  label:not(:first-child) {
+    margin-top: var(--unit-small);
+  }
 
-form div:not(:first-child),
-form label:not(:first-child) {
-  margin-top: var(--unit-small);
-}
+  button[type="submit"] {
+    flex-basis: 100%;
+    margin-top: var(--unit-small);
+  }
 
-form button[type="submit"] {
-  flex-basis: 100%;
-  margin-top: var(--unit-small);
-}
+  label.required::before {
+    content: "*";
+    color: var(--colors-red);
+  }
 
-form label.required::before {
-  content: "*";
-  color: var(--colors-red);
-}
+  /* ALERT STYLING */
+  .alert {
+    flex-basis: 100%;
 
-/* ALERT STYLING */
-form .alert {
-  flex-basis: 100%;
+    padding: var(--unit-small);
+    margin: 0 !important;
+    margin-bottom: var(--margin-p) !important;
 
-  padding: var(--unit-small);
-  margin: 0 !important;
-  margin-bottom: var(--margin-p) !important;
-
-  background-color: var(--color-highlight);
-  border-radius: var(--unit-small);
-}
-form .alert.alert-danger {
-  box-shadow: 0 0 0 2px var(--colors-red) inset;
+    background-color: var(--color-highlight);
+    border-radius: var(--unit-small);
+  }
+  .alert.alert-danger {
+    box-shadow: 0 0 0 2px var(--colors-red) inset;
+  }
 }
 
 /* TEXT AREA */
@@ -104,7 +100,7 @@ textarea::-webkit-resizer {
 }
 
 /* INPUT STYLING */
-form input,
+input,
 button,
 textarea {
   background-color: var(--color-highlight);
@@ -123,8 +119,8 @@ textarea {
     border-radius: var(--unit-tiny);
   }
 }
-form input:focus,
-form input:hover:not(:disabled),
+input:focus,
+input:hover:not(:disabled),
 button:focus,
 button:hover:not(:disabled),
 textarea:focus,
@@ -132,14 +128,14 @@ textarea:hover:not(:disabled) {
   box-shadow: 0 0 0 2px var(--colors-red);
   outline: none;
 }
-form input:-webkit-autofill,
+input:-webkit-autofill,
 button:-webkit-autofill,
 textarea:-webkit-autofill {
   -webkit-text-fill-color: var(--colors-dark-gray) !important;
   box-shadow: 0 0 0 transparent, 0 0 0 1000px var(--colors-light-blue) inset !important;
 }
-form input:focus:-webkit-autofill,
-form input:hover:not(:disabled):-webkit-autofill,
+input:focus:-webkit-autofill,
+input:hover:not(:disabled):-webkit-autofill,
 button:focus:-webkit-autofill,
 button:hover:not(:disabled):-webkit-autofill,
 textarea:focus:-webkit-autofill,
@@ -156,23 +152,24 @@ button.signin {
 
   flex-grow: unset;
   flex-basis: unset;
-}
 
-button.signin * {
-  display: inline-block;
-  flex-grow: 0;
-}
-button.signin img {
-  height: 1.5em;
-  margin: 0 !important;
-  margin-right: 0.5em !important;
-}
-button.signin.google {
-  background-color: white;
-  color: #737373;
-}
-button.signin.email {
-  background-color: #34495e;
+  * {
+    display: inline-block;
+    flex-grow: 0;
+  }
+  img {
+    height: 1.5em;
+    margin: 0 !important;
+    margin-right: 0.5em !important;
+  }
+
+  &.google {
+    background-color: white;
+    color: #737373;
+  }
+  &.email {
+    background-color: #34495e;
+  }
 }
 
 /* NO ARROWS */
