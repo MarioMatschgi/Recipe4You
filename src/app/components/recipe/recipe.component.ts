@@ -62,7 +62,7 @@ export class RecipeComponent implements OnInit {
       if (!recipe) {
         this.recipe.date_added = new Date();
         this.recipe.date_edited = this.recipe.date_added;
-        this.recipe.author = this.auth.authData.uid;
+        this.recipe.author = this.auth.userPublicData.uid;
         const doc = await this.db.add_recipe(this.recipe);
 
         this.recipe.id = doc.id;

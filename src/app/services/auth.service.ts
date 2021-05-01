@@ -1,5 +1,11 @@
 import { take } from 'rxjs/operators';
-import { UserData, AuthData, Role } from './../model/user.model';
+import {
+  AuthData,
+  Role,
+  emptyUserPublicData,
+  UserPrivateData,
+  UserPublicData,
+} from './../model/user.model';
 import { RouterService } from './router.service';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { EventEmitter, Injectable } from '@angular/core';
@@ -9,6 +15,7 @@ import firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { DatabaseService } from './database.service';
 import { RecipeModel } from '../model/recipe.model';
+import { Subscription } from 'rxjs';
 
 type Error = { code: string; message: string };
 
@@ -16,12 +23,16 @@ type Error = { code: string; message: string };
   providedIn: 'root',
 })
 export class AuthService {
-  authData: AuthData;
-  userData: UserData;
+  // authData: AuthData;
+  userPrivateData: UserPrivateData;
+  userPublicData: UserPublicData;
 
   is_auth_setup = false;
-  is_user_setup = false;
+  is_userPrivate_setup = false;
+  is_userPublic_setup = false;
   setup_event = new EventEmitter();
+
+  private_subscription: Subscription;
 
   error: { code: string; message: string } = undefined;
 
@@ -34,42 +45,125 @@ export class AuthService {
     private router: RouterService,
     private db: DatabaseService
   ) {
-    this.authData = JSON.parse(localStorage.getItem('authData'));
-    this.userData = JSON.parse(localStorage.getItem('userData'));
+    this.userPrivateData = JSON.parse(localStorage.getItem('userPrivateData'));
+    this.userPublicData = JSON.parse(localStorage.getItem('userPublicData'));
 
-    this.afAuth.authState.subscribe((user) => {
-      this.authData = user;
+    this.afAuth.authState.subscribe(async (user) => {
+      // If logged out
+      if (user == null) {
+        this.userPrivateData = null;
+        this.userPublicData = null;
+        localStorage.setItem('userPrivateData', null);
+        localStorage.setItem('userPublicData', null);
 
+        this.private_subscription?.unsubscribe();
+      } else {
+        // user public data null (was not logged in)
+        if (this.userPublicData == null) {
+          const data = (await this.db.db
+            .collection('users-public')
+            .doc(user.uid)
+            .valueChanges()
+            .pipe(take(1))
+            .toPromise()) as Object;
+
+          // not in database, create new user
+          if (data == undefined) {
+            const data: UserPublicData = {
+              ...emptyUserPublicData,
+              uid: user.uid,
+              email: user.email,
+              photoURL: user.photoURL,
+              displayName: user.displayName,
+            };
+
+            await this.db.db.collection('users-public').doc(data.uid).set(data);
+          }
+          this.userPublicData = { ...emptyUserPublicData, ...data };
+        } else {
+          // UPDATE DATA
+          this.userPublicData.uid = user.uid;
+
+          // UPDATE USER DATA (Check for changes in email and profile image and update it in the database)
+          let changes = false;
+          if (!this.userPublicData.email_overridden) {
+            this.userPublicData.email = user.email;
+            changes = true;
+          }
+          if (!this.userPublicData.photoURL_overridden) {
+            this.userPublicData.photoURL = user.photoURL;
+            changes = true;
+          }
+          if (!this.userPublicData.displayName_overridden) {
+            this.userPublicData.displayName = user.displayName;
+            changes = true;
+          }
+
+          // Push to database
+          if (changes) {
+            this.db.db
+              .collection('users-public')
+              .doc(this.userPublicData.uid)
+              .set(this.userPublicData, { merge: true });
+          }
+        }
+      }
+
+      //
       if (!this.is_auth_setup) this.setup_event.emit();
       this.is_auth_setup = true;
-
-      if (user) {
-        localStorage.setItem('authData', JSON.stringify(this.authData));
-      } else {
-        localStorage.setItem('authData', null);
-        this.authData = null;
-      }
     });
 
-    if (this.loggedIn) {
-      this.setup_event.subscribe(() => {
+    this.setup_event.subscribe(() => {
+      if (this.loggedIn) {
+        // userPublicData
         this.db.db
-          .collection('users')
-          .doc(this.authData.uid)
+          .collection('users-public')
+          .doc(this.userPublicData.uid)
           .valueChanges()
           .subscribe((data) => {
-            this.userData = data;
-            this.is_user_setup = true;
+            // Return if user logged out
+            if (this.userPublicData == null) return;
 
-            if (data) {
-              localStorage.setItem('userData', JSON.stringify(this.userData));
-            } else {
-              localStorage.setItem('userData', null);
-              this.userData = null;
-            }
+            if (this.userPublicData.photoURL_overridden)
+              this.userPublicData.photoURL = data['photoURL'];
+            if (this.userPublicData.displayName_overridden)
+              this.userPublicData.displayName = data['displayName'];
+
+            this.userPublicData.role = data['role'];
+
+            this.is_userPublic_setup = true;
+
+            // SAVE DATA TO LOCALSTORAGE
+            if (data)
+              localStorage.setItem(
+                'userPublicData',
+                JSON.stringify(this.userPublicData)
+              );
+            else localStorage.setItem('userPublicData', null);
           });
-      });
-    }
+
+        // userPrivateData
+        this.private_subscription = this.db.db
+          .collection('users-private')
+          .doc(this.userPublicData.uid)
+          .valueChanges()
+          .subscribe((data) => {
+            // Return if user logged out
+            if (this.userPrivateData == null) return;
+
+            this.is_userPrivate_setup = true;
+
+            // SAVE DATA TO LOCALSTORAGE
+            if (data)
+              localStorage.setItem(
+                'userPrivateData',
+                JSON.stringify(this.userPrivateData)
+              );
+            else localStorage.setItem('userPrivateData', null);
+          });
+      }
+    });
   }
 
   private debugUsers = ['mariomatschgi@gmail.com', 'marioelsnig@gmail.com'];
@@ -83,8 +177,12 @@ export class AuthService {
     });
 
     // Debug user
-    this.isDebugUser = this.debugUsers.includes(this.authData.email);
+    this.isDebugUser = this.debugUsers.includes(this.userPublicData.email);
   }
+
+  /*
+    DATA
+  */
 
   /*
     INIT
@@ -136,20 +234,20 @@ export class AuthService {
     return this.is_user(author);
   }
   is_admin(): boolean {
-    return this.userData.role == Role.admin;
+    return this.userPublicData.role == Role.admin;
   }
 
   get_name(): string {
-    return this.authData.displayName || this.authData.email;
+    return this.userPublicData.displayName || this.userPublicData.email;
   }
   is_user(id: string): boolean {
     if (!this.loggedIn) return false;
 
-    return this.authData.uid === id;
+    return this.userPublicData.uid === id;
   }
 
   get loggedIn(): boolean {
-    return this.authData !== null ? true : false;
+    return this.userPublicData !== null ? true : false;
   }
 
   getEmptyUser(): AuthData {

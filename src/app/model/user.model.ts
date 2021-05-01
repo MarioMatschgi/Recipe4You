@@ -9,6 +9,26 @@ export enum Role {
   none = 'none',
   admin = 'admin',
 }
-export interface UserData {
-  readonly role?: Role;
+export interface UserPrivateData {}
+export const emptyUserPublicData: UserPublicData = {
+  uid: '',
+  email: '',
+  photoURL: '',
+  displayName: '',
+  role: Role.none,
+};
+export interface UserPublicData {
+  // AUTH
+  uid: string;
+  email_overridden?;
+  email: string;
+
+  //
+  photoURL_overridden?;
+  displayName_overridden?;
+  photoURL: string;
+  displayName: string;
+
+  //
+  role: Role;
 }
