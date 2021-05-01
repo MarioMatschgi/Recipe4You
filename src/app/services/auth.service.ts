@@ -238,7 +238,7 @@ export class AuthService {
     return this.is_user(author);
   }
   is_admin(): boolean {
-    return this.userPublicData.role == Role.admin;
+    return this.loggedIn && this.userPublicData.role == Role.admin;
   }
 
   get_name(): string {
