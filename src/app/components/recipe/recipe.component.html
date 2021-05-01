@@ -137,6 +137,12 @@
         SUBMIT BUTTON
        -->
       <div class="form-group">
+        <button type="button" class="no-stretch" (click)="cancel()">
+          cancel
+        </button>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;
+
         <button
           type="button"
           *ngIf="type == 'create'"
@@ -160,18 +166,18 @@
     <p>
       Are you sure, that you want to delete this recipe:<br />{{ recipe.name }}
     </p>
-    <button
-      type="button"
-      class="no-stretch"
-      (click)="router.nav_recipe(recipe.id)"
-    >
-      cancel
-    </button>
+    <div class="form-group">
+      <div class="form-group">
+        <button type="button" class="no-stretch" (click)="cancel()">
+          cancel
+        </button>
 
-    &nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;
 
-    <button type="button" class="no-stretch" (click)="onSubmit(form)">
-      Delete recipe
-    </button>
+        <button type="button" class="no-stretch" (click)="onSubmit(form)">
+          Delete recipe
+        </button>
+      </div>
+    </div>
   </form>
 </div>

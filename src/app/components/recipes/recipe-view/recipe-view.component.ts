@@ -18,6 +18,8 @@ export class RecipeViewComponent implements OnInit {
   recipe_date_added: string;
   recipe_date_edited: string;
 
+  author: string;
+
   constructor(
     public db: DatabaseService,
     public router: RouterService,
@@ -30,13 +32,19 @@ export class RecipeViewComponent implements OnInit {
       this.recipe_id = params['id'];
     });
 
-    this.db.get_recipe(this.recipe_id).subscribe((recipe) => {
+    this.db.get_recipe(this.recipe_id).subscribe(async (recipe) => {
       if (recipe == null) {
         console.log('RECIPE NOT FOUND!');
       }
       this.recipe = recipe;
-      this.recipe_date_added = new Date(recipe.date_added).toLocaleString();
-      this.recipe_date_edited = new Date(recipe.date_edited).toLocaleString();
+      if (recipe != null) {
+        this.recipe_date_added = new Date(recipe.date_added).toLocaleString();
+        this.recipe_date_edited = new Date(recipe.date_edited).toLocaleString();
+      }
+
+      this.author = await this.auth.get_displayname_or_email(
+        this.recipe.author
+      );
 
       if (!this.setup) this.setup = true;
     });

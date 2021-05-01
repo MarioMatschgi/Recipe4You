@@ -49,6 +49,14 @@ export class RecipeComponent implements OnInit {
     }
   }
 
+  cancel() {
+    if (this.recipe.id == undefined) {
+      this.router.nav_home();
+      return;
+    }
+    this.router.nav_recipe(this.recipe.id);
+  }
+
   async onSubmit(form: NgForm) {
     form.form.markAllAsTouched();
 

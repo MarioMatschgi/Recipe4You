@@ -241,8 +241,21 @@ export class AuthService {
     return this.loggedIn && this.userPublicData.role == Role.admin;
   }
 
-  get_name(): string {
-    return this.userPublicData.displayName || this.userPublicData.email;
+  // get_name(): string {
+  //   return this.userPublicData.displayName || this.userPublicData.email;
+  // }
+  async get_displayname_or_email(uid: string = '') {
+    if (uid == '') uid = this.userPublicData.uid;
+
+    // TODO FUNC FOR THAT
+    const d = await this.db.db
+      .collection('users-public')
+      .doc(uid)
+      .valueChanges()
+      .pipe(take(1))
+      .toPromise();
+
+    return d['displayName'] || d['email'];
   }
   is_user(id: string): boolean {
     if (!this.loggedIn) return false;

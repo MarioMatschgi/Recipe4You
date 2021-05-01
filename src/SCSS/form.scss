@@ -4,6 +4,10 @@ form {
   text-align: center;
 }
 
+form .no-stretch {
+  margin-bottom: 0 !important;
+}
+
 form div {
   display: flex;
   flex-wrap: wrap;

@@ -5,7 +5,7 @@
         TOP-TOOLBAR
        -->
       <div class="top toolbar">
-        <p>%Author%</p>
+        <p>by {{ author }}</p>
         <div class="flex-spacer"></div>
 
         <div *ngIf="auth.is_author_or_admin(recipe.author)">
