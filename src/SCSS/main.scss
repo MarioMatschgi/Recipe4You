@@ -103,6 +103,20 @@ ul.no-style {
     margin-bottom: 0;
   }
 }
+.box-indent {
+  padding: var(--unit-normal);
+
+  &.tiny {
+    padding: var(--unit-tiny);
+  }
+  &.small {
+    padding: var(--unit-small);
+  }
+  &.large {
+    padding: var(--unit-large);
+  }
+  padding-block: 0;
+}
 
 /* FLEX */
 .no-stretch {

@@ -1,5 +1,12 @@
 <div class="container">
-  <h1>Recipes</h1>
+  <div class="box-indent small">
+    <h1>Recipes</h1>
+    <p>
+      Food is important, food is delicious but cooking food is often scary and
+      difficult.<br />
+      Below are some recipes that might improve your life!
+    </p>
+  </div>
   <ul class="no-style">
     <li *ngFor="let recipe of recipes | async; index as i">
       <recipe-preview [recipe]="recipe"></recipe-preview>
