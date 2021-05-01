@@ -80,6 +80,10 @@ export class AuthService {
             await this.db.db.collection('users-public').doc(data.uid).set(data);
           }
           this.userPublicData = { ...emptyUserPublicData, ...data };
+          localStorage.setItem(
+            'userPublicData',
+            JSON.stringify(this.userPublicData)
+          );
         } else {
           // UPDATE DATA
           this.userPublicData.uid = user.uid;
