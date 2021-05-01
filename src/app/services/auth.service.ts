@@ -5,6 +5,7 @@ import {
   emptyUserPublicData,
   UserPrivateData,
   UserPublicData,
+  emptyUserPrivateData,
 } from './../model/user.model';
 import { RouterService } from './router.service';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -31,6 +32,8 @@ export class AuthService {
   is_userPrivate_setup = false;
   is_userPublic_setup = false;
   setup_event = new EventEmitter();
+  setup_userPrivate_event = new EventEmitter<UserPrivateData>();
+  setup_userPublic_event = new EventEmitter<UserPublicData>();
 
   private_subscription: Subscription;
 
@@ -127,7 +130,7 @@ export class AuthService {
           .valueChanges()
           .subscribe((data) => {
             // Return if user logged out
-            if (this.userPublicData == null) return;
+            // if (this.userPublicData == null) return;
 
             if (this.userPublicData.photoURL_overridden)
               this.userPublicData.photoURL = data['photoURL'];
@@ -136,6 +139,8 @@ export class AuthService {
 
             this.userPublicData.role = data['role'];
 
+            if (!this.is_userPublic_setup)
+              this.setup_userPublic_event.emit(this.userPublicData);
             this.is_userPublic_setup = true;
 
             // SAVE DATA TO LOCALSTORAGE
@@ -152,10 +157,13 @@ export class AuthService {
           .collection('users-private')
           .doc(this.userPublicData.uid)
           .valueChanges()
-          .subscribe((data) => {
+          .subscribe((data: Object) => {
             // Return if user logged out
-            if (this.userPrivateData == null) return;
+            // if (this.userPrivateData == null) return;
+            this.userPrivateData = { ...emptyUserPrivateData, ...data };
 
+            if (!this.is_userPrivate_setup)
+              this.setup_userPrivate_event.emit(this.userPrivateData);
             this.is_userPrivate_setup = true;
 
             // SAVE DATA TO LOCALSTORAGE
@@ -241,9 +249,6 @@ export class AuthService {
     return this.loggedIn && this.userPublicData.role == Role.admin;
   }
 
-  // get_name(): string {
-  //   return this.userPublicData.displayName || this.userPublicData.email;
-  // }
   async get_displayname_or_email(uid: string = '') {
     if (uid == '') uid = this.userPublicData.uid;
 

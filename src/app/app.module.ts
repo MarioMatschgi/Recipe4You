@@ -13,7 +13,7 @@ import { CreateComponent } from './components/recipe/create/create.component';
 import { EditComponent } from './components/recipe/edit/edit.component';
 import { DeleteComponent } from './components/recipe/delete/delete.component';
 import { RecipesComponent } from './components/recipes/recipes.component';
-import { RecipeViewComponent } from './components/recipes/recipe-view/recipe-view.component';
+import { RecipeViewComponent } from './components/recipe/recipe-view/recipe-view.component';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';

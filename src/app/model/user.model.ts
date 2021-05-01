@@ -9,7 +9,13 @@ export enum Role {
   none = 'none',
   admin = 'admin',
 }
-export interface UserPrivateData {}
+
+export const emptyUserPrivateData: UserPrivateData = {
+  bookmarks: [''],
+};
+export interface UserPrivateData {
+  bookmarks: [string];
+}
 export const emptyUserPublicData: UserPublicData = {
   uid: '',
   email: '',

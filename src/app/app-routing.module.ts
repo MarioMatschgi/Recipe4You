@@ -1,7 +1,7 @@
 import { EditComponent } from './components/recipe/edit/edit.component';
 import { DeleteComponent } from './components/recipe/delete/delete.component';
 import { CreateComponent } from './components/recipe/create/create.component';
-import { RecipeViewComponent } from './components/recipes/recipe-view/recipe-view.component';
+import { RecipeViewComponent } from './components/recipe/recipe-view/recipe-view.component';
 import { RecipesComponent } from './components/recipes/recipes.component';
 import { RecipeComponent } from './components/recipe/recipe.component';
 import { HomeComponent } from './components/home/home.component';
