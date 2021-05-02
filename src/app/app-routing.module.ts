@@ -11,6 +11,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
+import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
 
 const routes: Routes = [
   /* HOME */
@@ -27,7 +28,7 @@ const routes: Routes = [
   { path: 'recipes/:id', component: RecipeViewComponent },
 
   /* BOOKMARKS */
-  { path: 'bookmarks', component: HomeComponent },
+  { path: 'bookmarks', component: BookmarksComponent },
 
   /* AUTH */
   { path: 'login', component: LoginComponent },

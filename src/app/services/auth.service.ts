@@ -29,6 +29,8 @@ type Error = { code: string; message: string };
 export class AuthService {
   userPrivateData: UserPrivateData;
   userPublicData: UserPublicData;
+  private changed_userPrivateData = new EventEmitter<UserPrivateData>();
+  private changed_userPublicData = new EventEmitter<UserPublicData>();
   doc_userPrivate: AngularFirestoreDocument<any>;
   doc_userPublic: AngularFirestoreDocument<any>;
 
@@ -70,6 +72,9 @@ export class AuthService {
       ...JSON.parse(localStorage.getItem('userPublicData')),
     };
 
+    this.changed_userPrivateData.emit(this.userPrivateData);
+    this.changed_userPublicData.emit(this.userPublicData);
+
     if (this.loggedIn) this.set_docs(this.userPublicData.uid);
 
     this.afAuth.authState.subscribe(async (user) => {
@@ -79,6 +84,9 @@ export class AuthService {
         this.userPublicData = null;
         localStorage.setItem('userPrivateData', null);
         localStorage.setItem('userPublicData', null);
+
+        this.changed_userPrivateData.emit(this.userPrivateData);
+        this.changed_userPublicData.emit(this.userPublicData);
 
         this.private_subscription?.unsubscribe();
         this.public_subscription?.unsubscribe();
@@ -172,6 +180,9 @@ export class AuthService {
           .subscribe((data: Object) => {
             this.userPrivateData = { ...emptyUserPrivateData, ...data };
 
+            this.changed_userPrivateData.emit(this.userPrivateData);
+            this.changed_userPublicData.emit(this.userPublicData);
+
             if (!this.is_userPrivate_setup)
               this.setup_userPrivate_event.emit(this.userPrivateData);
             this.is_userPrivate_setup = true;
@@ -202,6 +213,19 @@ export class AuthService {
   set_docs(uid: string) {
     this.doc_userPrivate = this.db.collection('users-private').doc(uid);
     this.doc_userPublic = this.db.collection('users-public').doc(uid);
+  }
+
+  sub_userPrivateData(func: (data: UserPrivateData) => void) {
+    func(this.userPrivateData);
+    this.changed_userPrivateData.subscribe((data) => {
+      func(data);
+    });
+  }
+  sub_userPublicData(func: (data: UserPublicData) => void) {
+    func(this.userPublicData);
+    this.changed_userPublicData.subscribe((data) => {
+      func(data);
+    });
   }
 
   /*

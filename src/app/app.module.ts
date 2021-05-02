@@ -27,6 +27,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { ProfileComponent } from './components/auth/profile/profile.component';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
+import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ClickOutsideDirective } from './directives/click-outside.directive';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
+    BookmarksComponent,
   ],
   imports: [
     BrowserModule,

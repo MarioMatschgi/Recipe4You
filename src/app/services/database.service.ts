@@ -8,6 +8,7 @@ import {
 import { Observable } from 'rxjs';
 import { RecipeHelper, RecipeModel } from '../model/recipe.model';
 import { AuthService } from './auth.service';
+import * as firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root',
@@ -32,6 +33,17 @@ export class DatabaseService {
 
   get_all_recipes(): Observable<RecipeModel[]> {
     return this.col_recipes.valueChanges();
+  }
+
+  get_recipes(arr: string[]) {
+    for (let i = 0; i < arr.length; i++)
+      if (!arr[i] || arr[i] == '') arr.splice(i, 1);
+
+    return this.db
+      .collection('recipes', (ref) =>
+        ref.where(firebase.default.firestore.FieldPath.documentId(), 'in', arr)
+      )
+      .get();
   }
 
   get_recipe(id: string): Observable<RecipeModel> {
