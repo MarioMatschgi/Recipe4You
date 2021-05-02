@@ -59,15 +59,18 @@ export class AuthService {
     private afs: AngularFirestore,
     private ar: Router,
     private router: RouterService,
-    // private db: DatabaseService
     private db: AngularFirestore
   ) {
-    this.userPrivateData = JSON.parse(localStorage.getItem('userPrivateData'));
-    this.userPublicData = JSON.parse(localStorage.getItem('userPublicData'));
-    if (this.loggedIn) {
-      const uid = this.userPublicData.uid;
-      this.set_docs(uid);
-    }
+    this.userPrivateData = {
+      ...emptyUserPrivateData,
+      ...JSON.parse(localStorage.getItem('userPrivateData')),
+    };
+    this.userPublicData = {
+      ...emptyUserPublicData,
+      ...JSON.parse(localStorage.getItem('userPublicData')),
+    };
+
+    if (this.loggedIn) this.set_docs(this.userPublicData.uid);
 
     this.afAuth.authState.subscribe(async (user) => {
       // If logged out
@@ -135,9 +138,9 @@ export class AuthService {
       //
       if (!this.is_auth_setup) this.setup_event.emit();
       this.is_auth_setup = true;
-    });
 
-    this.setup_event.subscribe(() => {
+      //
+
       if (this.loggedIn) {
         // userPublicData
         this.public_subscription = this.doc_userPublic
@@ -258,7 +261,9 @@ export class AuthService {
   }
 
   get loggedIn(): boolean {
-    return this.userPublicData !== null ? true : false;
+    return this.userPublicData !== null && this.userPublicData.uid != ''
+      ? true
+      : false;
   }
 
   getEmptyUser(): AuthData {

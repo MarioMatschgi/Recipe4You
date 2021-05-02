@@ -42,19 +42,16 @@ export class RecipeViewComponent implements OnInit {
     });
 
     this.db.get_recipe(this.recipe_id).subscribe(async (recipe) => {
-      if (recipe == null) {
-        console.log('RECIPE NOT FOUND!');
-      }
       this.recipe = recipe;
       if (recipe != null) {
         this.recipe_date_added = new Date(recipe.date_added).toLocaleString();
         this.recipe_date_edited = new Date(recipe.date_edited).toLocaleString();
-      }
 
-      const res = await Promise.all([
-        this.auth.get_displayname_or_email(this.recipe.author),
-      ]);
-      this.author = res[0];
+        const res = await Promise.all([
+          this.auth.get_displayname_or_email(this.recipe.author),
+        ]);
+        this.author = res[0];
+      }
 
       this.setups.recipe = true;
     });
@@ -82,8 +79,9 @@ export class RecipeViewComponent implements OnInit {
           this.auth.userPrivateData.bookmarks.splice(i, 1);
       }
 
-    this.auth.doc_userPrivate.update({
-      bookmarks: this.auth.userPrivateData.bookmarks,
-    });
+    this.auth.doc_userPrivate.set(
+      { bookmarks: this.auth.userPrivateData.bookmarks },
+      { merge: true }
+    );
   }
 }
