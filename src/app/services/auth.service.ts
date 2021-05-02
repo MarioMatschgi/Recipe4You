@@ -8,7 +8,10 @@ import {
   emptyUserPrivateData,
 } from './../model/user.model';
 import { RouterService } from './router.service';
-import { AngularFirestore } from '@angular/fire/firestore';
+import {
+  AngularFirestore,
+  AngularFirestoreDocument,
+} from '@angular/fire/firestore';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Event, Router, RouterLink } from '@angular/router';
 
@@ -26,6 +29,16 @@ type Error = { code: string; message: string };
 export class AuthService {
   userPrivateData: UserPrivateData;
   userPublicData: UserPublicData;
+  doc_userPrivate: AngularFirestoreDocument<any>;
+  doc_userPublic: AngularFirestoreDocument<any>;
+
+  get displayName_or_email(): string {
+    const displayName = this.userPublicData.displayName;
+    const email = this.userPublicData.email;
+
+    if (displayName == null || displayName == '') return email;
+    else return displayName;
+  }
 
   is_auth_setup = false;
   is_userPrivate_setup = false;
@@ -35,6 +48,7 @@ export class AuthService {
   setup_userPublic_event = new EventEmitter<UserPublicData>();
 
   private_subscription: Subscription;
+  public_subscription: Subscription;
 
   error: { code: string; message: string } = undefined;
 
@@ -45,10 +59,15 @@ export class AuthService {
     private afs: AngularFirestore,
     private ar: Router,
     private router: RouterService,
-    private db: DatabaseService
+    // private db: DatabaseService
+    private db: AngularFirestore
   ) {
     this.userPrivateData = JSON.parse(localStorage.getItem('userPrivateData'));
     this.userPublicData = JSON.parse(localStorage.getItem('userPublicData'));
+    if (this.loggedIn) {
+      const uid = this.userPublicData.uid;
+      this.set_docs(uid);
+    }
 
     this.afAuth.authState.subscribe(async (user) => {
       // If logged out
@@ -59,12 +78,13 @@ export class AuthService {
         localStorage.setItem('userPublicData', null);
 
         this.private_subscription?.unsubscribe();
+        this.public_subscription?.unsubscribe();
       } else {
         // user public data null (was not logged in)
         if (this.userPublicData == null) {
-          const data = (await this.db.db
-            .collection('users-public')
-            .doc(user.uid)
+          this.set_docs(user.uid);
+
+          const data = (await this.doc_userPublic
             .valueChanges()
             .pipe(take(1))
             .toPromise()) as Object;
@@ -79,7 +99,7 @@ export class AuthService {
               displayName: user.displayName,
             };
 
-            await this.db.db.collection('users-public').doc(data.uid).set(data);
+            await this.doc_userPublic.set(data);
           }
           this.userPublicData = { ...emptyUserPublicData, ...data };
           localStorage.setItem(
@@ -107,10 +127,7 @@ export class AuthService {
 
           // Push to database
           if (changes) {
-            this.db.db
-              .collection('users-public')
-              .doc(this.userPublicData.uid)
-              .set(this.userPublicData, { merge: true });
+            this.doc_userPublic.set(this.userPublicData, { merge: true });
           }
         }
       }
@@ -123,14 +140,9 @@ export class AuthService {
     this.setup_event.subscribe(() => {
       if (this.loggedIn) {
         // userPublicData
-        this.db.db
-          .collection('users-public')
-          .doc(this.userPublicData.uid)
+        this.public_subscription = this.doc_userPublic
           .valueChanges()
           .subscribe((data) => {
-            // Return if user logged out
-            // if (this.userPublicData == null) return;
-
             if (this.userPublicData.photoURL_overridden)
               this.userPublicData.photoURL = data['photoURL'];
             if (this.userPublicData.displayName_overridden)
@@ -152,13 +164,9 @@ export class AuthService {
           });
 
         // userPrivateData
-        this.private_subscription = this.db.db
-          .collection('users-private')
-          .doc(this.userPublicData.uid)
+        this.private_subscription = this.doc_userPrivate
           .valueChanges()
           .subscribe((data: Object) => {
-            // Return if user logged out
-            // if (this.userPrivateData == null) return;
             this.userPrivateData = { ...emptyUserPrivateData, ...data };
 
             if (!this.is_userPrivate_setup)
@@ -179,13 +187,7 @@ export class AuthService {
 
   private debugUsers = ['mariomatschgi@gmail.com', 'marioelsnig@gmail.com'];
   private async setup() {
-    this.manage_routing(undefined);
     if (!this.loggedIn) return;
-
-    // ROUTER CALLBACKS
-    this.ar.events.subscribe((event) => {
-      this.manage_routing(event);
-    });
 
     // Debug user
     this.isDebugUser = this.debugUsers.includes(this.userPublicData.email);
@@ -194,19 +196,9 @@ export class AuthService {
   /*
     DATA
   */
-
-  /*
-    INIT
-  */
-  manage_routing(event: Event) {
-    // console.log('MANAGE ROUTING');
-    // if (event instanceof NavigationStart) {
-    //   console.log('Navigation start event');
-    // } else if (event instanceof NavigationEnd) {
-    //   console.log('Navigation start event');
-    // } else if (event == undefined) {
-    //   console.log('Navigation undef');
-    // }
+  set_docs(uid: string) {
+    this.doc_userPrivate = this.db.collection('users-private').doc(uid);
+    this.doc_userPublic = this.db.collection('users-public').doc(uid);
   }
 
   /*
@@ -248,22 +240,16 @@ export class AuthService {
     return this.loggedIn && this.userPublicData.role == Role.admin;
   }
 
-  async get_displayname_or_email(uid: string = '') {
-    // If no uid given, user logged in users uid
-    if (uid == '') {
-      if (!this.loggedIn) return;
-      uid = this.userPublicData.uid;
-    }
-
-    // TODO FUNC FOR THAT
-    const d = await this.db.db
+  async get_displayname_or_email(uid: string) {
+    const d = await this.db
       .collection('users-public')
       .doc(uid)
       .valueChanges()
       .pipe(take(1))
       .toPromise();
 
-    return d['displayName'] || d['email'];
+    if (d['displayName'] == null || d['displayName'] == '') return d['email'];
+    else return d['displayName'];
   }
   is_user(id: string): boolean {
     if (!this.loggedIn) return false;

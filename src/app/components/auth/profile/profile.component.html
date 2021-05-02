@@ -16,7 +16,7 @@
 
   <div class="popover box small" *ngIf="popover">
     <img [src]="auth.userPublicData.photoURL" alt="profile" />
-    <h3>{{ auth.get_displayname_or_email() }}</h3>
+    <h3>{{ auth.displayName_or_email }}</h3>
     <button (click)="auth.signOut(); popover = false">logout</button>
   </div>
 </div>

@@ -2,39 +2,52 @@ import { Injectable } from '@angular/core';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
+  AngularFirestoreDocument,
   DocumentReference,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { RecipeHelper, RecipeModel } from '../model/recipe.model';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DatabaseService {
-  recipesCol: AngularFirestoreCollection<any>;
+  col_recipes: AngularFirestoreCollection<any>;
+  col_usersPrivate: AngularFirestoreCollection<any>;
+  col_usersPublic: AngularFirestoreCollection<any>;
+
+  // doc_userPrivate: AngularFirestoreDocument<any>;
+  // doc_userPublic: AngularFirestoreDocument<any>;
 
   constructor(public db: AngularFirestore) {
-    this.recipesCol = this.db.collection('recipes');
+    this.col_recipes = this.db.collection('recipes');
+    this.col_usersPrivate = this.db.collection('users-private');
+    this.col_usersPublic = this.db.collection('users-public');
+
+    // const uid = this.auth.userPublicData.uid;
+    // this.doc_userPrivate = this.col_usersPrivate.doc(uid);
+    // this.doc_userPublic = this.col_usersPublic.doc(uid);
   }
 
   get_all_recipes(): Observable<RecipeModel[]> {
-    return this.recipesCol.valueChanges();
+    return this.col_recipes.valueChanges();
   }
 
   get_recipe(id: string): Observable<RecipeModel> {
-    return this.recipesCol.doc(id).valueChanges();
+    return this.col_recipes.doc(id).valueChanges();
   }
 
   add_recipe(data: RecipeModel): Promise<DocumentReference<any>> {
-    return this.recipesCol.add(RecipeHelper.to_object(data));
+    return this.col_recipes.add(RecipeHelper.to_object(data));
   }
 
   edit_recipe(id: string, newData: RecipeModel) {
-    this.recipesCol.doc(id).set(RecipeHelper.to_object(newData));
+    this.col_recipes.doc(id).set(RecipeHelper.to_object(newData));
   }
 
   remove_recipe(id: string) {
-    this.recipesCol.doc(id).delete();
+    this.col_recipes.doc(id).delete();
   }
 
   async recipe_exists(name: string): Promise<RecipeModel> {

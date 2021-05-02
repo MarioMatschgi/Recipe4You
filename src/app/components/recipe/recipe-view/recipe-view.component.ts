@@ -19,10 +19,7 @@ export class RecipeViewComponent implements OnInit {
 
     return true;
   }
-  setups: { [key: string]: boolean } = {
-    recipe: false,
-    bookmark: !this.auth.loggedIn,
-  };
+  setups: { [key: string]: boolean } = { recipe: false };
 
   recipe: RecipeModel;
   recipe_id: string;
@@ -62,20 +59,11 @@ export class RecipeViewComponent implements OnInit {
       this.setups.recipe = true;
     });
 
-    // TODO: REFACTOR
-    if (this.auth.is_userPrivate_setup) {
+    if (this.auth.loggedIn) {
       this.bookmarked = this.auth.userPrivateData.bookmarks.includes(
         this.recipe_id
       );
-      this.setups.bookmark = true;
-    } else
-      this.auth.setup_userPrivate_event.subscribe(() => {
-        this.bookmarked = this.auth.userPrivateData.bookmarks.includes(
-          this.recipe_id
-        );
-
-        this.setups.bookmark = true;
-      });
+    }
   }
 
   bookmark() {
@@ -94,9 +82,8 @@ export class RecipeViewComponent implements OnInit {
           this.auth.userPrivateData.bookmarks.splice(i, 1);
       }
 
-    this.db.db
-      .collection('users-private')
-      .doc(this.auth.userPublicData.uid)
-      .update({ bookmarks: this.auth.userPrivateData.bookmarks });
+    this.auth.doc_userPrivate.update({
+      bookmarks: this.auth.userPrivateData.bookmarks,
+    });
   }
 }
