@@ -19,7 +19,10 @@ export class RecipeViewComponent implements OnInit {
 
     return true;
   }
-  setups: { [key: string]: boolean } = { recipe: false, bookmark: false };
+  setups: { [key: string]: boolean } = {
+    recipe: false,
+    bookmark: !this.auth.loggedIn,
+  };
 
   recipe: RecipeModel;
   recipe_id: string;
@@ -76,6 +79,12 @@ export class RecipeViewComponent implements OnInit {
   }
 
   bookmark() {
+    if (!this.auth.loggedIn) {
+      this.router.nav_login();
+
+      return;
+    }
+
     this.bookmarked = !this.bookmarked;
     if (this.bookmarked)
       this.auth.userPrivateData.bookmarks.push(this.recipe_id);

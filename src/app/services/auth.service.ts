@@ -24,7 +24,6 @@ type Error = { code: string; message: string };
   providedIn: 'root',
 })
 export class AuthService {
-  // authData: AuthData;
   userPrivateData: UserPrivateData;
   userPublicData: UserPublicData;
 
@@ -250,7 +249,11 @@ export class AuthService {
   }
 
   async get_displayname_or_email(uid: string = '') {
-    if (uid == '') uid = this.userPublicData.uid;
+    // If no uid given, user logged in users uid
+    if (uid == '') {
+      if (!this.loggedIn) return;
+      uid = this.userPublicData.uid;
+    }
 
     // TODO FUNC FOR THAT
     const d = await this.db.db
