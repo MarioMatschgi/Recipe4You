@@ -1,5 +1,6 @@
 /* VARIABLES */
 :root {
+  --colors-red: #eb4d4b;
   --colors-light-blue: #426696;
 
   --colors-background-primary: #65dfc9;
@@ -40,13 +41,17 @@ body {
 
 * {
   box-sizing: border-box;
+  overscroll-behavior: none;
 }
-
+html {
+  min-height: 100vh;
+}
 body {
   background: var(--bg-grad);
 }
 .content {
-  margin: var(--unit-large) var(--unit-auto);
+  // margin: var(--unit-large) var(--unit-auto);
+  margin: var(--unit-auto) var(--unit-auto);
   background: var(--bg-glass);
   border-radius: var(--unit-large);
   backdrop-filter: blur(2rem);
@@ -54,7 +59,7 @@ body {
 }
 
 main {
-  margin: var(--unit-large) var(--unit-auto);
+  margin: var(--unit-auto) var(--unit-auto);
 }
 
 a {

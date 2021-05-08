@@ -45,7 +45,7 @@ form {
     margin: 0 !important;
     margin-bottom: var(--margin-p) !important;
 
-    background-color: var(--color-highlight);
+    background: var(--bg-glass);
     border-radius: var(--unit-small);
   }
   .alert.alert-danger {
@@ -84,26 +84,29 @@ textarea::-webkit-scrollbar {
 }
 textarea::-webkit-scrollbar-thumb {
   -webkit-appearance: none;
-  background-color: var(--color-background);
+  background-color: var(--color-font);
   border-radius: 10000em;
 }
 textarea::-webkit-scrollbar-corner {
   -webkit-appearance: none;
-  background-color: var(--color-foreground);
+  // background-color: var(--color-font);
+  // background-color: red;
 }
 textarea::-webkit-resizer {
   // -webkit-appearance: none;
-  border-width: 8px;
-  border-style: solid;
-  border-color: transparent var(--color-background) var(--color-background)
-    transparent;
+  // border: none;
+  // border-width: 8px;
+  // border-style: solid;
+  // border-color: transparent var(--color-background-secondary)
+  //   var(--color-background-secondary) transparent;
 }
 
 /* INPUT STYLING */
 input,
 button,
 textarea {
-  background-color: var(--color-highlight);
+  box-sizing: content-box;
+  background: var(--bg-glass);
   border: none;
   color: var(--color-font);
   font-size: 1em;
