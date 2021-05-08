@@ -1,37 +1,42 @@
 <div class="menubar box small">
-  <p class="clickable" (click)="router.nav_home()">Recipe4You</p>
+  <div>
+    <p class="clickable" (click)="router.nav_home()">Recipe4You</p>
 
-  &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
 
-  <a class="no-style" (click)="router.nav_backward()">
-    <i class="fas" aria-hidden="true">&#xf053;</i>
-  </a>
-  &nbsp;&nbsp;
-  <a class="no-style" (click)="router.nav_forward()">
-    <i class="fas" aria-hidden="true">&#xf054;</i>
-  </a>
+    <a class="no-style" (click)="router.nav_backward()">
+      <i class="fas" aria-hidden="true">&#xf053;</i>
+    </a>
+    &nbsp;&nbsp;
+    <a class="no-style" (click)="router.nav_forward()">
+      <i class="fas" aria-hidden="true">&#xf054;</i>
+    </a>
 
-  <div class="flex-spacer"></div>
+    <div class="flex-spacer"></div>
 
-  <a id="install" class="no-style" hidden>
-    <i class="fas" aria-hidden="true">&#xf019;</i>
-  </a>
+    <a id="install" class="no-style" hidden>
+      <i class="fas" aria-hidden="true">&#xf019;</i>
+    </a>
 
-  &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
 
-  <a class="no-style" (click)="router.nav_create()">
-    <i class="far" aria-hidden="true">&#xf0fe;</i>
-  </a>
+    <a class="no-style" (click)="router.nav_create()">
+      <i class="far" aria-hidden="true">&#xf0fe;</i>
+    </a>
 
-  &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
 
-  <a class="no-style" (click)="router.nav_bookmarks()">
-    <i class="fas" aria-hidden="true">&#xf02e;</i>
-  </a>
+    <a class="no-style" (click)="router.nav_bookmarks()">
+      <i class="fas" aria-hidden="true">&#xf02e;</i>
+    </a>
 
-  &nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
 
-  <div class="profile">
+    <!-- <div class="profile">
     <auth-profile></auth-profile>
+  </div> -->
+    <div class="profile">
+      <auth-profile></auth-profile>
+    </div>
   </div>
 </div>

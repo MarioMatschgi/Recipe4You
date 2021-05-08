@@ -1,14 +1,20 @@
 .menubar {
-  font-size: 1.1em;
-
-  display: flex;
-  align-items: center;
-  background-color: var(--color-foreground);
-  border-radius: 0;
-  padding: var(--unit-large);
+  padding: var(--unit-auto);
+  padding-top: var(--unit-large);
   padding-bottom: var(--unit-small);
 
-  * {
-    margin: 0;
+  > div {
+    font-size: 1.1em;
+
+    padding-inline: var(--unit-small);
+
+    display: flex;
+    align-items: center;
+    background-color: var(--color-foreground);
+    border-radius: 0;
+
+    * {
+      margin: 0;
+    }
   }
 }

@@ -7,6 +7,7 @@
       Below are some recipes that might improve your life!
     </p>
   </div>
+
   <ul class="no-style">
     <li *ngFor="let recipe of recipes | async; index as i">
       <recipe-preview [recipe]="recipe"></recipe-preview>
