@@ -3,8 +3,10 @@
 
   display: flex;
   align-items: center;
-  padding: var(--unit-tiny);
   background-color: var(--color-foreground);
+  border-radius: 0;
+  padding: var(--unit-large);
+  padding-bottom: var(--unit-small);
 
   * {
     margin: 0;

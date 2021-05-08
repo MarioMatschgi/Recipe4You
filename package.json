@@ -1,6 +1,7 @@
 {
   "name": "recipe4you",
-  "version": "0.0.0",
+  "displayName": "Recipe4you",
+  "version": "0.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
