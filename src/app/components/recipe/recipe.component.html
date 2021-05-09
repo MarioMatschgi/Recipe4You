@@ -1,8 +1,4 @@
-<div
-  class="box-indent small"
-  style="padding-left: 0; padding-right: 0"
-  *ngIf="recipe"
->
+<div class="box nostyle" *ngIf="recipe">
   <form #form="ngForm" *ngIf="type == 'create' || type == 'edit'">
     <p *ngIf="type == 'create'">
       To add a new recipe fill in all required fields first

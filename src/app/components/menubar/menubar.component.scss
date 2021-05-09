@@ -3,14 +3,13 @@
   padding-top: var(--unit-large);
   padding-bottom: var(--unit-small);
 
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  border-radius: var(--unit-normal) var(--unit-normal) 0 0;
 
   > div {
     font-size: 1.1em;
 
-    padding-left: var(--unit-small);
-    padding-right: var(--unit-small);
+    padding-left: var(--unit-normal);
+    padding-right: var(--unit-normal);
 
     display: flex;
     align-items: center;
