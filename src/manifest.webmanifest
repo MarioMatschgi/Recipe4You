@@ -1,11 +1,14 @@
 {
   "name": "recipe4you",
-  "short_name": "recipe4you",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "short_name": "Recipe4you",
+  "description": "All of your favorite recipes in one place!",
+  "lang": "en-US",
+  "theme_color": "#6cdbeb",
+  "background_color": "#6cdbeb",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
+  "categories": ["food", "health", "lifestyle", "education", "fitness"],
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
