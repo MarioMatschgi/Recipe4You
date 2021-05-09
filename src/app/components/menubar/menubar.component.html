@@ -1,4 +1,4 @@
-<div class="menubar box small">
+<div class="menubar box small container">
   <div>
     <p class="clickable" (click)="router.nav_home()">Recipe4You</p>
 
@@ -11,14 +11,13 @@
     <a class="no-style" (click)="router.nav_forward()">
       <i class="fas" aria-hidden="true">&#xf054;</i>
     </a>
+  </div>
 
-    <div class="flex-spacer"></div>
-
+  <div>
     <a id="install" class="no-style" hidden>
       <i class="fas" aria-hidden="true">&#xf019;</i>
+      &nbsp;&nbsp;&nbsp;&nbsp;
     </a>
-
-    &nbsp;&nbsp;&nbsp;&nbsp;
 
     <a class="no-style" (click)="router.nav_create()">
       <i class="far" aria-hidden="true">&#xf0fe;</i>
@@ -32,9 +31,6 @@
 
     &nbsp;&nbsp;&nbsp;&nbsp;
 
-    <!-- <div class="profile">
-    <auth-profile></auth-profile>
-  </div> -->
     <div class="profile">
       <auth-profile></auth-profile>
     </div>
