@@ -66,12 +66,6 @@ a {
   cursor: pointer;
 }
 
-/* LIST */
-ul.no-style {
-  padding-left: 0 !important;
-  list-style-type: none;
-}
-
 /* CONTAINER */
 .container {
   *:not(:last-child) {
@@ -135,6 +129,27 @@ ul.no-style {
 //     padding-right: var(--unit-large);
 //   }
 // }
+
+/* LIST */
+ul.no-style {
+  padding-left: 0 !important;
+  list-style-type: none;
+}
+
+.recipe-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: calc(0px - var(--unit-small)) 0 0 calc(0px - var(--unit-small)) !important;
+
+  > * {
+    flex: 1 1 auto;
+    min-width: 15em;
+    max-width: 30em;
+
+    margin: var(--unit-small) 0 0 var(--unit-small) !important;
+  }
+}
 
 /* BLUR */
 .blur {
