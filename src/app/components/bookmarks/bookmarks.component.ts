@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { RecipeModel } from 'src/app/model/recipe.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { DatabaseService } from 'src/app/services/database.service';
+import { RouterService } from 'src/app/services/router.service';
 
 @Component({
   selector: 'bookmarks',
@@ -12,9 +13,19 @@ import { DatabaseService } from 'src/app/services/database.service';
 export class BookmarksComponent implements OnInit {
   recipes: RecipeModel[];
 
-  constructor(private db: DatabaseService, private auth: AuthService) {}
+  constructor(
+    private db: DatabaseService,
+    private router: RouterService,
+    private auth: AuthService
+  ) {}
 
   ngOnInit(): void {
+    // IF NOT LOGGED IN REDIRECT TO LOGIN
+    if (!this.auth.loggedIn) {
+      this.router.nav_login();
+      return;
+    }
+
     this.auth.sub_userPrivateData((data) => {
       this.db.get_recipes(data.bookmarks).subscribe((recipes) => {
         this.recipes = recipes.docs.map((dataItem) =>

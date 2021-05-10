@@ -12,6 +12,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
+import { NF_GeneralComponent } from './components/not-found/general/general.component';
 
 const routes: Routes = [
   /* HOME */
@@ -35,7 +36,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
 
   /* NOT FOUND */
-  { path: '**', component: NotFoundComponent },
+  { path: '**', component: NF_GeneralComponent },
 ];
 
 @NgModule({

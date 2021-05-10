@@ -31,7 +31,10 @@ export class RecipeComponent implements OnInit {
 
   async setup() {
     // IF NOT LOGGED IN REDIRECT TO LOGIN
-    if (!this.auth.loggedIn) this.router.nav_login();
+    if (!this.auth.loggedIn) {
+      this.router.nav_login();
+      return;
+    }
 
     if (this.type == 'create') {
       this.recipe = new RecipeModel();

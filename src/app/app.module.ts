@@ -28,6 +28,8 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { ProfileComponent } from './components/auth/profile/profile.component';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
+import { NF_GeneralComponent } from './components/not-found/general/general.component';
+import { NF_RecipeComponent } from './components/not-found/recipe/recipe.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,8 @@ import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
     RegisterComponent,
     ProfileComponent,
     BookmarksComponent,
+    NF_GeneralComponent,
+    NF_RecipeComponent,
   ],
   imports: [
     BrowserModule,

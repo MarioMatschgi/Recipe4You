@@ -64,9 +64,9 @@ export class RecipeViewComponent implements OnInit {
   }
 
   bookmark() {
+    // IF NOT LOGGED IN REDIRECT TO LOGIN
     if (!this.auth.loggedIn) {
       this.router.nav_login();
-
       return;
     }
 
