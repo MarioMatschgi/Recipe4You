@@ -28,6 +28,10 @@ export class RouterService {
     this.router.navigate(['bookmarks']);
   }
 
+  nav_stars() {
+    this.router.navigate(['stars']);
+  }
+
   nav_recipe(id: string) {
     this.router.navigate(['recipes', id]);
   }

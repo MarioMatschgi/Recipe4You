@@ -28,6 +28,7 @@ export class RecipeViewComponent implements OnInit {
 
   author: string;
   bookmarked: boolean;
+  starred: boolean;
 
   constructor(
     public db: DatabaseService,
@@ -83,5 +84,13 @@ export class RecipeViewComponent implements OnInit {
       { bookmarks: this.auth.userPrivateData.bookmarks },
       { merge: true }
     );
+  }
+  star() {
+    // IF NOT LOGGED IN REDIRECT TO LOGIN
+    if (!this.auth.loggedIn) {
+      this.router.nav_login();
+      return;
+    }
+    this.starred = !this.starred;
   }
 }

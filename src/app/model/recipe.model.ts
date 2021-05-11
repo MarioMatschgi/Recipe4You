@@ -1,3 +1,13 @@
+export const emptyRecipeModel: RecipeModel = {
+  id: '',
+  name: '',
+  description: '',
+  ingredients: '',
+  method: '',
+  author: '',
+  date_added: null,
+  date_edited: null,
+};
 export class RecipeModel {
   id: string;
 

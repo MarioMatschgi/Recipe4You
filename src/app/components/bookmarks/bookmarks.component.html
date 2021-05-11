@@ -6,9 +6,6 @@
       favourites more easily.
     </p>
   </div>
-  <ul class="recipe-list no-style">
-    <li *ngFor="let recipe of recipes; index as i">
-      <recipe-preview [recipe]="recipe"></recipe-preview>
-    </li>
-  </ul>
+
+  <recipe-recipe-list [recipes]="recipes" [async]="false"></recipe-recipe-list>
 </div>

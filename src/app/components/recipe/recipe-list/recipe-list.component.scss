@@ -1,0 +1,14 @@
+.recipe-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: calc(0px - var(--unit-small)) 0 0 calc(0px - var(--unit-small)) !important;
+
+  > * {
+    flex: 1 1 0%;
+    min-width: 15em;
+    max-width: 30em;
+
+    margin: var(--unit-small) 0 0 var(--unit-small) !important;
+  }
+}

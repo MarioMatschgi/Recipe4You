@@ -13,6 +13,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
 import { NF_GeneralComponent } from './components/not-found/general/general.component';
+import { StarsComponent } from './components/stars/stars.component';
 
 const routes: Routes = [
   /* HOME */
@@ -30,6 +31,9 @@ const routes: Routes = [
 
   /* BOOKMARKS */
   { path: 'bookmarks', component: BookmarksComponent },
+
+  /* STARS */
+  { path: 'stars', component: StarsComponent },
 
   /* AUTH */
   { path: 'login', component: LoginComponent },

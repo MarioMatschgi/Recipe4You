@@ -27,6 +27,7 @@ export class BookmarksComponent implements OnInit {
     }
 
     this.auth.sub_userPrivateData((data) => {
+      // this.recipes = this.db.get_recipes(data.bookmarks);
       this.db.get_recipes(data.bookmarks).subscribe((recipes) => {
         this.recipes = recipes.docs.map((dataItem) =>
           dataItem.data()

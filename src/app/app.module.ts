@@ -20,7 +20,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FormsModule } from '@angular/forms';
-import { PreviewComponent } from './components/recipe/preview/preview.component';
+import { PreviewComponent } from './components/recipe/recipe-list/preview/preview.component';
 import { MenubarComponent } from './components/menubar/menubar.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { LoginComponent } from './components/auth/login/login.component';
@@ -30,6 +30,8 @@ import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
 import { NF_GeneralComponent } from './components/not-found/general/general.component';
 import { NF_RecipeComponent } from './components/not-found/recipe/recipe.component';
+import { RecipeListComponent } from './components/recipe/recipe-list/recipe-list.component';
+import { StarsComponent } from './components/stars/stars.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { NF_RecipeComponent } from './components/not-found/recipe/recipe.compone
     BookmarksComponent,
     NF_GeneralComponent,
     NF_RecipeComponent,
+    RecipeListComponent,
+    StarsComponent,
   ],
   imports: [
     BrowserModule,
