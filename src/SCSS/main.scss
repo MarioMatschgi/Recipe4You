@@ -142,6 +142,38 @@ ul.no-style {
 }
 
 /* FLEX */
+.flexbox {
+  --unit: var(--unit-normal);
+  &.tiny {
+    --unit: var(--unit-tiny);
+  }
+  &.small {
+    --unit: var(--unit-small);
+  }
+  &.normal {
+    --unit: var(--unit-normal);
+  }
+  &.large {
+    --unit: var(--unit-large);
+  }
+  &.auto {
+    --unit: var(--unit-auto);
+  }
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: calc(0px - var(--unit) / 2) !important;
+
+  > * {
+    margin: calc(var(--unit) / 2) !important;
+  }
+
+  &.nowrap {
+    flex-wrap: nowrap;
+  }
+}
 .no-stretch {
   flex-grow: 0 !important;
   flex-basis: unset !important;

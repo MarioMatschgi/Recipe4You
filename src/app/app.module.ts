@@ -9,9 +9,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
-import { CreateComponent } from './components/recipe/create/create.component';
-import { EditComponent } from './components/recipe/edit/edit.component';
-import { DeleteComponent } from './components/recipe/delete/delete.component';
+import { RecipeCreateComponent } from './components/recipe/recipe-create/recipe-create.component';
+import { RecipeEditComponent } from './components/recipe/recipe-edit/recipe-edit.component';
+import { RecipeDeleteComponent } from './components/recipe/recipe-delete/recipe-delete.component';
 import { RecipesComponent } from './components/recipes/recipes.component';
 import { RecipeViewComponent } from './components/recipe/recipe-view/recipe-view.component';
 
@@ -20,16 +20,16 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FormsModule } from '@angular/forms';
-import { PreviewComponent } from './components/recipe/recipe-list/preview/preview.component';
+import { RecipePreviewComponent } from './components/recipe/recipe-list/recipe-preview/recipe-preview.component';
 import { MenubarComponent } from './components/menubar/menubar.component';
 import { AuthComponent } from './components/auth/auth.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { RegisterComponent } from './components/auth/register/register.component';
-import { ProfileComponent } from './components/auth/profile/profile.component';
+import { AuthLoginComponent } from './components/auth/auth-login/auth-login.component';
+import { RegisterComponent } from './components/auth/auth-register/auth-register.component';
+import { AuthProfileComponent } from './components/auth/auth-profile/auth-profile.component';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
-import { NF_GeneralComponent } from './components/not-found/general/general.component';
-import { NF_RecipeComponent } from './components/not-found/recipe/recipe.component';
+import { NotFoundGeneralComponent } from './components/not-found/not-found-general/not-found-general.component';
+import { NotFoundRecipeComponent } from './components/not-found/not-found-recipe/not-found-recipe.component';
 import { RecipeListComponent } from './components/recipe/recipe-list/recipe-list.component';
 import { StarsComponent } from './components/stars/stars.component';
 
@@ -40,20 +40,20 @@ import { StarsComponent } from './components/stars/stars.component';
     RecipeComponent,
     NotFoundComponent,
     HomeComponent,
-    CreateComponent,
-    EditComponent,
-    DeleteComponent,
+    RecipeCreateComponent,
+    RecipeEditComponent,
+    RecipeDeleteComponent,
     RecipesComponent,
     RecipeViewComponent,
-    PreviewComponent,
+    RecipePreviewComponent,
     MenubarComponent,
     AuthComponent,
-    LoginComponent,
+    AuthLoginComponent,
     RegisterComponent,
-    ProfileComponent,
+    AuthProfileComponent,
     BookmarksComponent,
-    NF_GeneralComponent,
-    NF_RecipeComponent,
+    NotFoundGeneralComponent,
+    NotFoundRecipeComponent,
     RecipeListComponent,
     StarsComponent,
   ],

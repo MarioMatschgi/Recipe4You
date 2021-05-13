@@ -1,14 +1,5 @@
-.toolbar {
-  display: flex;
-  justify-content: space-between;
-  margin: 0 calc(0px - var(--unit-tiny));
-
-  > * {
-    margin: 0 var(--unit-tiny);
-  }
-  a {
-    cursor: pointer;
-  }
+.recipe {
+  margin-top: var(--unit-large);
 }
 
 .bottom {

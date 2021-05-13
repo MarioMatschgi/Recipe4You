@@ -4,32 +4,41 @@
       <!-- 
         TOP-TOOLBAR
        -->
-      <div class="top toolbar">
-        <p>by {{ author }}</p>
-        <div class="flex-spacer"></div>
+      <div class="top toolbar flexbox tiny">
+        <div>
+          <p>by {{ author }}</p>
+        </div>
 
-        <div *ngIf="auth.is_author_or_admin(recipe.author)">
-          <a class="no-style" (click)="router.nav_delete(recipe_id)">
-            <i class="fas" aria-hidden="true">&#xf2ed;</i>
-          </a>
-          &nbsp;
-          <a class="no-style" (click)="router.nav_edit(recipe_id)">
-            <i class="fas" aria-hidden="true">&#xf044;</i>
-          </a>
-          &nbsp;
-          <a class="no-style" (click)="star()">
-            <i class="far" aria-hidden="true" *ngIf="!starred">&#xf005;</i>
-            <i class="fas" aria-hidden="true" *ngIf="starred">&#xf005;</i>
-          </a>
-          &nbsp;
-          <a class="no-style" (click)="bookmark()">
-            <i class="far" aria-hidden="true" *ngIf="!bookmarked">&#xf02e;</i>
-            <i class="fas" aria-hidden="true" *ngIf="bookmarked">&#xf02e;</i>
-          </a>
+        <div>
+          <div class="tools flexbox tiny">
+            <a
+              *ngIf="auth.is_author_or_admin(recipe.author)"
+              class="no-style"
+              (click)="router.nav_delete(recipe_id)"
+            >
+              <i class="fas" aria-hidden="true">&#xf2ed;</i>
+            </a>
+
+            <a
+              *ngIf="auth.is_author_or_admin(recipe.author)"
+              class="no-style"
+              (click)="router.nav_edit(recipe_id)"
+            >
+              <i class="fas" aria-hidden="true">&#xf044;</i>
+            </a>
+
+            <a class="no-style" (click)="star()">
+              <i class="far" aria-hidden="true" *ngIf="!starred">&#xf005;</i>
+              <i class="fas" aria-hidden="true" *ngIf="starred">&#xf005;</i>
+            </a>
+
+            <a class="no-style" (click)="bookmark()">
+              <i class="far" aria-hidden="true" *ngIf="!bookmarked">&#xf02e;</i>
+              <i class="fas" aria-hidden="true" *ngIf="bookmarked">&#xf02e;</i>
+            </a>
+          </div>
         </div>
       </div>
-
-      <div class="spacer"></div>
 
       <!-- 
         RECIPE
@@ -58,7 +67,7 @@
       <!-- 
         TOP-TOOLBAR
        -->
-      <div class="bottom toolbar">
+      <div class="bottom toolbar flexbox tiny nowrap">
         <p id="created">created on<br />{{ recipe_date_added }}</p>
         <p id="edited">edited on<br />{{ recipe_date_edited }}</p>
       </div>

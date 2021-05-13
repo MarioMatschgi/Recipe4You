@@ -4,10 +4,10 @@ import { RouterService } from 'src/app/services/router.service';
 
 @Component({
   selector: 'auth-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.scss'],
+  templateUrl: './auth-profile.component.html',
+  styleUrls: ['./auth-profile.component.scss'],
 })
-export class ProfileComponent implements OnInit {
+export class AuthProfileComponent implements OnInit {
   popover: boolean;
 
   constructor(public auth: AuthService, public router: RouterService) {}

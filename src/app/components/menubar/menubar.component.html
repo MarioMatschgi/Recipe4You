@@ -1,46 +1,41 @@
 <div class="menubar box small container">
-  <div>
-    <p class="clickable" (click)="router.nav_home()">Recipe4You</p>
+  <div class="flexbox tiny">
+    <div>
+      <div class="flexbox tiny">
+        <p class="clickable" (click)="router.nav_home()">Recipe4You</p>
 
-    &nbsp;&nbsp;
+        <a class="no-style" (click)="router.nav_backward()">
+          <i class="fas" aria-hidden="true">&#xf053;</i>
+        </a>
 
-    <a class="no-style" (click)="router.nav_backward()">
-      <i class="fas" aria-hidden="true">&#xf053;</i>
-    </a>
+        <a class="no-style" (click)="router.nav_forward()">
+          <i class="fas" aria-hidden="true">&#xf054;</i>
+        </a>
+      </div>
+    </div>
 
-    &nbsp;&nbsp;
+    <div>
+      <div class="flexbox tiny">
+        <a id="install" class="no-style" hidden>
+          <i class="fas" aria-hidden="true">&#xf019;</i>
+        </a>
 
-    <a class="no-style" (click)="router.nav_forward()">
-      <i class="fas" aria-hidden="true">&#xf054;</i>
-    </a>
-  </div>
+        <a class="no-style" (click)="router.nav_create()">
+          <i class="far" aria-hidden="true">&#xf0fe;</i>
+        </a>
 
-  <div>
-    <a id="install" class="no-style" hidden>
-      <i class="fas" aria-hidden="true">&#xf019;</i>
-      &nbsp;&nbsp;
-    </a>
+        <a class="no-style" (click)="router.nav_stars()">
+          <i class="fas" aria-hidden="true">&#xf005;</i>
+        </a>
 
-    <a class="no-style" (click)="router.nav_create()">
-      <i class="far" aria-hidden="true">&#xf0fe;</i>
-    </a>
+        <a class="no-style" (click)="router.nav_bookmarks()">
+          <i class="fas" aria-hidden="true">&#xf02e;</i>
+        </a>
 
-    &nbsp;&nbsp;
-
-    <a class="no-style" (click)="router.nav_stars()">
-      <i class="fas" aria-hidden="true">&#xf005;</i>
-    </a>
-
-    &nbsp;&nbsp;
-
-    <a class="no-style" (click)="router.nav_bookmarks()">
-      <i class="fas" aria-hidden="true">&#xf02e;</i>
-    </a>
-
-    &nbsp;&nbsp;&nbsp;&nbsp;
-
-    <div class="profile">
-      <auth-profile></auth-profile>
+        <div class="profile">
+          <auth-profile></auth-profile>
+        </div>
+      </div>
     </div>
   </div>
 </div>

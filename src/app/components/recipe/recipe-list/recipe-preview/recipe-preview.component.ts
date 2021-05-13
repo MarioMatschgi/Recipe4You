@@ -4,10 +4,10 @@ import { RouterService } from 'src/app/services/router.service';
 
 @Component({
   selector: 'recipe-preview',
-  templateUrl: './preview.component.html',
-  styleUrls: ['./preview.component.scss'],
+  templateUrl: './recipe-preview.component.html',
+  styleUrls: ['./recipe-preview.component.scss'],
 })
-export class PreviewComponent implements OnInit {
+export class RecipePreviewComponent implements OnInit {
   @Input('recipe') recipe: RecipeModel;
 
   constructor(public router: RouterService) {}
