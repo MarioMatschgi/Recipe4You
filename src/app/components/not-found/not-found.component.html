@@ -1,7 +1,4 @@
 <div class="not-found">
   <h1>404</h1>
-  <p>
-    Whoooops!<br />
-    It seems that <ng-content></ng-content> does not exist!
-  </p>
+  <p [innerHtml]="local.data.not_found.desc.replace('%what%', what)"></p>
 </div>

@@ -1,3 +1,4 @@
+import { LocalizationService } from './../../services/localization.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RecipeModel } from 'src/app/model/recipe.model';
@@ -16,7 +17,8 @@ export class BookmarksComponent implements OnInit {
   constructor(
     private db: DatabaseService,
     private router: RouterService,
-    private auth: AuthService
+    private auth: AuthService,
+    public local: LocalizationService
   ) {}
 
   ngOnInit(): void {

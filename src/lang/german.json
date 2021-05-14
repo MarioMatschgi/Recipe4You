@@ -1,0 +1,106 @@
+{
+  "general": {
+    "buttons": {
+      "cancel": "Abbrechen",
+      "ok": "Ok"
+    }
+  },
+
+  "auth": {
+    "buttons": {
+      "login": {
+        "login": "Anmelden",
+        "google": "Mit Google anmelden"
+      },
+      "register": {
+        "register": "Registrieren"
+      },
+      "logout": {
+        "logout": "Abmelden"
+      }
+    },
+    "login": {
+      "title": "Anmelden",
+      "desc": "Um Rezepte zu erstellen/bearbeiten/löschen und um Lesezeichen/Sterne zu setzen musst du angemeldet sein."
+    },
+    "register": {}
+  },
+
+  "bookmarks": {
+    "title": "Lesezeichen",
+    "desc": "Hier sind alle Rezepte, die mit Lesezeichen markiert wurden, so dass du deine Rezepte einfach finden kannst."
+  },
+
+  "home": {
+    "recipe": {
+      "title": "Rezepte",
+      "desc": "Essen ist wichtig, Essen ist lecker, aber kochen ist oft schwer und schwierig.<br/>Hier sind einige Rezepte, die dein Leben vereinfachen können!"
+    }
+  },
+
+  "not_found": {
+    "desc": "Uuuups!<br/>Es scheint, als würde %what% nicht existieren!",
+    "general": "die Seite, die du suchst,",
+    "recipe": "das Rezept, dass du suchst,"
+  },
+
+  "recipe": {
+    "create": {
+      "title": "Erstelle ein neues Rezept",
+      "desc": "Befülle alle Felder um ein neues Rezept zu erstellen",
+      "already_exists": "Ein Rezept mit diesem Namen existiert bereits!"
+    },
+    "edit": {
+      "title": "Bearbeite das Rezept",
+      "desc": "Ändere die Felder um ein neues Rezept zu bearbeiten"
+    },
+    "delete": {
+      "title": "Lösche das Rezept",
+      "desc": "Bist du dir sicher, dass du das folgende Rezept löschen willst:<br/>%recipe%",
+      "confirm": "Bist du dir sicher, dass du das folgende Rezept löschen willst:\n%recipe%"
+    },
+    "fields": {
+      "name": {
+        "label": "Name",
+        "error": "Name ist erforderlich!",
+        "placeholder": "Benenne dein Rezept"
+      },
+      "description": {
+        "label": "Beschreibung",
+        "error": "Beschreibung ist erforderlich!",
+        "placeholder": "Beschreibe dein Rezept"
+      },
+      "ingredients": {
+        "label": "Zutaten",
+        "error": "Zutaten sind erforderlich!",
+        "placeholder": "Zutaten für dein Rezept"
+      },
+      "method": {
+        "label": "Methode",
+        "error": "Methode ist erforderlich!",
+        "placeholder": "Methode für dein Rezept"
+      },
+      "notes": {
+        "label": "Notizen",
+        "placeholder": "Notizen für dein Rezept"
+      }
+    },
+    "buttons": {
+      "add": "Hinzufügen",
+      "save": "Speichern",
+      "delete": "Löschen"
+    },
+    "view": {
+      "author": "von %author%",
+      "created": "Erstellt am<br/>%date%",
+      "edited": "Bearbeitet am<br/>%date%"
+    }
+  },
+
+  "recipes": {},
+
+  "stars": {
+    "title": "Sterne",
+    "desc": "Hier sind alle Rezepte, die von dir einen Stern bekommen haben."
+  }
+}

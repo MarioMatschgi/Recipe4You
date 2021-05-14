@@ -1,11 +1,7 @@
 <div class="container">
   <div class="box nostyle">
-    <h1>Recipes</h1>
-    <p>
-      Food is important, food is delicious but cooking food is often scary and
-      difficult.<br />
-      Below are some recipes that might improve your life!
-    </p>
+    <h1 [innerHtml]="local.data.home.recipe.title"></h1>
+    <p [innerHtml]="local.data.home.recipe.desc"></p>
   </div>
 
   <recipe-recipe-list [recipes]="recipes" [async]="true"></recipe-recipe-list>

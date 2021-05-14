@@ -1,10 +1,7 @@
 <div class="container">
   <div class="box nostyle">
-    <h1>Bookmarks</h1>
-    <p>
-      Below are all recipes that you have bookmarked so you can find your
-      favourites more easily.
-    </p>
+    <h1 [innerHtml]="local.data.bookmarks.title"></h1>
+    <p [innerHtml]="local.data.bookmarks.desc"></p>
   </div>
 
   <recipe-recipe-list [recipes]="recipes" [async]="false"></recipe-recipe-list>

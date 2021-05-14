@@ -1,14 +1,11 @@
 <div class="box nostyle">
   <form>
-    <p>
-      To create/edit/delete your own favourite recipes or to bookmark recipes
-      you have to log in.
-    </p>
+    <p [innerHtml]="local.data.auth.login.desc"></p>
     <div class="form-group">
       <div class="form-group">
         <button class="signin google" (click)="auth.signIn_google()">
           <img src="/assets/images/logos/google.svg" />
-          <span>Login with Google</span>
+          <span [innerHtml]="local.data.auth.buttons.login.google"></span>
         </button>
       </div>
     </div>

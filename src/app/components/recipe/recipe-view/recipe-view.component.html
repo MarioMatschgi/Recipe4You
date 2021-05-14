@@ -6,7 +6,11 @@
        -->
       <div class="top toolbar flexbox tiny">
         <div>
-          <p>by {{ author }}</p>
+          <p
+            [innerHtml]="
+              local.data.recipe.view.author.replace('%author%', author)
+            "
+          ></p>
         </div>
 
         <div>
@@ -49,15 +53,15 @@
           <p>{{ recipe.description }}</p>
         </section>
         <section class="ingredients">
-          <h2>Ingredients</h2>
+          <h2 [innerHtml]="local.data.recipe.fields.ingredients.label"></h2>
           <p>{{ recipe.ingredients }}</p>
         </section>
         <section class="method">
-          <h2>Method</h2>
+          <h2 [innerHtml]="local.data.recipe.fields.method.label"></h2>
           <p>{{ recipe.method }}</p>
         </section>
         <section class="notes" *ngIf="recipe.notes">
-          <h2>Notes</h2>
+          <h2 [innerHtml]="local.data.recipe.fields.notes.label"></h2>
           <p>{{ recipe.notes }}</p>
         </section>
       </article>
@@ -68,8 +72,18 @@
         TOP-TOOLBAR
        -->
       <div class="bottom toolbar flexbox tiny nowrap">
-        <p id="created">created on<br />{{ recipe_date_added }}</p>
-        <p id="edited">edited on<br />{{ recipe_date_edited }}</p>
+        <p
+          id="created"
+          [innerHtml]="
+            local.data.recipe.view.created.replace('%date%', recipe_date_added)
+          "
+        ></p>
+        <p
+          id="edited"
+          [innerHtml]="
+            local.data.recipe.view.edited.replace('%date%', recipe_date_edited)
+          "
+        ></p>
       </div>
     </div>
   </ng-template>

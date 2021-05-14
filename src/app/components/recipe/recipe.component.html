@@ -1,9 +1,19 @@
 <div class="box nostyle" *ngIf="recipe">
   <form #form="ngForm" *ngIf="type == 'create' || type == 'edit'">
-    <p *ngIf="type == 'create'">
-      To add a new recipe fill in all required fields first
-    </p>
-    <p *ngIf="type == 'edit'">To edit the recipe change the fields</p>
+    <h1
+      *ngIf="type == 'create'"
+      [innerHtml]="local.data.recipe.create.title"
+    ></h1>
+    <p *ngIf="type == 'create'" [innerHtml]="local.data.recipe.create.desc"></p>
+
+    <h1 *ngIf="type == 'edit'" [innerHtml]="local.data.recipe.edit.title"></h1>
+    <p *ngIf="type == 'edit'" [innerHtml]="local.data.recipe.edit.desc"></p>
+
+    <h1
+      *ngIf="type == 'delete'"
+      [innerHtml]="local.data.recipe.delete.title"
+    ></h1>
+    <p *ngIf="type == 'delete'" [innerHtml]="local.data.recipe.delete.desc"></p>
 
     <!-- 
       REQUIRED FIELDS
@@ -13,20 +23,24 @@
         NAME FIELD 
        -->
       <div class="form-group">
-        <label for="name" class="required"> Name </label>
+        <label
+          for="name"
+          class="required"
+          [innerHtml]="local.data.recipe.fields.name.label"
+        ></label>
         <label
           [hidden]="name.valid || name.untouched"
           class="alert alert-danger"
           for="name"
+          [innerHtml]="local.data.recipe.fields.name.error"
         >
-          Name is required!
         </label>
 
         <input
           type="text"
           class="form-control"
           id="name"
-          placeholder="Name your recipe"
+          [placeholder]="local.data.recipe.fields.name.placeholder"
           required
           [(ngModel)]="recipe.name"
           name="name"
@@ -38,19 +52,23 @@
         DESCRIPTION FIELD 
        -->
       <div class="form-group">
-        <label for="desciption" class="required"> Desciption </label>
+        <label
+          for="desciption"
+          class="required"
+          [innerHtml]="local.data.recipe.fields.description.label"
+        ></label>
         <label
           [hidden]="desciption.valid || desciption.untouched"
           class="alert alert-danger"
           for="desciption"
+          [innerHtml]="local.data.recipe.fields.description.error"
         >
-          Desciption is required!
         </label>
 
         <textarea
           class="vertical"
           id="desciption"
-          placeholder="Describe your recipe"
+          [placeholder]="local.data.recipe.fields.description.placeholder"
           required
           [(ngModel)]="recipe.description"
           name="desciption"
@@ -62,20 +80,24 @@
         INGREDIENTS FIELD 
        -->
       <div class="form-group">
-        <label for="ingredients" class="required"> Ingredients </label>
+        <label
+          for="ingredients"
+          class="required"
+          [innerHtml]="local.data.recipe.fields.ingredients.label"
+        ></label>
         <label
           [hidden]="ingredients.valid || ingredients.untouched"
           class="alert alert-danger"
           for="ingredients"
+          [innerHtml]="local.data.recipe.fields.ingredients.error"
         >
-          Ingredients are required!
         </label>
 
         <input
           type="text"
           class="form-control"
           id="ingredients"
-          placeholder="Ingredients for your recipe"
+          [placeholder]="local.data.recipe.fields.ingredients.placeholder"
           required
           [(ngModel)]="recipe.ingredients"
           name="ingredients"
@@ -87,19 +109,23 @@
         METHOD FIELD 
        -->
       <div class="form-group">
-        <label for="method" class="required"> Method </label>
+        <label
+          for="method"
+          class="required"
+          [innerHtml]="local.data.recipe.fields.method.label"
+        ></label>
         <label
           [hidden]="method.valid || method.untouched"
           class="alert alert-danger"
           for="method"
+          [innerHtml]="local.data.recipe.fields.method.error"
         >
-          Method is required!
         </label>
 
         <textarea
           class="vertical large"
           id="method"
-          placeholder="Method for your recipe"
+          [placeholder]="local.data.recipe.fields.method.placeholder"
           required
           [(ngModel)]="recipe.method"
           name="method"
@@ -111,23 +137,21 @@
         NOTES FIELD 
        -->
       <div class="form-group">
-        <label for="notes"> Notes </label>
+        <label
+          for="notes"
+          [innerHtml]="local.data.recipe.fields.notes.label"
+        ></label>
 
         <textarea
           class="vertical large"
           id="notes"
-          placeholder="Notes for your recipe"
+          [placeholder]="local.data.recipe.fields.notes.placeholder"
           [(ngModel)]="recipe.notes"
           name="notes"
           #notes="ngModel"
         ></textarea>
       </div>
     </div>
-
-    <!-- 
-      OPTIONAL FIELDS
-     -->
-    <div class="form-group"></div>
 
     <!-- 
       SUBMIT BUTTON
@@ -137,9 +161,12 @@
         SUBMIT BUTTON
        -->
       <div class="form-group">
-        <button type="button" class="no-stretch" (click)="cancel()">
-          cancel
-        </button>
+        <button
+          type="button"
+          class="no-stretch"
+          (click)="cancel()"
+          [innerHtml]="local.data.general.buttons.cancel"
+        ></button>
 
         &nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -148,35 +175,44 @@
           *ngIf="type == 'create'"
           class="no-stretch"
           (click)="onSubmit(form)"
-        >
-          Add recipe
-        </button>
+          [innerHtml]="local.data.recipe.buttons.add"
+        ></button>
         <button
           type="button"
           *ngIf="type == 'edit'"
           class="no-stretch"
           (click)="onSubmit(form)"
-        >
-          Save recipe
-        </button>
+          [innerHtml]="local.data.recipe.buttons.save"
+        ></button>
       </div>
     </div>
   </form>
+
+  <!-- TODO: INTEGRATE INTO ABOVE -->
   <form #form="ngForm" *ngIf="type == 'delete'">
-    <p>
-      Are you sure, that you want to delete this recipe:<br />{{ recipe.name }}
-    </p>
+    <h1 [innerHtml]="local.data.recipe.delete.title"></h1>
+    <p
+      [innerHtml]="
+        local.data.recipe.delete.desc.replace('%recipe%', recipe.name)
+      "
+    ></p>
     <div class="form-group">
       <div class="form-group">
-        <button type="button" class="no-stretch" (click)="cancel()">
-          cancel
-        </button>
+        <button
+          type="button"
+          class="no-stretch"
+          (click)="cancel()"
+          [innerHtml]="local.data.general.buttons.cancel"
+        ></button>
 
         &nbsp;&nbsp;&nbsp;&nbsp;
 
-        <button type="button" class="no-stretch" (click)="onSubmit(form)">
-          Delete recipe
-        </button>
+        <button
+          type="button"
+          class="no-stretch"
+          (click)="onSubmit(form)"
+          [innerHtml]="local.data.recipe.buttons.delete"
+        ></button>
       </div>
     </div>
   </form>

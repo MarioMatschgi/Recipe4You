@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { LocalizationService } from 'src/app/services/localization.service';
 import { RouterService } from 'src/app/services/router.service';
 
 @Component({
@@ -10,7 +11,11 @@ import { RouterService } from 'src/app/services/router.service';
 export class AuthProfileComponent implements OnInit {
   popover: boolean;
 
-  constructor(public auth: AuthService, public router: RouterService) {}
+  constructor(
+    public auth: AuthService,
+    public router: RouterService,
+    public local: LocalizationService
+  ) {}
 
   ngOnInit(): void {}
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { LocalizationService } from 'src/app/services/localization.service';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'not-found',
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./not-found.component.scss'],
 })
 export class NotFoundComponent implements OnInit {
-  constructor() {}
+  @Input('what') what: string;
+
+  constructor(public local: LocalizationService) {}
 
   ngOnInit(): void {}
 }

@@ -1,3 +1,4 @@
+import { LocalizationService } from 'src/app/services/localization.service';
 import { take } from 'rxjs/operators';
 import { DatabaseService } from './../../../services/database.service';
 import { Component, OnInit } from '@angular/core';
@@ -34,7 +35,8 @@ export class RecipeViewComponent implements OnInit {
     public db: DatabaseService,
     public router: RouterService,
     private route: ActivatedRoute,
-    private auth: AuthService
+    private auth: AuthService,
+    public local: LocalizationService
   ) {}
 
   ngOnInit(): void {

@@ -1,5 +1,8 @@
 form {
-  text-align: center;
+  > h1,
+  > p {
+    margin: 0 var(--unit-small);
+  }
 
   .no-stretch {
     margin-bottom: 0 !important;

@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { LocalizationService } from 'src/app/services/localization.service';
 
 @Component({
   selector: 'recipe',
@@ -22,7 +23,8 @@ export class RecipeComponent implements OnInit {
     private db: DatabaseService,
     private router: RouterService,
     private route: ActivatedRoute,
-    private auth: AuthService
+    private auth: AuthService,
+    public local: LocalizationService
   ) {}
 
   ngOnInit(): void {
@@ -81,7 +83,7 @@ export class RecipeComponent implements OnInit {
 
         this.router.nav_recipe(doc.id);
       } else {
-        alert('A recipe with this name already exists!');
+        alert(this.local.data.recipe.create.already_exists);
       }
     } else if (this.type == 'edit') {
       // IF NOT RECIPE AUTHOR RETURN
@@ -95,7 +97,14 @@ export class RecipeComponent implements OnInit {
       // IF NOT RECIPE AUTHOR RETURN
       if (!this.auth.is_author_or_admin(this.recipe.author)) return;
 
-      if (confirm('Are you sure you want to delete the recipe?')) {
+      if (
+        confirm(
+          this.local.data.recipe.delete.confirm.replace(
+            '%recipe%',
+            this.recipe.name
+          )
+        )
+      ) {
         this.db.remove_recipe(this.recipe.id);
         this.router.nav_home();
       }

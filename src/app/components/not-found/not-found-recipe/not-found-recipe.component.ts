@@ -1,3 +1,4 @@
+import { LocalizationService } from 'src/app/services/localization.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./not-found-recipe.component.scss'],
 })
 export class NotFoundRecipeComponent implements OnInit {
-  constructor() {}
+  constructor(public local: LocalizationService) {}
 
   ngOnInit(): void {}
 }
