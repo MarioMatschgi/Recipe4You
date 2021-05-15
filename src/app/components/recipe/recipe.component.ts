@@ -1,6 +1,7 @@
+import { RecipeData } from './../../model/recipe.model';
 import { DatabaseService } from './../../services/database.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { RecipeModel } from 'src/app/model/recipe.model';
+import { RecipeHelper, RecipeModel } from 'src/app/model/recipe.model';
 import { NgForm } from '@angular/forms';
 import { RouterService } from 'src/app/services/router.service';
 import { Observable } from 'rxjs';
@@ -17,6 +18,7 @@ import { LocalizationService } from 'src/app/services/localization.service';
 export class RecipeComponent implements OnInit {
   @Input('type') type: 'create' | 'edit' | 'delete';
 
+  lang: string;
   recipe: RecipeModel;
 
   constructor(
@@ -37,6 +39,8 @@ export class RecipeComponent implements OnInit {
       this.router.nav_login();
       return;
     }
+
+    this.lang = RecipeHelper.lang;
 
     if (this.type == 'create') {
       this.recipe = new RecipeModel();
@@ -62,6 +66,11 @@ export class RecipeComponent implements OnInit {
     this.router.nav_recipe(this.recipe.id);
   }
 
+  change_lang() {
+    if (!this.recipe.langs[this.lang])
+      this.recipe.langs[this.lang] = new RecipeData();
+  }
+
   async onSubmit(form: NgForm) {
     form.form.markAllAsTouched();
 
@@ -71,7 +80,9 @@ export class RecipeComponent implements OnInit {
     if (!this.auth.loggedIn) return;
 
     if (this.type == 'create') {
-      let recipe = await this.db.recipe_exists(this.recipe.name);
+      let recipe = await this.db.recipe_exists(
+        RecipeHelper.getData(this.recipe).name
+      );
       if (!recipe) {
         this.recipe.date_added = new Date();
         this.recipe.date_edited = this.recipe.date_added;
@@ -101,7 +112,7 @@ export class RecipeComponent implements OnInit {
         confirm(
           this.local.data.recipe.delete.confirm.replace(
             '%recipe%',
-            this.recipe.name
+            RecipeHelper.getData(this.recipe).name
           )
         )
       ) {

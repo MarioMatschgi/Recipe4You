@@ -2,22 +2,28 @@ import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import * as data_en from '../../lang/english.json';
 import * as data_de from '../../lang/german.json';
+import { RecipeHelper } from '../model/recipe.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LocalizationService {
+  lang: string;
   data: typeof data_en;
   langs: { [lang: string]: typeof data_en } = {};
+  lang_list: string[];
 
   constructor() {
-    let lang: string = window.navigator.language.substr(0, 2);
-    if (!environment.production) lang = 'de';
+    this.lang = window.navigator.language.substr(0, 2);
+    if (!environment.production) this.lang = 'de';
+    RecipeHelper.lang = this.lang;
 
     this.langs['en'] = this.getLangData(data_en);
     this.langs['de'] = this.getLangData(data_de);
 
-    this.data = this.langs[lang] || this.langs['en'];
+    this.lang_list = Object.keys(this.langs);
+
+    this.data = this.langs[this.lang] || this.langs['en'];
   }
 
   getLangData(data) {

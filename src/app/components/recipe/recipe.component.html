@@ -1,5 +1,8 @@
 <div class="box nostyle" *ngIf="recipe">
   <form #form="ngForm" *ngIf="type == 'create' || type == 'edit'">
+    <!-- 
+      TITLES DESCRIPTIONS
+     -->
     <h1
       *ngIf="type == 'create'"
       [innerHtml]="local.data.recipe.create.title"
@@ -14,6 +17,13 @@
       [innerHtml]="local.data.recipe.delete.title"
     ></h1>
     <p *ngIf="type == 'delete'" [innerHtml]="local.data.recipe.delete.desc"></p>
+
+    <!-- 
+      LANGUAGE SELECTOR
+     -->
+    <select (change)="change_lang()" [(ngModel)]="lang" name="lang_picker">
+      <option *ngFor="let l of local.lang_list" [value]="l">{{ l }}</option>
+    </select>
 
     <!-- 
       REQUIRED FIELDS
@@ -42,7 +52,7 @@
           id="name"
           [placeholder]="local.data.recipe.fields.name.placeholder"
           required
-          [(ngModel)]="recipe.name"
+          [(ngModel)]="recipe.langs[lang].name"
           name="name"
           #name="ngModel"
         />
@@ -70,7 +80,7 @@
           id="desciption"
           [placeholder]="local.data.recipe.fields.description.placeholder"
           required
-          [(ngModel)]="recipe.description"
+          [(ngModel)]="recipe.langs[lang].description"
           name="desciption"
           #desciption="ngModel"
         ></textarea>
@@ -99,7 +109,7 @@
           id="ingredients"
           [placeholder]="local.data.recipe.fields.ingredients.placeholder"
           required
-          [(ngModel)]="recipe.ingredients"
+          [(ngModel)]="recipe.langs[lang].ingredients"
           name="ingredients"
           #ingredients="ngModel"
         />
@@ -127,7 +137,7 @@
           id="method"
           [placeholder]="local.data.recipe.fields.method.placeholder"
           required
-          [(ngModel)]="recipe.method"
+          [(ngModel)]="recipe.langs[lang].method"
           name="method"
           #method="ngModel"
         ></textarea>
@@ -146,7 +156,7 @@
           class="vertical large"
           id="notes"
           [placeholder]="local.data.recipe.fields.notes.placeholder"
-          [(ngModel)]="recipe.notes"
+          [(ngModel)]="recipe.langs[lang].notes"
           name="notes"
           #notes="ngModel"
         ></textarea>
@@ -193,7 +203,10 @@
     <h1 [innerHtml]="local.data.recipe.delete.title"></h1>
     <p
       [innerHtml]="
-        local.data.recipe.delete.desc.replace('%recipe%', recipe.name)
+        local.data.recipe.delete.desc.replace(
+          '%recipe%',
+          recipe.langs[lang].name
+        )
       "
     ></p>
     <div class="form-group">

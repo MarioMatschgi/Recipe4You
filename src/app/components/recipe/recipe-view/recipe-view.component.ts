@@ -1,9 +1,15 @@
+import { RecipeData } from './../../../model/recipe.model';
+import { emptyUserPublicData } from './../../../model/user.model';
 import { LocalizationService } from 'src/app/services/localization.service';
 import { take } from 'rxjs/operators';
 import { DatabaseService } from './../../../services/database.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { RecipeHelper, RecipeModel } from 'src/app/model/recipe.model';
+import {
+  emptyRecipeModel,
+  RecipeHelper,
+  RecipeModel,
+} from 'src/app/model/recipe.model';
 import { RouterService } from 'src/app/services/router.service';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -23,6 +29,7 @@ export class RecipeViewComponent implements OnInit {
   setups: { [key: string]: boolean } = { recipe: false };
 
   recipe: RecipeModel;
+  recipe_data: RecipeData;
   recipe_id: string;
   recipe_date_added: string;
   recipe_date_edited: string;
@@ -45,8 +52,11 @@ export class RecipeViewComponent implements OnInit {
     });
 
     this.db.get_recipe(this.recipe_id).subscribe(async (recipe) => {
-      this.recipe = recipe;
+      this.recipe = { ...emptyRecipeModel, ...recipe };
+
       if (recipe != null) {
+        this.recipe_data = RecipeHelper.getData(this.recipe);
+
         this.recipe_date_added = new Date(recipe.date_added).toLocaleString();
         this.recipe_date_edited = new Date(recipe.date_edited).toLocaleString();
 

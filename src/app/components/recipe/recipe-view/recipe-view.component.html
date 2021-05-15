@@ -49,20 +49,20 @@
        -->
       <article class="recipe">
         <section class="title">
-          <h2>{{ recipe.name }}</h2>
-          <p>{{ recipe.description }}</p>
+          <h2>{{ recipe_data.name }}</h2>
+          <p>{{ recipe_data.description }}</p>
         </section>
         <section class="ingredients">
           <h2 [innerHtml]="local.data.recipe.fields.ingredients.label"></h2>
-          <p>{{ recipe.ingredients }}</p>
+          <p>{{ recipe_data.ingredients }}</p>
         </section>
         <section class="method">
           <h2 [innerHtml]="local.data.recipe.fields.method.label"></h2>
-          <p>{{ recipe.method }}</p>
+          <p>{{ recipe_data.method }}</p>
         </section>
         <section class="notes" *ngIf="recipe.notes">
           <h2 [innerHtml]="local.data.recipe.fields.notes.label"></h2>
-          <p>{{ recipe.notes }}</p>
+          <p>{{ recipe_data.notes }}</p>
         </section>
       </article>
 

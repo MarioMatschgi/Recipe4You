@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { RecipeModel } from 'src/app/model/recipe.model';
+import { RecipeHelper, RecipeModel } from 'src/app/model/recipe.model';
 import { RouterService } from 'src/app/services/router.service';
 
 @Component({
@@ -12,7 +12,9 @@ export class RecipePreviewComponent implements OnInit {
 
   constructor(public router: RouterService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(RecipeHelper.lang);
+  }
 
   navigate_recipe() {
     this.router.nav_recipe(this.recipe.id);

@@ -1,3 +1,4 @@
+import { LocalizationService } from 'src/app/services/localization.service';
 import { Injectable } from '@angular/core';
 import {
   AngularFirestore,
@@ -14,21 +15,16 @@ import * as firebase from 'firebase/app';
   providedIn: 'root',
 })
 export class DatabaseService {
+  path_recipes = 'recipes';
+
   col_recipes: AngularFirestoreCollection<any>;
   col_usersPrivate: AngularFirestoreCollection<any>;
   col_usersPublic: AngularFirestoreCollection<any>;
 
-  // doc_userPrivate: AngularFirestoreDocument<any>;
-  // doc_userPublic: AngularFirestoreDocument<any>;
-
-  constructor(public db: AngularFirestore) {
-    this.col_recipes = this.db.collection('recipes');
+  constructor(public db: AngularFirestore, private local: LocalizationService) {
+    this.col_recipes = this.db.collection(this.path_recipes);
     this.col_usersPrivate = this.db.collection('users-private');
     this.col_usersPublic = this.db.collection('users-public');
-
-    // const uid = this.auth.userPublicData.uid;
-    // this.doc_userPrivate = this.col_usersPrivate.doc(uid);
-    // this.doc_userPublic = this.col_usersPublic.doc(uid);
   }
 
   get_all_recipes(): Observable<RecipeModel[]> {
@@ -40,7 +36,7 @@ export class DatabaseService {
       if (!arr[i] || arr[i] == '') arr.splice(i, 1);
 
     return this.db
-      .collection('recipes', (ref) =>
+      .collection(this.path_recipes, (ref) =>
         ref.where(firebase.default.firestore.FieldPath.documentId(), 'in', arr)
       )
       .get();
@@ -64,7 +60,7 @@ export class DatabaseService {
 
   async recipe_exists(name: string): Promise<RecipeModel> {
     let a = await this.db
-      .collection('recipes', (ref) => ref.where('name', '==', name))
+      .collection(this.path_recipes, (ref) => ref.where('name', '==', name))
       .get()
       .toPromise();
 
