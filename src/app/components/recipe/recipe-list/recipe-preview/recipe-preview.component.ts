@@ -1,5 +1,10 @@
+import { LocalizationService } from 'src/app/services/localization.service';
 import { Component, Input, OnInit } from '@angular/core';
-import { RecipeHelper, RecipeModel } from 'src/app/model/recipe.model';
+import {
+  RecipeData,
+  RecipeHelper,
+  RecipeModel,
+} from 'src/app/model/recipe.model';
 import { RouterService } from 'src/app/services/router.service';
 
 @Component({
@@ -9,11 +14,15 @@ import { RouterService } from 'src/app/services/router.service';
 })
 export class RecipePreviewComponent implements OnInit {
   @Input('recipe') recipe: RecipeModel;
+  recipe_data: RecipeData;
 
-  constructor(public router: RouterService) {}
+  constructor(
+    public router: RouterService,
+    public local: LocalizationService
+  ) {}
 
   ngOnInit(): void {
-    console.log(RecipeHelper.lang);
+    this.recipe_data = RecipeHelper.getData(this.recipe);
   }
 
   navigate_recipe() {

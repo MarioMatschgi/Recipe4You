@@ -32,6 +32,11 @@ export class RecipeHelper {
     return JSON.parse(JSON.stringify(r));
   }
   static getData(r: RecipeModel) {
-    return r.langs[this.lang];
+    if (r.langs[this.lang]) return r.langs[this.lang];
+    else if (r.langs['en']) return r.langs['en'];
+
+    for (const key in r.langs) {
+      return r.langs[key];
+    }
   }
 }

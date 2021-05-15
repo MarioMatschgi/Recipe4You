@@ -56,6 +56,10 @@ export class RecipeComponent implements OnInit {
       if (!this.auth.is_author_or_admin(this.recipe.author))
         this.router.nav_login();
     }
+
+    if (!this.recipe.langs) this.recipe.langs = {};
+    if (!this.recipe.langs[this.lang])
+      this.recipe.langs[this.lang] = new RecipeData();
   }
 
   cancel() {
