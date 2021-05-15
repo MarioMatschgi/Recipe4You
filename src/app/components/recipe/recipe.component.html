@@ -1,5 +1,5 @@
 <div class="box nostyle" *ngIf="recipe">
-  <form #form="ngForm" *ngIf="type == 'create' || type == 'edit'">
+  <form #form="ngForm">
     <!-- 
       TITLES DESCRIPTIONS
      -->
@@ -16,14 +16,23 @@
       *ngIf="type == 'delete'"
       [innerHtml]="local.data.recipe.delete.title"
     ></h1>
-    <p *ngIf="type == 'delete'" [innerHtml]="local.data.recipe.delete.desc"></p>
+    <p
+      *ngIf="type == 'delete'"
+      [innerHtml]="
+        local.data.recipe.delete.desc.replace(
+          '%recipe%',
+          recipe.langs[lang].name
+        )
+      "
+    ></p>
 
     <!-- 
       LANGUAGE SELECTOR
      -->
-    <div class="form-group">
+    <div class="form-group" *ngIf="type != 'delete'">
       <label
         for="lang_picker"
+        class="required"
         [innerHtml]="local.data.recipe.fields.language.label"
       ></label>
       <select (change)="change_lang()" [(ngModel)]="lang" name="lang_picker">
@@ -34,7 +43,7 @@
     <!-- 
       REQUIRED FIELDS
      -->
-    <div class="form-group">
+    <div class="form-group" *ngIf="type != 'delete'">
       <!-- 
         NAME FIELD 
        -->
@@ -108,6 +117,8 @@
           [innerHtml]="local.data.recipe.fields.ingredients.error"
         >
         </label>
+
+        <!-- <recipe-ingredient></recipe-ingredient> -->
 
         <input
           type="text"
@@ -193,6 +204,7 @@
           (click)="onSubmit(form)"
           [innerHtml]="local.data.recipe.buttons.add"
         ></button>
+
         <button
           type="button"
           *ngIf="type == 'edit'"
@@ -200,34 +212,10 @@
           (click)="onSubmit(form)"
           [innerHtml]="local.data.recipe.buttons.save"
         ></button>
-      </div>
-    </div>
-  </form>
-
-  <!-- TODO: INTEGRATE INTO ABOVE -->
-  <form #form="ngForm" *ngIf="type == 'delete'">
-    <h1 [innerHtml]="local.data.recipe.delete.title"></h1>
-    <p
-      [innerHtml]="
-        local.data.recipe.delete.desc.replace(
-          '%recipe%',
-          recipe.langs[lang].name
-        )
-      "
-    ></p>
-    <div class="form-group">
-      <div class="form-group">
-        <button
-          type="button"
-          class="no-stretch"
-          (click)="cancel()"
-          [innerHtml]="local.data.general.buttons.cancel"
-        ></button>
-
-        &nbsp;&nbsp;&nbsp;&nbsp;
 
         <button
           type="button"
+          *ngIf="type == 'delete'"
           class="no-stretch"
           (click)="onSubmit(form)"
           [innerHtml]="local.data.recipe.buttons.delete"

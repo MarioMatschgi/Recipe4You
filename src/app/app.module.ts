@@ -32,6 +32,7 @@ import { NotFoundGeneralComponent } from './components/not-found/not-found-gener
 import { NotFoundRecipeComponent } from './components/not-found/not-found-recipe/not-found-recipe.component';
 import { RecipeListComponent } from './components/recipe/recipe-list/recipe-list.component';
 import { StarsComponent } from './components/stars/stars.component';
+import { RecipeIngredientComponent } from './components/recipe/recipe-ingredient/recipe-ingredient.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { StarsComponent } from './components/stars/stars.component';
     NotFoundRecipeComponent,
     RecipeListComponent,
     StarsComponent,
+    RecipeIngredientComponent,
   ],
   imports: [
     BrowserModule,
