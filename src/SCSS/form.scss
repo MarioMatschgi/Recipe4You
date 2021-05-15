@@ -107,7 +107,8 @@ textarea::-webkit-resizer {
 /* INPUT STYLING */
 input,
 button,
-textarea {
+textarea,
+select {
   box-sizing: content-box;
   background: var(--bg-glass);
   border: none;
@@ -130,13 +131,16 @@ input:hover:not(:disabled),
 button:focus,
 button:hover:not(:disabled),
 textarea:focus,
-textarea:hover:not(:disabled) {
+textarea:hover:not(:disabled),
+select:hover:not(:disabled),
+select:focus {
   box-shadow: 0 0 0 2px var(--colors-red);
   outline: none;
 }
 input:-webkit-autofill,
 button:-webkit-autofill,
-textarea:-webkit-autofill {
+textarea:-webkit-autofill,
+select:-webkit-autofill {
   -webkit-text-fill-color: var(--colors-dark-gray) !important;
   box-shadow: 0 0 0 transparent, 0 0 0 1000px var(--colors-light-blue) inset !important;
 }
@@ -145,7 +149,9 @@ input:hover:not(:disabled):-webkit-autofill,
 button:focus:-webkit-autofill,
 button:hover:not(:disabled):-webkit-autofill,
 textarea:focus:-webkit-autofill,
-textarea:hover:not(:disabled):-webkit-autofill {
+textarea:hover:not(:disabled):-webkit-autofill,
+select:focus:-webkit-autofill,
+select:hover:not(:disabled):-webkit-autofill {
   transition: box-shadow 0.4s;
   box-shadow: 0 0 0 2px var(--colors-red),
     0 0 0 1000px var(--colors-light-blue) inset !important;

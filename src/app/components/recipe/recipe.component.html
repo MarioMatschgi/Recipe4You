@@ -21,9 +21,15 @@
     <!-- 
       LANGUAGE SELECTOR
      -->
-    <select (change)="change_lang()" [(ngModel)]="lang" name="lang_picker">
-      <option *ngFor="let l of local.lang_list" [value]="l">{{ l }}</option>
-    </select>
+    <div class="form-group">
+      <label
+        for="lang_picker"
+        [innerHtml]="local.data.recipe.fields.language.label"
+      ></label>
+      <select (change)="change_lang()" [(ngModel)]="lang" name="lang_picker">
+        <option *ngFor="let l of local.lang_list" [value]="l">{{ l }}</option>
+      </select>
+    </div>
 
     <!-- 
       REQUIRED FIELDS

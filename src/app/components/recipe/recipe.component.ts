@@ -84,22 +84,15 @@ export class RecipeComponent implements OnInit {
     if (!this.auth.loggedIn) return;
 
     if (this.type == 'create') {
-      let recipe = await this.db.recipe_exists(
-        RecipeHelper.getData(this.recipe).name
-      );
-      if (!recipe) {
-        this.recipe.date_added = new Date();
-        this.recipe.date_edited = this.recipe.date_added;
-        this.recipe.author = this.auth.userPublicData.uid;
-        const doc = await this.db.add_recipe(this.recipe);
+      this.recipe.date_added = new Date();
+      this.recipe.date_edited = this.recipe.date_added;
+      this.recipe.author = this.auth.userPublicData.uid;
+      const doc = await this.db.add_recipe(this.recipe);
 
-        this.recipe.id = doc.id;
-        await this.db.edit_recipe(doc.id, this.recipe);
+      this.recipe.id = doc.id;
+      await this.db.edit_recipe(doc.id, this.recipe);
 
-        this.router.nav_recipe(doc.id);
-      } else {
-        alert(this.local.data.recipe.create.already_exists);
-      }
+      this.router.nav_recipe(doc.id);
     } else if (this.type == 'edit') {
       // IF NOT RECIPE AUTHOR RETURN
       if (!this.auth.is_author_or_admin(this.recipe.author)) return;

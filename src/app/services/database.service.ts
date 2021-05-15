@@ -7,7 +7,7 @@ import {
   DocumentReference,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { RecipeHelper, RecipeModel } from '../model/recipe.model';
+import { RecipeData, RecipeHelper, RecipeModel } from '../model/recipe.model';
 import { AuthService } from './auth.service';
 import * as firebase from 'firebase/app';
 
@@ -47,10 +47,14 @@ export class DatabaseService {
   }
 
   add_recipe(data: RecipeModel): Promise<DocumentReference<any>> {
+    data = this.trim_recipe(data);
+
     return this.col_recipes.add(RecipeHelper.to_object(data));
   }
 
   edit_recipe(id: string, newData: RecipeModel) {
+    newData = this.trim_recipe(newData);
+
     this.col_recipes.doc(id).set(RecipeHelper.to_object(newData));
   }
 
@@ -58,14 +62,14 @@ export class DatabaseService {
     this.col_recipes.doc(id).delete();
   }
 
-  async recipe_exists(name: string): Promise<RecipeModel> {
-    let a = await this.db
-      .collection(this.path_recipes, (ref) => ref.where('name', '==', name))
-      .get()
-      .toPromise();
+  trim_recipe(data: RecipeModel): RecipeModel {
+    let newLangs: { [lang: string]: RecipeData } = {};
+    for (const key of Object.keys(data.langs))
+      if (data.langs[key] && Object.keys(data.langs[key]).length > 0)
+        newLangs[key] = data.langs[key];
 
-    if (!a.docs[0]) return null;
+    data.langs = newLangs;
 
-    return a.docs[0].data() as RecipeModel;
+    return data;
   }
 }

@@ -47,8 +47,7 @@
   "recipe": {
     "create": {
       "title": "Erstelle ein neues Rezept",
-      "desc": "Befülle alle Felder um ein neues Rezept zu erstellen",
-      "already_exists": "Ein Rezept mit diesem Namen existiert bereits!"
+      "desc": "Befülle alle Felder um ein neues Rezept zu erstellen"
     },
     "edit": {
       "title": "Bearbeite das Rezept",
@@ -60,6 +59,9 @@
       "confirm": "Bist du dir sicher, dass du das folgende Rezept löschen willst:\n%recipe%"
     },
     "fields": {
+      "language": {
+        "label": "Sprache"
+      },
       "name": {
         "label": "Name",
         "error": "Name ist erforderlich!",

@@ -47,8 +47,7 @@
   "recipe": {
     "create": {
       "title": "Create a new recipe",
-      "desc": "Fill in all required fields to create a new recipe",
-      "already_exists": "A recipe with this name already exists!"
+      "desc": "Fill in all required fields to create a new recipe"
     },
     "edit": {
       "title": "Edit recipe",
@@ -60,6 +59,9 @@
       "confirm": "Are you sure, that you want to delete this recipe:\n%recipe%"
     },
     "fields": {
+      "language": {
+        "label": "Language"
+      },
       "name": {
         "label": "Name",
         "error": "Name is required!",
