@@ -1,22 +1,29 @@
-.ingredients {
+.ingredients.write {
   align-items: center;
 
   .ingredient {
-    box-sizing: content-box;
+    .write {
+      box-sizing: content-box;
 
-    * {
-      flex: 1 1 0%;
+      * {
+        flex: 1 1 0%;
+      }
+      .ingredient-name {
+      }
+      .ingredient-amount {
+        min-width: 10%;
+      }
+      .ingredient-unit {
+        min-width: 10%;
+      }
+      .ingredient-delete {
+        flex: 0 0 0%;
+      }
     }
-    #ingredient-name {
-    }
-    #ingredient-amount {
-      min-width: 10%;
-    }
-    #ingredient-unit {
-      min-width: 10%;
-    }
-    #ingredient-delete {
-      flex: 0 0 0%;
-    }
+  }
+}
+.ingredients.read {
+  .ingredient {
+    flex-basis: 100%;
   }
 }

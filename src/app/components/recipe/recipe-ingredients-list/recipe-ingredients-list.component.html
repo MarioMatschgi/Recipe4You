@@ -1,37 +1,34 @@
 <div class="form-group box-indent small">
-  <div class="ingredients flexbox">
+  <!-- 
+    WRITE
+   -->
+  <div class="ingredients flexbox small write" *ngIf="type == 'write'">
     <div class="ingredient" *ngFor="let ing of ingredients; let i = index">
-      <div class="flexbox small">
+      <div class="write flexbox small">
         <input
           type="text"
-          class="form-control"
-          id="ingredient-name"
+          class="form-control ingredient-name"
           [(ngModel)]="ing.name"
           required
           name="ingredient-name"
-          #ingredient_name="ngModel"
         />
         <input
           type="number"
-          class="form-control noarrows"
-          id="ingredient-amount"
+          class="form-control ingredient-amount noarrows"
           [(ngModel)]="ing.amount"
           required
           name="ingredient-amount"
-          #ingredient_amount="ngModel"
         />
         <input
           type="text"
-          class="form-control"
-          id="ingredient-unit"
+          class="form-control ingredient-unit"
           required
           [(ngModel)]="ing.unit"
           name="ingredient-unit"
-          #ingredient_unit="ngModel"
         />
         <button
           type="button"
-          id="ingredient-delete"
+          class="ingredient-delete"
           (click)="delete_ingredient(i)"
         >
           X
@@ -42,6 +39,17 @@
       <button type="button" id="ingredient-add" (click)="add_ingredient()">
         Add another
       </button>
+    </div>
+  </div>
+
+  <!-- 
+    READ
+   -->
+  <div class="ingredients flexbox small read" *ngIf="type == 'read'">
+    <div class="ingredient" *ngFor="let ing of ingredients; let i = index">
+      <div>
+        <p>{{ ing.name }}: {{ ing.amount }} {{ ing.unit }}</p>
+      </div>
     </div>
   </div>
 </div>

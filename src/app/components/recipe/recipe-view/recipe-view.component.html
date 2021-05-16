@@ -54,7 +54,11 @@
         </section>
         <section class="ingredients">
           <h2 [innerHtml]="local.data.recipe.fields.ingredients.label"></h2>
-          <p>{{ recipe_data.ingredients }}</p>
+          <!-- <p>{{ recipe_data.ingredients }}</p> -->
+          <recipe-ingredients-list
+            [ingredients]="recipe_data.ingredients"
+            type="read"
+          ></recipe-ingredients-list>
         </section>
         <section class="method">
           <h2 [innerHtml]="local.data.recipe.fields.method.label"></h2>

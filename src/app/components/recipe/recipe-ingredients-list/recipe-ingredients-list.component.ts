@@ -8,6 +8,7 @@ import { RecipeIngredientData } from 'src/app/model/recipe.model';
   styleUrls: ['./recipe-ingredients-list.component.scss'],
 })
 export class RecipeIngredientsListComponent implements OnInit {
+  @Input() type: 'read' | 'write';
   @Input() ingredients: RecipeIngredientData[];
   @Output() ingredientsChange = new EventEmitter<RecipeIngredientData[]>();
 
