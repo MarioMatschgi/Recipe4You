@@ -1,0 +1,47 @@
+<div class="form-group box-indent small">
+  <div class="ingredients flexbox">
+    <div class="ingredient" *ngFor="let ing of ingredients; let i = index">
+      <div class="flexbox small">
+        <input
+          type="text"
+          class="form-control"
+          id="ingredient-name"
+          [(ngModel)]="ing.name"
+          required
+          name="ingredient-name"
+          #ingredient_name="ngModel"
+        />
+        <input
+          type="number"
+          class="form-control noarrows"
+          id="ingredient-amount"
+          [(ngModel)]="ing.amount"
+          required
+          name="ingredient-amount"
+          #ingredient_amount="ngModel"
+        />
+        <input
+          type="text"
+          class="form-control"
+          id="ingredient-unit"
+          required
+          [(ngModel)]="ing.unit"
+          name="ingredient-unit"
+          #ingredient_unit="ngModel"
+        />
+        <button
+          type="button"
+          id="ingredient-delete"
+          (click)="delete_ingredient(i)"
+        >
+          X
+        </button>
+      </div>
+    </div>
+    <div>
+      <button type="button" id="ingredient-add" (click)="add_ingredient()">
+        Add another
+      </button>
+    </div>
+  </div>
+</div>

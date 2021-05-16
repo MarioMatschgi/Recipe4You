@@ -17,7 +17,7 @@
           <div class="tools flexbox tiny">
             <a
               *ngIf="auth.is_author_or_admin(recipe.author)"
-              class="no-style"
+              class="nostyle"
               (click)="router.nav_delete(recipe_id)"
             >
               <i class="fas" aria-hidden="true">&#xf2ed;</i>
@@ -25,18 +25,18 @@
 
             <a
               *ngIf="auth.is_author_or_admin(recipe.author)"
-              class="no-style"
+              class="nostyle"
               (click)="router.nav_edit(recipe_id)"
             >
               <i class="fas" aria-hidden="true">&#xf044;</i>
             </a>
 
-            <a class="no-style" (click)="star()">
+            <a class="nostyle" (click)="star()">
               <i class="far" aria-hidden="true" *ngIf="!starred">&#xf005;</i>
               <i class="fas" aria-hidden="true" *ngIf="starred">&#xf005;</i>
             </a>
 
-            <a class="no-style" (click)="bookmark()">
+            <a class="nostyle" (click)="bookmark()">
               <i class="far" aria-hidden="true" *ngIf="!bookmarked">&#xf02e;</i>
               <i class="fas" aria-hidden="true" *ngIf="bookmarked">&#xf02e;</i>
             </a>

@@ -57,7 +57,7 @@ main {
 
 a {
   cursor: pointer;
-  &:not(.no-style) {
+  &:not(.nostyle) {
     color: var(--color-accent);
   }
 }
@@ -131,7 +131,7 @@ a {
 }
 
 /* LIST */
-ul.no-style {
+ul.nostyle {
   padding-left: 0 !important;
   list-style-type: none;
 }

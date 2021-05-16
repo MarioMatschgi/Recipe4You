@@ -20,10 +20,15 @@ export class RecipeModel {
 export class RecipeData {
   name: string;
   description: string;
-  ingredients: string;
+  ingredients: RecipeIngredientData[];
   method: string;
   notes?: string;
   images?: string[];
+}
+export class RecipeIngredientData {
+  name: string;
+  amount: number;
+  unit: string;
 }
 export class RecipeHelper {
   static lang: string;

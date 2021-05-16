@@ -110,26 +110,10 @@
           class="required"
           [innerHtml]="local.data.recipe.fields.ingredients.label"
         ></label>
-        <label
-          [hidden]="ingredients.valid || ingredients.untouched"
-          class="alert alert-danger"
-          for="ingredients"
-          [innerHtml]="local.data.recipe.fields.ingredients.error"
-        >
-        </label>
 
-        <!-- <recipe-ingredient></recipe-ingredient> -->
-
-        <input
-          type="text"
-          class="form-control"
-          id="ingredients"
-          [placeholder]="local.data.recipe.fields.ingredients.placeholder"
-          required
-          [(ngModel)]="recipe.langs[lang].ingredients"
-          name="ingredients"
-          #ingredients="ngModel"
-        />
+        <recipe-ingredients-list
+          [(ingredients)]="recipe.langs[lang].ingredients"
+        ></recipe-ingredients-list>
       </div>
 
       <!-- 
