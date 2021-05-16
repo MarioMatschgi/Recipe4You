@@ -50,11 +50,10 @@
       <article class="recipe">
         <section class="title">
           <h2>{{ recipe_data.name }}</h2>
-          <p>{{ recipe_data.description }}</p>
+          <p [innerHtml]="recipe_data.description.replace('\n', '<br />')"></p>
         </section>
         <section class="ingredients">
           <h2 [innerHtml]="local.data.recipe.fields.ingredients.label"></h2>
-          <!-- <p>{{ recipe_data.ingredients }}</p> -->
           <recipe-ingredients-list
             [ingredients]="recipe_data.ingredients"
             type="read"
@@ -62,11 +61,11 @@
         </section>
         <section class="method">
           <h2 [innerHtml]="local.data.recipe.fields.method.label"></h2>
-          <p>{{ recipe_data.method }}</p>
+          <p [innerHtml]="recipe_data.method.replace('\n', '<br />')"></p>
         </section>
-        <section class="notes" *ngIf="recipe.notes">
+        <section class="notes" *ngIf="recipe_data.notes">
           <h2 [innerHtml]="local.data.recipe.fields.notes.label"></h2>
-          <p>{{ recipe_data.notes }}</p>
+          <p [innerHtml]="recipe_data.notes.replace('\n', '<br />')"></p>
         </section>
       </article>
 
