@@ -1,12 +1,36 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+  ActivatedRoute,
+  Event,
+  NavigationEnd,
+  NavigationStart,
+  Router,
+} from '@angular/router';
 import { Location } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RouterService {
-  constructor(public router: Router, public location: Location) {}
+  k_loc = 'router.loc';
+  loaded = false;
+
+  constructor(public router: Router, public location: Location) {
+    router.events.subscribe((e: Event) => {
+      if (e instanceof NavigationEnd) {
+        if (!this.loaded) {
+          if (e.url == '/') this.nav_old();
+          this.loaded = true;
+        }
+        localStorage.setItem(this.k_loc, e.url);
+      }
+    });
+  }
+
+  nav_old() {
+    const url = localStorage.getItem(this.k_loc);
+    if (url) this.router.navigate([url]);
+  }
 
   nav_home() {
     this.router.navigate(['']);
