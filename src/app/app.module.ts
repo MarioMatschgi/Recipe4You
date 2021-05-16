@@ -33,7 +33,6 @@ import { NotFoundRecipeComponent } from './components/not-found/not-found-recipe
 import { RecipeListComponent } from './components/recipe/recipe-list/recipe-list.component';
 import { StarsComponent } from './components/stars/stars.component';
 import { RecipeIngredientsListComponent } from './components/recipe/recipe-ingredients-list/recipe-ingredients-list.component';
-import { ShareButtonsComponent } from './components/share-buttons/share-buttons.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +58,6 @@ import { ShareButtonsComponent } from './components/share-buttons/share-buttons.
     RecipeListComponent,
     StarsComponent,
     RecipeIngredientsListComponent,
-    ShareButtonsComponent,
   ],
   imports: [
     BrowserModule,
