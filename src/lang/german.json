@@ -75,7 +75,11 @@
       "ingredients": {
         "label": "Zutaten",
         "error": "Zutaten sind erforderlich!",
-        "placeholder": "Zutaten für dein Rezept"
+        "placeholder": {
+          "name": "Name",
+          "amount": "Menge",
+          "unit": "Einheit"
+        }
       },
       "method": {
         "label": "Methode",

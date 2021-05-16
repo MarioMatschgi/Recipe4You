@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { RecipeIngredientData } from 'src/app/model/recipe.model';
+import { LocalizationService } from 'src/app/services/localization.service';
 
 @Component({
   selector: 'recipe-ingredients-list',
@@ -12,11 +13,9 @@ export class RecipeIngredientsListComponent implements OnInit {
   @Input() ingredients: RecipeIngredientData[];
   @Output() ingredientsChange = new EventEmitter<RecipeIngredientData[]>();
 
-  constructor() {}
+  constructor(public local: LocalizationService) {}
 
   ngOnInit(): void {
-    console.log(this.ingredients);
-
     if (!this.ingredients) this.ingredients = [new RecipeIngredientData()];
   }
 

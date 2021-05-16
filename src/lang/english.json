@@ -75,7 +75,11 @@
       "ingredients": {
         "label": "Ingredients",
         "error": "Ingredients are required!",
-        "placeholder": "Ingredients for your recipe"
+        "placeholder": {
+          "name": "Name",
+          "amount": "Amount",
+          "unit": "Unit"
+        }
       },
       "method": {
         "label": "Method",

@@ -8,6 +8,7 @@
         <input
           type="text"
           class="form-control ingredient-name"
+          [placeholder]="local.data.recipe.fields.ingredients.placeholder.name"
           [(ngModel)]="ing.name"
           required
           name="ingredient-name"
@@ -15,6 +16,9 @@
         <input
           type="number"
           class="form-control ingredient-amount noarrows"
+          [placeholder]="
+            local.data.recipe.fields.ingredients.placeholder.amount
+          "
           [(ngModel)]="ing.amount"
           required
           name="ingredient-amount"
@@ -22,6 +26,7 @@
         <input
           type="text"
           class="form-control ingredient-unit"
+          [placeholder]="local.data.recipe.fields.ingredients.placeholder.unit"
           required
           [(ngModel)]="ing.unit"
           name="ingredient-unit"
