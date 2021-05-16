@@ -15,6 +15,8 @@ export class RecipeIngredientsListComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    console.log(this.ingredients);
+
     if (!this.ingredients) this.ingredients = [new RecipeIngredientData()];
   }
 

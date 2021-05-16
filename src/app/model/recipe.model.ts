@@ -20,7 +20,7 @@ export class RecipeModel {
 export class RecipeData {
   name: string;
   description: string;
-  ingredients: RecipeIngredientData[];
+  ingredients: RecipeIngredientData[] = [];
   method: string;
   notes?: string;
   images?: string[];
