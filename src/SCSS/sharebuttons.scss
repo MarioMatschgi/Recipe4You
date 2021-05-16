@@ -1,0 +1,16 @@
+.sharebuttons {
+  justify-content: center;
+}
+.sharebutton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--color-font);
+
+  background: var(--bg-glass);
+  border-radius: var(--unit-small);
+
+  width: 3em;
+  height: 3em;
+}

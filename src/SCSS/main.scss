@@ -60,6 +60,9 @@ a {
   &:not(.nostyle) {
     color: var(--color-accent);
   }
+  &.nostyle {
+    text-decoration: none;
+  }
 }
 
 .clickable {
