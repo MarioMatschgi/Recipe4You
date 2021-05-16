@@ -36,7 +36,9 @@
         [innerHtml]="local.data.recipe.fields.language.label"
       ></label>
       <select (change)="change_lang()" [(ngModel)]="lang" name="lang_picker">
-        <option *ngFor="let l of local.lang_list" [value]="l">{{ l }}</option>
+        <option *ngFor="let l of local.lang_list" [value]="l">
+          {{ local.data.general.lang[l] }}
+        </option>
       </select>
     </div>
 

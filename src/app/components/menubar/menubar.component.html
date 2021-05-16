@@ -2,7 +2,9 @@
   <div class="flexbox tiny">
     <div>
       <div class="flexbox tiny">
-        <p class="clickable" (click)="router.nav_home()">Recipe4you</p>
+        <a class="nostyle" [routerLink]="router.get_url('home')">
+          Recipe4you
+        </a>
 
         <a class="nostyle" (click)="router.nav_backward()">
           <i class="fas" aria-hidden="true">&#xf053;</i>
@@ -20,15 +22,15 @@
           <i class="fas" aria-hidden="true">&#xf019;</i>
         </a>
 
-        <a class="nostyle" (click)="router.nav_create()">
+        <a class="nostyle" [routerLink]="router.get_url('recipe_create')">
           <i class="far" aria-hidden="true">&#xf0fe;</i>
         </a>
 
-        <a class="nostyle" (click)="router.nav_stars()">
+        <a class="nostyle" [routerLink]="router.get_url('stars')">
           <i class="fas" aria-hidden="true">&#xf005;</i>
         </a>
 
-        <a class="nostyle" (click)="router.nav_bookmarks()">
+        <a class="nostyle" [routerLink]="router.get_url('bookmarks')">
           <i class="fas" aria-hidden="true">&#xf02e;</i>
         </a>
 

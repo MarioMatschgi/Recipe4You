@@ -18,7 +18,7 @@
             <a
               *ngIf="auth.is_author_or_admin(recipe.author)"
               class="nostyle"
-              (click)="router.nav_delete(recipe_id)"
+              [routerLink]="router.get_url('recipe_delete', [recipe_id])"
             >
               <i class="fas" aria-hidden="true">&#xf2ed;</i>
             </a>
@@ -26,7 +26,7 @@
             <a
               *ngIf="auth.is_author_or_admin(recipe.author)"
               class="nostyle"
-              (click)="router.nav_edit(recipe_id)"
+              [routerLink]="router.get_url('recipe_edit', [recipe_id])"
             >
               <i class="fas" aria-hidden="true">&#xf044;</i>
             </a>

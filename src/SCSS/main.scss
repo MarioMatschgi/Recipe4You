@@ -57,9 +57,8 @@ main {
 
 a {
   cursor: pointer;
-  &:not(.nostyle) {
-    color: var(--color-accent);
-  }
+  color: var(--color-accent);
+
   &.nostyle {
     text-decoration: none;
   }

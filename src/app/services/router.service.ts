@@ -14,26 +14,42 @@ import { Location } from '@angular/common';
 export class RouterService {
   k_loc = 'router.loc';
   loaded = false;
+  private m_urls: { [name: string]: string[] } = {
+    home: [''],
+    bookmarks: ['bookmarks'],
+    stars: ['stars'],
+    recipes: ['recipes'],
+    recipe_edit: ['recipe', 'edit'],
+    recipe_delete: ['recipe', 'delete'],
+    recipe_create: ['recipe', 'create'],
+  };
+  get_url_arr(name: string, params: string[] = []): string[] {
+    return this.m_urls[name].concat(params);
+  }
+  get_url(name: string, params: string[] = []): string {
+    return '/' + this.get_url_arr(name, params).join('/');
+  }
 
   constructor(public router: Router, public location: Location) {
-    router.events.subscribe((e: Event) => {
-      if (e instanceof NavigationEnd) {
-        if (!this.loaded) {
-          if (e.url == '/') this.nav_old();
-          this.loaded = true;
+    if (window.matchMedia('(display-mode: standalone)').matches)
+      router.events.subscribe((e: Event) => {
+        if (e instanceof NavigationEnd) {
+          if (!this.loaded) {
+            if (e.url == '/') this.nav_old();
+            this.loaded = true;
+          }
+          localStorage.setItem(this.k_loc, e.url);
         }
-        localStorage.setItem(this.k_loc, e.url);
-      }
-    });
+      });
+  }
+
+  nav(name: string, params: string[] = []) {
+    this.router.navigate(this.get_url_arr(name, params));
   }
 
   nav_old() {
     const url = localStorage.getItem(this.k_loc);
     if (url) this.router.navigate([url]);
-  }
-
-  nav_home() {
-    this.router.navigate(['']);
   }
 
   nav_backward() {
@@ -46,26 +62,5 @@ export class RouterService {
   // TODO: URL GO THERE AFTER LOGIN
   nav_login() {
     this.router.navigate(['login']);
-  }
-
-  nav_bookmarks() {
-    this.router.navigate(['bookmarks']);
-  }
-
-  nav_stars() {
-    this.router.navigate(['stars']);
-  }
-
-  nav_recipe(id: string) {
-    this.router.navigate(['recipes', id]);
-  }
-  nav_edit(id: string) {
-    this.router.navigate(['recipe', 'edit', id]);
-  }
-  nav_delete(id: string) {
-    this.router.navigate(['recipe', 'delete', id]);
-  }
-  nav_create() {
-    this.router.navigate(['recipe', 'create']);
   }
 }

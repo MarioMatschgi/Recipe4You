@@ -64,10 +64,10 @@ export class RecipeComponent implements OnInit {
 
   cancel() {
     if (this.recipe.id == undefined) {
-      this.router.nav_home();
+      this.router.nav('home');
       return;
     }
-    this.router.nav_recipe(this.recipe.id);
+    this.router.nav('recipes', [this.recipe.id]);
   }
 
   change_lang() {
@@ -92,7 +92,7 @@ export class RecipeComponent implements OnInit {
       this.recipe.id = doc.id;
       await this.db.edit_recipe(doc.id, this.recipe);
 
-      this.router.nav_recipe(doc.id);
+      this.router.nav('recipes', [doc.id]);
     } else if (this.type == 'edit') {
       // IF NOT RECIPE AUTHOR RETURN
       if (!this.auth.is_author_or_admin(this.recipe.author)) return;
@@ -100,7 +100,7 @@ export class RecipeComponent implements OnInit {
       this.recipe.date_edited = new Date();
 
       await this.db.edit_recipe(this.recipe.id, this.recipe);
-      this.router.nav_recipe(this.recipe.id);
+      this.router.nav('recipes', [this.recipe.id]);
     } else if (this.type == 'delete') {
       // IF NOT RECIPE AUTHOR RETURN
       if (!this.auth.is_author_or_admin(this.recipe.author)) return;
@@ -114,7 +114,7 @@ export class RecipeComponent implements OnInit {
         )
       ) {
         this.db.remove_recipe(this.recipe.id);
-        this.router.nav_home();
+        this.router.nav('home');
       }
     }
   }

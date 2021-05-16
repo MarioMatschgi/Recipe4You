@@ -301,7 +301,7 @@ export class AuthService {
     this.error = undefined;
     // console.log('AUTH: successfully signed in with ' + auth);
 
-    this.router.nav_home();
+    this.router.nav('home');
   }
   async signIn_google() {
     return await this.afAuth
@@ -357,6 +357,6 @@ export class AuthService {
 
   async signOut() {
     await this.afAuth.signOut();
-    this.router.nav_home();
+    this.router.nav('home');
   }
 }

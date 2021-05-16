@@ -1,5 +1,9 @@
 {
   "general": {
+    "lang": {
+      "en": "English",
+      "de": "German"
+    },
     "buttons": {
       "cancel": "cancel",
       "ok": "ok"

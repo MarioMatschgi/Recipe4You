@@ -24,8 +24,4 @@ export class RecipePreviewComponent implements OnInit {
   ngOnInit(): void {
     this.recipe_data = RecipeHelper.getData(this.recipe);
   }
-
-  navigate_recipe() {
-    this.router.nav_recipe(this.recipe.id);
-  }
 }

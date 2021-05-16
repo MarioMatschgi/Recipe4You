@@ -1,9 +1,11 @@
-<div class="recipe box clickable" (click)="navigate_recipe()">
-  <div class="text">
-    <h2>{{ recipe_data.name }}</h2>
+<a class="nostyle" [routerLink]="router.get_url('recipes', [recipe.id])">
+  <div class="recipe box clickable">
+    <div class="text">
+      <h2>{{ recipe_data.name }}</h2>
 
-    <p>
-      {{ recipe_data.description }}
-    </p>
+      <p>
+        {{ recipe_data.description }}
+      </p>
+    </div>
   </div>
-</div>
+</a>
