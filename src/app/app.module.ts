@@ -26,18 +26,21 @@ import { AuthComponent } from './components/auth/auth.component';
 import { AuthLoginComponent } from './components/auth/auth-login/auth-login.component';
 import { RegisterComponent } from './components/auth/auth-register/auth-register.component';
 import { AuthProfileComponent } from './components/auth/auth-profile/auth-profile.component';
-import { ClickOutsideDirective } from './directives/click-outside.directive';
+import { ClickOutsideDirective } from '../libraries/directives/click-outside.directive';
+import { ClickInsideOutsideDirective } from '../libraries/directives/click-inside-outside.directive';
 import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
 import { NotFoundGeneralComponent } from './components/not-found/not-found-general/not-found-general.component';
 import { NotFoundRecipeComponent } from './components/not-found/not-found-recipe/not-found-recipe.component';
 import { RecipeListComponent } from './components/recipe/recipe-list/recipe-list.component';
 import { StarsComponent } from './components/stars/stars.component';
 import { RecipeIngredientsListComponent } from './components/recipe/recipe-ingredients-list/recipe-ingredients-list.component';
+import { PopoverComponent } from '../libraries/components/popover/popover.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClickOutsideDirective,
+    ClickInsideOutsideDirective,
     RecipeComponent,
     NotFoundComponent,
     HomeComponent,
@@ -58,6 +61,7 @@ import { RecipeIngredientsListComponent } from './components/recipe/recipe-ingre
     RecipeListComponent,
     StarsComponent,
     RecipeIngredientsListComponent,
+    PopoverComponent,
   ],
   imports: [
     BrowserModule,

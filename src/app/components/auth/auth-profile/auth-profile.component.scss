@@ -1,23 +1,22 @@
-.profile {
-  img {
-    width: 1em;
-    height: 1em;
+lib-popover {
+  .pop_btn {
+    img {
+      width: 1em;
+      height: 1em;
 
-    border-radius: 50%;
+      border-radius: 50%;
 
-    cursor: pointer;
-  }
+      cursor: pointer;
+    }
 
-  div {
+    div {
+      margin-bottom: 0;
+    }
     margin-bottom: 0;
   }
 
-  .popover {
+  .pop_cnt {
     text-align: center;
-    z-index: 999;
-
-    position: absolute;
-    right: 0;
 
     img {
       width: 3em;
