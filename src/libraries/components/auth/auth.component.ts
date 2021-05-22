@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/services/auth.service';
-import { LocalizationService } from 'src/app/services/localization.service';
+import { AuthService } from 'src/libraries/services/auth.service';
+import { LocalizationService } from 'src/libraries/services/localization.service';
 
 @Component({
   selector: 'auth',

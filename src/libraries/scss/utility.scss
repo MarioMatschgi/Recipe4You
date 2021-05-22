@@ -1,0 +1,27 @@
+.clickable {
+  cursor: pointer;
+}
+
+/* CONTAINER */
+.container {
+  *:not(:last-child) {
+    margin-bottom: var(--margin-p);
+  }
+}
+
+/* LIST */
+ul.nostyle {
+  padding-left: 0 !important;
+  list-style-type: none;
+}
+
+/* BLUR */
+.blur {
+  backdrop-filter: blur(0.5em);
+}
+
+.spacer {
+  width: 0;
+  height: 0;
+  margin: var(--unit-small);
+}

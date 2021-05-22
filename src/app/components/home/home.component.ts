@@ -1,11 +1,11 @@
-import { LocalizationService } from './../../services/localization.service';
 import { take } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RecipeModel } from 'src/app/model/recipe.model';
-import { AuthService } from 'src/app/services/auth.service';
-import { DatabaseService } from 'src/app/services/database.service';
-import { RouterService } from 'src/app/services/router.service';
+import { AuthService } from 'src/libraries/services/auth.service';
+import { RouterService } from 'src/libraries/services/router.service';
+import { DatabaseService } from 'src/libraries/services/database.service';
+import { LocalizationService } from 'src/libraries/services/localization.service';
 
 @Component({
   selector: 'home',

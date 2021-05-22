@@ -42,3 +42,12 @@ h2 {
   font-size: var(--font-size-h2);
   font-weight: 600;
 }
+
+a {
+  cursor: pointer;
+  color: var(--color-accent);
+
+  &.nostyle {
+    text-decoration: none;
+  }
+}

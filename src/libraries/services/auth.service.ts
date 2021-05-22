@@ -6,7 +6,7 @@ import {
   UserPrivateData,
   UserPublicData,
   emptyUserPrivateData,
-} from './../model/user.model';
+} from '../../app/model/user.model';
 import { RouterService } from './router.service';
 import {
   AngularFirestore,
@@ -18,7 +18,7 @@ import { Event, Router, RouterLink } from '@angular/router';
 import firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { DatabaseService } from './database.service';
-import { RecipeModel } from '../model/recipe.model';
+import { RecipeModel } from '../../app/model/recipe.model';
 import { Subscription } from 'rxjs';
 
 type Error = { code: string; message: string };

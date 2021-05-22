@@ -1,14 +1,14 @@
 import { RecipeData } from './../../model/recipe.model';
-import { DatabaseService } from './../../services/database.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { RecipeHelper, RecipeModel } from 'src/app/model/recipe.model';
 import { NgForm } from '@angular/forms';
-import { RouterService } from 'src/app/services/router.service';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
-import { LocalizationService } from 'src/app/services/localization.service';
+import { AuthService } from 'src/libraries/services/auth.service';
+import { DatabaseService } from 'src/libraries/services/database.service';
+import { RouterService } from 'src/libraries/services/router.service';
+import { LocalizationService } from 'src/libraries/services/localization.service';
 
 @Component({
   selector: 'recipe',

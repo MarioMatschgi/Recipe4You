@@ -1,4 +1,4 @@
-import { LocalizationService } from 'src/app/services/localization.service';
+import { LocalizationService } from './../../../../libraries/services/localization.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

@@ -1,8 +1,6 @@
 import { RecipeData } from './../../../model/recipe.model';
 import { emptyUserPublicData } from './../../../model/user.model';
-import { LocalizationService } from 'src/app/services/localization.service';
 import { take } from 'rxjs/operators';
-import { DatabaseService } from './../../../services/database.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
@@ -10,8 +8,11 @@ import {
   RecipeHelper,
   RecipeModel,
 } from 'src/app/model/recipe.model';
-import { RouterService } from 'src/app/services/router.service';
-import { AuthService } from 'src/app/services/auth.service';
+
+import { AuthService } from 'src/libraries/services/auth.service';
+import { DatabaseService } from 'src/libraries/services/database.service';
+import { RouterService } from 'src/libraries/services/router.service';
+import { LocalizationService } from 'src/libraries/services/localization.service';
 
 @Component({
   selector: 'recipe-view',

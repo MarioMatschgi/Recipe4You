@@ -1,11 +1,11 @@
-import { LocalizationService } from 'src/app/services/localization.service';
 import { Component, Input, OnInit } from '@angular/core';
 import {
   RecipeData,
   RecipeHelper,
   RecipeModel,
 } from 'src/app/model/recipe.model';
-import { RouterService } from 'src/app/services/router.service';
+import { LocalizationService } from 'src/libraries/services/localization.service';
+import { RouterService } from 'src/libraries/services/router.service';
 
 @Component({
   selector: 'recipe-preview',

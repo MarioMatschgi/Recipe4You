@@ -10,6 +10,9 @@ export class PopoverComponent implements OnInit {
 
   isOpen: boolean;
   @Input() position: 'normal' | 'center' = 'normal';
+  /**
+   * align only possible if position is `normal`
+   */
   @Input() align: 'center' | 'left' | 'right' = 'center';
 
   constructor() {}

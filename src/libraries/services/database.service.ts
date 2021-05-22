@@ -1,4 +1,3 @@
-import { LocalizationService } from 'src/app/services/localization.service';
 import { Injectable } from '@angular/core';
 import {
   AngularFirestore,
@@ -7,9 +6,14 @@ import {
   DocumentReference,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { RecipeData, RecipeHelper, RecipeModel } from '../model/recipe.model';
 import { AuthService } from './auth.service';
 import * as firebase from 'firebase/app';
+import { LocalizationService } from './localization.service';
+import {
+  RecipeData,
+  RecipeHelper,
+  RecipeModel,
+} from 'src/app/model/recipe.model';
 
 @Injectable({
   providedIn: 'root',
