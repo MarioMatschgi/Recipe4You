@@ -81,8 +81,6 @@ a {
 
   border-radius: var(--unit-normal);
 
-  transition: transform 0.4s;
-
   &.tiny {
     padding: var(--unit-tiny);
     border-radius: var(--unit-tiny);
@@ -96,8 +94,12 @@ a {
     border-radius: var(--unit-large);
   }
 
-  &.clickable:hover {
-    transform: scale(1.05);
+  &.clickable {
+    transition: transform 0.4s;
+
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 }
 .box:not(.nostyle) {

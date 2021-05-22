@@ -5,7 +5,9 @@
   }
   &.pop_pos_center {
     .popover {
-      transform: translate(calc(-50%), calc(50vh - 50%));
+      transform: translate(calc(50vw - 50%), calc(50vh - 50%));
+      top: 0;
+      left: 0;
     }
   }
 }
@@ -23,6 +25,7 @@
   &.pop_al_center {
     top: 0;
     left: 50%;
+    right: 50%;
     transform: translateX(-50%);
   }
   &.pop_al_right {

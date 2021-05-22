@@ -35,6 +35,7 @@ import { RecipeListComponent } from './components/recipe/recipe-list/recipe-list
 import { StarsComponent } from './components/stars/stars.component';
 import { RecipeIngredientsListComponent } from './components/recipe/recipe-ingredients-list/recipe-ingredients-list.component';
 import { PopoverComponent } from '../libraries/components/popover/popover.component';
+import { ShareButtonsComponent } from './components/share-buttons/share-buttons.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { PopoverComponent } from '../libraries/components/popover/popover.compon
     StarsComponent,
     RecipeIngredientsListComponent,
     PopoverComponent,
+    ShareButtonsComponent,
   ],
   imports: [
     BrowserModule,
