@@ -8,9 +8,9 @@
   align-items: center;
   margin: calc(0px - var(--unit) / 2) !important;
 
-  --as: calc(var(--unit) / 2);
+  --u: calc(var(--unit) / 2);
   > * {
-    margin: var(--as) !important;
+    margin: var(--u) !important;
   }
 
   &.nowrap {

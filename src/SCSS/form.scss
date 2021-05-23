@@ -7,12 +7,14 @@ form {
   .no-stretch {
     margin-bottom: 0 !important;
   }
+  section,
   div {
     display: flex;
     flex-wrap: wrap;
 
     justify-content: center;
   }
+  section > *,
   div > * {
     flex-grow: 1;
     flex-basis: 100%;
@@ -23,11 +25,6 @@ form {
 
     padding: 0 var(--unit-small);
     padding-bottom: var(--unit-tiny);
-  }
-
-  div:not(:first-child),
-  label:not(:first-child) {
-    margin-top: var(--unit-small);
   }
 
   button[type="submit"] {

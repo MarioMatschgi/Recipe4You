@@ -1,3 +1,13 @@
+.title {
+  width: 75%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+
+  h2 {
+    font-size: var(--font-size-h1);
+  }
+}
 .recipe {
   margin-top: var(--unit-large);
 }
