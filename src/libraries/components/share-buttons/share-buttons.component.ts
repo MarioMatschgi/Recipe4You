@@ -12,7 +12,7 @@ export class ShareButtonsComponent implements OnInit {
   @Input() recipe: RecipeModel;
   @Input() url;
   base_urls: { [page: string]: string } = {
-    email: 'mailto:?subject=%ttl% | %nam%&body=%txt%',
+    email: 'mailto:?subject=%ttl%&body=%txt%',
     pinterest:
       'http://pinterest.com/pin/create/button/?url=%url%&description=%txt%',
     twitter: 'http://twitter.com/share?text=%txt%&url=%url%',
