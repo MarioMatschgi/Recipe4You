@@ -30,6 +30,12 @@
     "register": {}
   },
 
+  "share": {
+    "desc": "Share this recipe: %nam%",
+    "txt": "Check this recipe out: %url%",
+    "ttl": "Recipe4you | %nam%"
+  },
+
   "bookmarks": {
     "title": "Bookmarks",
     "desc": "Below are all recipes that you have bookmarked so you can find your favourites more easily."

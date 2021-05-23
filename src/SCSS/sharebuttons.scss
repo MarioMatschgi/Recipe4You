@@ -1,16 +1,18 @@
+.linksection {
+  justify-content: center !important;
+
+  input {
+    flex: 1 1 auto;
+  }
+}
 .sharebuttons {
-  justify-content: center;
+  justify-content: center !important;
 }
 .sharebutton {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-
-  color: var(--color-font);
-
-  background: var(--bg-glass);
-  border-radius: var(--unit-small);
 
   width: 3em;
   height: 3em;

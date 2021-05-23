@@ -30,6 +30,12 @@
     "register": {}
   },
 
+  "share": {
+    "desc": "Teile dieses Rezept: %nam%",
+    "txt": "Sieh dir dieses tolle Rezept an: %url%",
+    "ttl": "Recipe4you | %nam%"
+  },
+
   "bookmarks": {
     "title": "Lesezeichen",
     "desc": "Hier sind alle Rezepte, die mit Lesezeichen markiert wurden, so dass du deine Rezepte einfach finden kannst."

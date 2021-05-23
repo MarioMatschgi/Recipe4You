@@ -22,7 +22,7 @@ form {
     text-align: left;
 
     padding: 0 var(--unit-small);
-    padding-bottom: var(--margin-p);
+    padding-bottom: var(--unit-tiny);
   }
 
   div:not(:first-child),
@@ -46,7 +46,7 @@ form {
 
     padding: var(--unit-small);
     margin: 0 !important;
-    margin-bottom: var(--margin-p) !important;
+    margin-bottom: var(--unit-tiny) !important;
 
     background: var(--bg-glass);
     border-radius: var(--unit-small);
@@ -109,33 +109,19 @@ input,
 button,
 textarea,
 select {
-  box-sizing: content-box;
-  background: var(--bg-glass);
-  border: none;
-  color: var(--color-font);
-  font-size: 1em;
+  @include interactable;
   padding: var(--unit-small);
   border-radius: var(--unit-small);
 
-  cursor: pointer;
+  box-sizing: content-box;
+  border: none;
 
-  transition: box-shadow 0.4s;
+  font-size: 1em;
 
   &.tiny {
     padding: var(--unit-tiny);
     border-radius: var(--unit-tiny);
   }
-}
-input:focus,
-input:hover:not(:disabled),
-button:focus,
-button:hover:not(:disabled),
-textarea:focus,
-textarea:hover:not(:disabled),
-select:hover:not(:disabled),
-select:focus {
-  box-shadow: 0 0 0 2px var(--colors-red);
-  outline: none;
 }
 input:-webkit-autofill,
 button:-webkit-autofill,
@@ -192,4 +178,9 @@ input.noarrows::-webkit-inner-spin-button {
 }
 input.noarrows[type="number"] {
   -moz-appearance: textfield;
+}
+
+/* LINK */
+a.button {
+  @include interactable(1);
 }

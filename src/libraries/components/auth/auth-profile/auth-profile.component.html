@@ -25,7 +25,7 @@
     </div>
 
     <div class="pop_cnt">
-      <img [src]="auth.userPublicData.photoURL" alt="profile" />
+      <img [src]="auth.userPublicData?.photoURL" alt="profile" />
       <h3>{{ auth.displayName_or_email }}</h3>
       <button
         (click)="auth.signOut(); pop_profile.set(false)"

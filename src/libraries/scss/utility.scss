@@ -2,13 +2,6 @@
   cursor: pointer;
 }
 
-/* CONTAINER */
-.container {
-  *:not(:last-child) {
-    margin-bottom: var(--margin-p);
-  }
-}
-
 /* LIST */
 ul.nostyle {
   padding-left: 0 !important;

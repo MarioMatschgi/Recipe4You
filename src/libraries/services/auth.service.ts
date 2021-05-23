@@ -35,6 +35,8 @@ export class AuthService {
   doc_userPublic: AngularFirestoreDocument<any>;
 
   get displayName_or_email(): string {
+    if (!this.userPublicData) return '';
+
     const displayName = this.userPublicData.displayName;
     const email = this.userPublicData.email;
 

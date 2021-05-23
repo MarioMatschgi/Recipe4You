@@ -23,3 +23,14 @@ main {
   padding-bottom: var(--unit-auto);
   padding-left: max(var(--unit-auto), env(safe-area-inset-left));
 }
+
+*[title] {
+  position: relative;
+  display: inline-block;
+}
+*[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  top: -100%;
+  left: 0;
+}

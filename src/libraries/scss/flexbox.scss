@@ -1,21 +1,6 @@
 /* FLEX */
 .flexbox {
-  --unit: var(--unit-normal);
-  &.tiny {
-    --unit: var(--unit-tiny);
-  }
-  &.small {
-    --unit: var(--unit-small);
-  }
-  &.normal {
-    --unit: var(--unit-normal);
-  }
-  &.large {
-    --unit: var(--unit-large);
-  }
-  &.auto {
-    --unit: var(--unit-auto);
-  }
+  @include units;
 
   display: flex;
   flex-wrap: wrap;
@@ -23,8 +8,9 @@
   align-items: center;
   margin: calc(0px - var(--unit) / 2) !important;
 
+  --as: calc(var(--unit) / 2);
   > * {
-    margin: calc(var(--unit) / 2) !important;
+    margin: var(--as) !important;
   }
 
   &.nowrap {
