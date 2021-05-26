@@ -12,9 +12,11 @@ export enum Role {
 
 export const emptyUserPrivateData: UserPrivateData = {
   bookmarks: [''],
+  theme: 0,
 };
 export interface UserPrivateData {
   bookmarks: [string];
+  theme: number;
 }
 export const emptyUserPublicData: UserPublicData = {
   uid: '',

@@ -14,6 +14,7 @@ import { RegisterComponent } from '../libraries/components/auth/auth-register/au
 import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
 import { NotFoundGeneralComponent } from './components/not-found/not-found-general/not-found-general.component';
 import { StarsComponent } from './components/stars/stars.component';
+import { SettingsComponent } from 'src/libraries/components/settings/settings.component';
 
 const routes: Routes = [
   /* HOME */
@@ -38,6 +39,9 @@ const routes: Routes = [
   /* AUTH */
   { path: 'login', component: AuthLoginComponent },
   { path: 'register', component: RegisterComponent },
+
+  /* SETTINGS */
+  { path: 'settings', component: SettingsComponent },
 
   /* NOT FOUND */
   { path: '**', component: NotFoundGeneralComponent },

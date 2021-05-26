@@ -1,0 +1,27 @@
+<div class="box nostyle">
+  <section>
+    <h1 [innerHtml]="local.data.settings.title"></h1>
+    <p [innerHtml]="local.data.settings.desc"></p>
+  </section>
+
+  <section>
+    <h2 [innerHtml]="local.data.settings.sections.themes.title"></h2>
+    <p [innerHtml]="local.data.settings.sections.themes.desc"></p>
+
+    <div class="flexbox rezize equal themes">
+      <div
+        class="theme flexbox column nospace clickable"
+        *ngFor="let theme of ts.themes"
+        (click)="ts.switch_theme(theme)"
+      >
+        <div class="box" [style.background-color]="theme.color"></div>
+        <p [innerHtml]="theme.name"></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 [innerHtml]="local.data.settings.sections.lang.title"></h2>
+    <p [innerHtml]="local.data.settings.sections.lang.desc"></p>
+  </section>
+</div>

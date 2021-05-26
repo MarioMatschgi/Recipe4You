@@ -6,15 +6,30 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  margin: calc(0px - var(--unit) / 2) !important;
+  &:not(.nospace) {
+    margin: calc(0px - var(--unit) / 2) !important;
+  }
 
   --u: calc(var(--unit) / 2);
-  > * {
+  &:not(.nospace) > * {
     margin: var(--u) !important;
   }
 
+  &.column {
+    flex-direction: column;
+  }
   &.nowrap {
     flex-wrap: nowrap;
+  }
+  &.rezize {
+    > * {
+      flex: 1 1 auto;
+    }
+  }
+  &.equal {
+    > * {
+      flex: 1 1 0%;
+    }
   }
 }
 .no-stretch {

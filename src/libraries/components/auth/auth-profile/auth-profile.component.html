@@ -27,10 +27,17 @@
     <div class="pop_cnt">
       <img [src]="auth.userPublicData?.photoURL" alt="profile" />
       <h3>{{ auth.displayName_or_email }}</h3>
-      <button
-        (click)="auth.signOut(); pop_profile.set(false)"
-        [innerHtml]="local.data.auth.buttons.logout.logout"
-      ></button>
+
+      <div class="flexbox small rezize">
+        <button
+          (click)="router.nav('settings'); pop_profile.set(false)"
+          [innerHtml]="local.data.settings.buttons.settings"
+        ></button>
+        <button
+          (click)="auth.signOut(); pop_profile.set(false)"
+          [innerHtml]="local.data.auth.buttons.logout.logout"
+        ></button>
+      </div>
     </div>
   </lib-popover>
 </div>

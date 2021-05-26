@@ -22,6 +22,7 @@ export class RouterService {
     recipe_edit: ['recipe', 'edit'],
     recipe_delete: ['recipe', 'delete'],
     recipe_create: ['recipe', 'create'],
+    settings: ['settings'],
   };
   get_url_arr(name: string, params: string[] = []): string[] {
     return this.m_urls[name].concat(params);

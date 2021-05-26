@@ -30,6 +30,24 @@
     "register": {}
   },
 
+  "settings": {
+    "title": "Settings",
+    "desc": "Below are the settings to customize your experience.",
+    "sections": {
+      "themes": {
+        "title": "Themes",
+        "desc": "Choose your favourite theme."
+      },
+      "lang": {
+        "title": "Language",
+        "desc": "Choose your prefered language."
+      }
+    },
+    "buttons": {
+      "settings": "Settings"
+    }
+  },
+
   "share": {
     "desc": "Share this recipe: %nam%",
     "txt": "Check this recipe out: %url%",

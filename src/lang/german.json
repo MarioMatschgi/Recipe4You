@@ -30,6 +30,24 @@
     "register": {}
   },
 
+  "settings": {
+    "title": "Einstellungen",
+    "desc": "Hier sind einige Einstellungen, um dein Nutzererlebnis anzupassen.",
+    "sections": {
+      "themes": {
+        "title": "Themes",
+        "desc": "Wähle dein Lieblings-Theme."
+      },
+      "lang": {
+        "title": "Sprache",
+        "desc": "Wähle deine bevorzugte Sprache."
+      }
+    },
+    "buttons": {
+      "settings": "Einstellungen"
+    }
+  },
+
   "share": {
     "desc": "Teile dieses Rezept: %nam%",
     "txt": "Sieh dir dieses tolle Rezept an: %url%",

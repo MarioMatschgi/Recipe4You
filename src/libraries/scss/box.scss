@@ -5,13 +5,13 @@
   padding: var(--unit);
   border-radius: var(--unit);
 
-  &.clickable {
-    transition: transform 0.4s;
+  // &.clickable {
+  //   transition: transform 0.4s;
 
-    &:hover {
-      transform: scale(1.05);
-    }
-  }
+  //   &:hover {
+  //     transform: scale(1.05);
+  //   }
+  // }
 }
 .box:not(.nostyle) {
   background: var(--bg-glass);
@@ -28,13 +28,13 @@
   }
 }
 /* CONTAINER */
-// .container {
-//   @include units;
+.container {
+  @include units;
 
-//   > *:not(:last-child) {
-//     margin-bottom: var(--unit);
-//   }
-// }
+  > *:not(:last-child) {
+    margin-bottom: var(--unit);
+  }
+}
 .box-indent {
   @include units;
 
