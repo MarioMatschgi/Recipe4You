@@ -27,6 +27,14 @@
     <div class="pop_cnt">
       <img [src]="auth.userPublicData?.photoURL" alt="profile" />
       <h3>{{ auth.displayName_or_email }}</h3>
+      <p
+        *ngIf="auth.userPublicData.displayName"
+        [innerHtml]="
+          auth.userPublicData.email
+            .replace('.', '&shy;.')
+            .replace('@', '&shy;@')
+        "
+      ></p>
 
       <div class="flexbox small rezize">
         <button

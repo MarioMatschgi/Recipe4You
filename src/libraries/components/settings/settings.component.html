@@ -23,5 +23,17 @@
   <section>
     <h2 [innerHtml]="local.data.settings.sections.lang.title"></h2>
     <p [innerHtml]="local.data.settings.sections.lang.desc"></p>
+
+    <!-- 
+      LANGUAGE SELECTOR
+     -->
+    <section>
+      <select (change)="change_lang()" [(ngModel)]="lang" name="lang_picker">
+        <option value="auto">Auto</option>
+        <option *ngFor="let l of local.lang_list" [value]="l">
+          {{ local.data.general.lang[l] }}
+        </option>
+      </select>
+    </section>
   </section>
 </div>
