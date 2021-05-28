@@ -29,7 +29,7 @@ export class ThemeService {
     this.auth.sub_userPrivateData(() => {
       this.switch_theme(
         this.themes[
-          this.auth.userPrivateData.theme < this.themes.length
+          this.auth.userPrivateData?.theme < this.themes.length
             ? this.auth.userPrivateData.theme
             : 0
         ],

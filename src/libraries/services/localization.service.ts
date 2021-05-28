@@ -19,7 +19,9 @@ export class LocalizationService {
     this.langs['de'] = this.getLangData(data_de);
     this.lang_list = Object.keys(this.langs);
 
-    this.update_lang(this.get_lang());
+    this.auth.sub_userPrivateData(() => {
+      this.update_lang(this.auth.userPrivateData.lang);
+    });
   }
 
   update_lang(lang: string) {
