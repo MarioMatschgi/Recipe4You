@@ -18,7 +18,7 @@ export class SettingsComponent implements OnInit {
     public auth: AuthService
   ) {
     this.auth.sub_userPrivateData(() => {
-      this.lang = this.auth.userPrivateData.lang;
+      this.lang = this.auth.userPrivateData?.lang;
       this.change_lang(false);
     });
   }

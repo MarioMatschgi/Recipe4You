@@ -20,7 +20,7 @@ export class LocalizationService {
     this.lang_list = Object.keys(this.langs);
 
     this.auth.sub_userPrivateData(() => {
-      this.update_lang(this.auth.userPrivateData.lang);
+      this.update_lang(this.get_lang());
     });
   }
 
@@ -32,7 +32,7 @@ export class LocalizationService {
   }
 
   get_lang() {
-    let lang = this.auth.userPrivateData.lang;
+    let lang = this.auth.userPrivateData?.lang;
 
     if (!lang || lang == '' || lang == 'auto')
       lang = window.navigator.language.substr(0, 2);
