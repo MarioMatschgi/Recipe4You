@@ -31,7 +31,6 @@ export class LocalizationService {
 
   get_lang() {
     let lang = this.auth.userPrivateData.lang;
-    console.log(lang);
 
     if (!lang || lang == '' || lang == 'auto')
       lang = window.navigator.language.substr(0, 2);

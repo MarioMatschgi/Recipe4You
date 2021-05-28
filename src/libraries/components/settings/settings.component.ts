@@ -17,13 +17,19 @@ export class SettingsComponent implements OnInit {
     public ts: ThemeService,
     public auth: AuthService
   ) {
-    this.lang = auth.userPrivateData.lang;
+    this.auth.sub_userPrivateData(() => {
+      this.lang = this.auth.userPrivateData.lang;
+      this.change_lang(false);
+    });
   }
 
   ngOnInit(): void {}
 
-  change_lang() {
-    this.auth.doc_userPrivate.set({ lang: this.lang }, { merge: true });
+  change_lang(save: boolean = true) {
     this.local.update_lang(this.lang);
+
+    if (save) {
+      this.auth.doc_userPrivate.set({ lang: this.lang }, { merge: true });
+    }
   }
 }
