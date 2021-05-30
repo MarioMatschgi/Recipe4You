@@ -64,4 +64,8 @@ export class RouterService {
   nav_login() {
     this.router.navigate(['login']);
   }
+  // TODO: URL GO THERE AFTER REGISTER
+  nav_register() {
+    this.router.navigate(['register']);
+  }
 }

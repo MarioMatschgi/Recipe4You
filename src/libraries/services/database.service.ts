@@ -68,9 +68,17 @@ export class DatabaseService {
 
   trim_recipe(data: RecipeModel): RecipeModel {
     let newLangs: { [lang: string]: RecipeData } = {};
-    for (const key of Object.keys(data.langs))
-      if (data.langs[key] && Object.keys(data.langs[key]).length > 0)
+    for (const key of Object.keys(data.langs)) {
+      if (data.langs[key].ingredients?.length <= 0)
+        delete data.langs[key].ingredients;
+
+      if (
+        key != 'auto' &&
+        data.langs[key] &&
+        Object.keys(data.langs[key]).length > 0
+      )
         newLangs[key] = data.langs[key];
+    }
 
     data.langs = newLangs;
 

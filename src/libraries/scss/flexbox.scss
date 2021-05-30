@@ -9,6 +9,9 @@
   &:not(.nospace) {
     margin: calc(0px - var(--unit) / 2) !important;
   }
+  &.center {
+    justify-content: center;
+  }
 
   --u: calc(var(--unit) / 2);
   &:not(.nospace) > * {
@@ -21,7 +24,7 @@
   &.nowrap {
     flex-wrap: nowrap;
   }
-  &.rezize {
+  &.resize {
     > * {
       flex: 1 1 auto;
     }

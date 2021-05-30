@@ -16,7 +16,7 @@ export class ThemeService {
     new ThemeModel('Turqouse', '#6ceba6'),
     new ThemeModel('Green', '#6ceb71'),
     new ThemeModel('Banana&shy;yellow', '#d6eb6c'),
-    new ThemeModel('Orange', '#ebae6c'),
+    new ThemeModel('Orange-orange', '#ebae6c'),
   ];
 
   constructor(public auth: AuthService) {

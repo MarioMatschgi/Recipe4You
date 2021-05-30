@@ -11,23 +11,52 @@
   },
 
   "auth": {
+    "desc": "To create/edit/delete your own favourite recipes or to bookmark/star recipes you have to log in.",
     "buttons": {
       "login": {
-        "login": "login",
-        "google": "Login with Google"
+        "login": "Login",
+        "google": "Login with Google",
+        "email": "Login"
       },
       "register": {
-        "register": "register"
+        "register": "Register",
+        "email": "Register"
       },
       "logout": {
-        "logout": "logout"
+        "logout": "Logout"
       }
     },
-    "login": {
-      "title": "Login",
-      "desc": "To create/edit/delete your own favourite recipes or to bookmark/star recipes you have to log in."
+    "fields": {
+      "email": {
+        "label": "Email",
+        "error": "Email is required!",
+        "placeholder": "Enter your email"
+      },
+      "password": {
+        "label": "Password",
+        "error": "Password is required!",
+        "placeholder": "Enter your password"
+      },
+      "confirm_password": {
+        "label": "Confirm password",
+        "error": "Confirming is required!",
+        "placeholder": "Enter your password"
+      }
     },
-    "register": {}
+    "errors": {
+      "auth/user-not-found": "Invalid email or password!",
+      "auth/wrong-password": "Invalid email or password!",
+      "auth/too-many-requests": "The login failed too many times! <br/> Please try again later.",
+      "auth/password-no-match": "The confirmation password must match the password!",
+      "auth/email-already-in-use": "An account with this email already exists!",
+      "auth/not-verified": "Please verify your email adress before logging in!"
+    },
+    "login": {
+      "title": "Login"
+    },
+    "register": {
+      "title": "Register"
+    }
   },
 
   "settings": {

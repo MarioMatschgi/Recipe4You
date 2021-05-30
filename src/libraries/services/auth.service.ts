@@ -55,6 +55,13 @@ export class AuthService {
   public_subscription: Subscription;
 
   error: { code: string; message: string } = undefined;
+  get_localized_error(errors_data): string {
+    if (!this.error) return '';
+    if (Object.keys(errors_data).includes(this.error.code))
+      return errors_data[this.error.code];
+
+    return this.error.message;
+  }
 
   isDebugUser: boolean = false;
 
@@ -80,6 +87,9 @@ export class AuthService {
     if (this.loggedIn) this.set_docs(this.userPublicData.uid);
 
     this.afAuth.authState.subscribe(async (user) => {
+      // this.signOut();
+      console.log(user);
+
       // If logged out
       if (user == null) {
         this.userPrivateData = null;
@@ -93,6 +103,20 @@ export class AuthService {
         this.private_subscription?.unsubscribe();
         this.public_subscription?.unsubscribe();
       } else {
+        console.log('UD');
+
+        console.log(this.userPublicData);
+        console.log(this.userPrivateData);
+
+        if (!user.emailVerified)
+          this.error = { code: 'auth/not-verified', message: '' };
+
+        // IF THERE IS AN ERROR, CANCEL LOGIN
+        if (this.error) {
+          this.signOut(false);
+          return;
+        }
+
         // user public data null (was not logged in)
         if (this.userPublicData == null) {
           this.set_docs(user.uid);
@@ -119,6 +143,8 @@ export class AuthService {
             'userPublicData',
             JSON.stringify(this.userPublicData)
           );
+
+          this.successfullySignedIn();
         } else {
           // UPDATE DATA
           this.userPublicData.uid = user.uid;
@@ -213,6 +239,9 @@ export class AuthService {
     DATA
   */
   set_docs(uid: string) {
+    console.log('SET DOCS');
+    console.log(uid);
+
     this.doc_userPrivate = this.db.collection('users-private').doc(uid);
     this.doc_userPublic = this.db.collection('users-public').doc(uid);
   }
@@ -233,6 +262,7 @@ export class AuthService {
   /*
     ERROR
   */
+  // TODO: REMOVE
   get_error({ code, message }: Error): Error {
     return { code: code, message: this.get_error_msg(code) || message };
   }
@@ -299,7 +329,7 @@ export class AuthService {
   /*
     SIGNIN STUFF
    */
-  private successfullySignedIn(auth: string) {
+  private successfullySignedIn() {
     this.error = undefined;
     // console.log('AUTH: successfully signed in with ' + auth);
 
@@ -309,7 +339,7 @@ export class AuthService {
     return await this.afAuth
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then((result) => {
-        this.successfullySignedIn('google');
+        // this.successfullySignedIn('google');
       })
       .catch((error) => {
         this.error = this.get_error(error);
@@ -320,7 +350,7 @@ export class AuthService {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
-        this.successfullySignedIn('email');
+        // this.successfullySignedIn('email');
       })
       .catch((error) => {
         this.error = this.get_error(error);
@@ -338,14 +368,20 @@ export class AuthService {
   /*
     SIGNUP STUFF
   */
-  async signUp_email(email, password) {
+  async signUp_email(email, password, confirm_password) {
+    if (confirm_password != password) {
+      this.error = { code: 'auth/password-no-match', message: '' };
+      return;
+    }
+
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
         this.SendVerificationMail();
       })
       .catch((error) => {
-        window.alert(error.message);
+        // window.alert(error.message);
+        this.error = error;
       });
   }
   // Send email verfificaiton when new user sign up
@@ -357,8 +393,8 @@ export class AuthService {
       });
   }
 
-  async signOut() {
+  async signOut(redir = true) {
     await this.afAuth.signOut();
-    this.router.nav('home');
+    if (redir) this.router.nav('home');
   }
 }

@@ -1,3 +1,4 @@
+import { RecipeData, RecipeHelper } from './../../../app/model/recipe.model';
 import { RecipeViewComponent } from './../../../app/components/recipe/recipe-view/recipe-view.component';
 import { Component, Input, OnInit } from '@angular/core';
 import { LocalizationService } from 'src/libraries/services/localization.service';
@@ -24,13 +25,16 @@ export class ShareButtonsComponent implements OnInit {
   };
 
   name: string;
+  recipeData: RecipeData;
 
   constructor(public local: LocalizationService) {}
 
   ngOnInit(): void {
+    this.recipeData = RecipeHelper.getData(this.recipe);
+
     if (!this.url) this.url = window.location.href;
 
-    this.name = this.recipe.langs[this.local.lang].name;
+    this.name = this.recipeData.name;
   }
 
   get_url(page: string): string {

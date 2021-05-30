@@ -7,15 +7,15 @@ form {
   .no-stretch {
     margin-bottom: 0 !important;
   }
-  section,
-  div {
+  section/*,
+  div */ {
     display: flex;
     flex-wrap: wrap;
 
     justify-content: center;
   }
-  section > *,
-  div > * {
+  section > */*,
+  div > * */ {
     flex-grow: 1;
     flex-basis: 100%;
   }
@@ -138,33 +138,6 @@ select:hover:not(:disabled):-webkit-autofill {
   transition: box-shadow 0.4s;
   box-shadow: 0 0 0 2px var(--colors-red),
     0 0 0 1000px var(--colors-light-blue) inset !important;
-}
-
-/* SIGNIN BUTTONS */
-button.signin {
-  display: flex;
-  align-items: center;
-
-  flex-grow: unset;
-  flex-basis: unset;
-
-  * {
-    display: inline-block;
-    flex-grow: 0;
-  }
-  img {
-    height: 1.5em;
-    margin: 0 !important;
-    margin-right: 0.5em !important;
-  }
-
-  &.google {
-    background-color: white;
-    color: #737373;
-  }
-  &.email {
-    background-color: #34495e;
-  }
 }
 
 /* NO ARROWS */

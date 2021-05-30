@@ -1,14 +1,161 @@
 <div class="box nostyle">
-  <form class="container">
-    <p [innerHtml]="local.data.auth.login.desc"></p>
+  <div class="container">
+    <form class="container">
+      <h1
+        *ngIf="type == 'login'"
+        [innerHtml]="local.data.auth.login.title"
+      ></h1>
+      <h1
+        *ngIf="type == 'register'"
+        [innerHtml]="local.data.auth.register.title"
+      ></h1>
+      <p [innerHtml]="local.data.auth.desc"></p>
 
-    <section class="form-group">
+      <!-- SOCIAL SIGNIN -->
       <section class="form-group">
-        <button class="signin google" (click)="auth.signIn_google()">
-          <img src="/assets/images/logos/google.svg" />
-          <span [innerHtml]="local.data.auth.buttons.login.google"></span>
-        </button>
+        <!-- GOOGLE SIGNIN -->
+        <section class="form-group">
+          <button class="signin google" (click)="auth.signIn_google()">
+            <img />
+            <span [innerHtml]="local.data.auth.buttons.login.google"></span>
+          </button>
+        </section>
       </section>
-    </section>
-  </form>
+    </form>
+
+    <form
+      class="container"
+      (ngSubmit)="submit_email(form_email)"
+      #form_email="ngForm"
+    >
+      <!-- EMAIL SIGNIN -->
+      <section class="form-group">
+        <!-- EMAIL -->
+        <section class="form-group">
+          <label
+            class="required"
+            for="email_email"
+            [innerHtml]="local.data.auth.fields.email.label"
+          ></label>
+          <label
+            [hidden]="email_email.valid || email_email.untouched"
+            class="alert alert-danger"
+            for="email_email"
+            [innerHtml]="local.data.auth.fields.email.error"
+          >
+          </label>
+
+          <input
+            type="text"
+            class="form-control"
+            id="email_email"
+            [placeholder]="local.data.auth.fields.email.placeholder"
+            required
+            [(ngModel)]="email_data.email"
+            name="email_email"
+            #email_email="ngModel"
+          />
+        </section>
+
+        <!-- PASSWORD -->
+        <section class="form-group">
+          <label
+            for="email_password"
+            class="required"
+            [innerHtml]="local.data.auth.fields.password.label"
+          ></label>
+          <label
+            [hidden]="email_password.valid || email_password.untouched"
+            class="alert alert-danger"
+            for="email_password"
+            [innerHtml]="local.data.auth.fields.password.error"
+          >
+          </label>
+
+          <input
+            type="password"
+            class="form-control"
+            id="email_password"
+            [placeholder]="local.data.auth.fields.password.placeholder"
+            required
+            [(ngModel)]="email_data.password"
+            name="email_password"
+            #email_password="ngModel"
+          />
+        </section>
+
+        <!-- CONFIRM PASSWORD -->
+        <section class="form-group" *ngIf="type == 'register'">
+          <label
+            for="email_confirm_password"
+            class="required"
+            [innerHtml]="local.data.auth.fields.confirm_password.label"
+          ></label>
+          <label
+            [hidden]="
+              email_confirm_password.valid || email_confirm_password.untouched
+            "
+            class="alert alert-danger"
+            for="email_confirm_password"
+            [innerHtml]="local.data.auth.fields.confirm_password.error"
+          >
+          </label>
+
+          <input
+            type="password"
+            class="form-control"
+            id="email_confirm_password"
+            [placeholder]="local.data.auth.fields.confirm_password.placeholder"
+            required
+            [(ngModel)]="email_data.confirm_password"
+            name="email_confirm_password"
+            #email_confirm_password="ngModel"
+          />
+        </section>
+
+        <!-- EMAIL SIGNIN BUTTON -->
+        <section class="form-group">
+          <label
+            [hidden]="!auth.error"
+            class="alert alert-danger"
+            [innerHtml]="auth.get_localized_error(local.data.auth.errors)"
+          >
+          </label>
+
+          <!-- LOGIN -->
+          <div *ngIf="type == 'login'" class="flexbox center equal">
+            <button class="signin email">
+              <img />
+              <span [innerHtml]="local.data.auth.buttons.login.email"></span>
+            </button>
+
+            <button
+              type="button"
+              class="signin email"
+              (click)="router.nav_register()"
+            >
+              <img />
+              <span [innerHtml]="local.data.auth.buttons.register.email"></span>
+            </button>
+          </div>
+          <!-- REGISTER -->
+          <div *ngIf="type == 'register'" class="flexbox center equal">
+            <button
+              type="button"
+              class="signin email"
+              (click)="router.nav_login()"
+            >
+              <img />
+              <span [innerHtml]="local.data.auth.buttons.login.email"></span>
+            </button>
+
+            <button class="signin email">
+              <img />
+              <span [innerHtml]="local.data.auth.buttons.register.email"></span>
+            </button>
+          </div>
+        </section>
+      </section>
+    </form>
+  </div>
 </div>
