@@ -21,6 +21,9 @@
         "register": "Registrieren",
         "email": "Registrieren"
       },
+      "verify_email": {
+        "resend": "E-Mail erneut senden"
+      },
       "logout": {
         "logout": "Abmelden"
       }
@@ -45,16 +48,25 @@
     "errors": {
       "auth/user-not-found": "Ungültige E-Mail oder Passwort!",
       "auth/wrong-password": "Ungültige E-Mail oder Passwort!",
-      "auth/too-many-requests": "Der Login ist zu oft fehlgeschlagen! <br/> Bitte versuche es später erneut.",
+      "auth/too-many-requests": "Der Login ist zu oft fehlgeschlagen!<br/>Bitte versuche es später erneut.",
       "auth/password-no-match": "Das bestätigte Passwort und das Passwort müssen identisch sein!",
       "auth/email-already-in-use": "Ein Nutzer mit dieser E-Mail existiert bereits!",
-      "auth/not-verified": "Bitte bestätige deine E-Mail-Adresse vor dem Anmelden!"
+      "auth/not-verified": "Bitte bestätige deine E-Mail-Adresse vor dem Anmelden!",
+      "auth/too-many-verify-email": "Zu viele bestätigungs E-Mails wurden gesendet!<br/>Bitte versuche es später erneut."
     },
     "login": {
       "title": "Anmelden",
       "desc": "Um Rezepte zu erstellen/bearbeiten/löschen und um Lesezeichen/Sterne zu setzen musst du angemeldet sein."
     },
-    "register": {}
+    "register": {
+      "title": "Registrieren",
+      "desc": "Um Rezepte zu erstellen/bearbeiten/löschen und um Lesezeichen/Sterne zu setzen musst du dich registrieren."
+    },
+    "verify_email": {
+      "title": "Bestätige deine E-Mail",
+      "desc": "Bitte bestätige deine E-Mail um fortzufahren",
+      "successfully_send": "Die E-Mail wurde erneut gesendet!"
+    }
   },
 
   "settings": {

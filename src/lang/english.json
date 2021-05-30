@@ -5,13 +5,12 @@
       "de": "German"
     },
     "buttons": {
-      "cancel": "cancel",
-      "ok": "ok"
+      "cancel": "Cancel",
+      "ok": "Ok"
     }
   },
 
   "auth": {
-    "desc": "To create/edit/delete your own favourite recipes or to bookmark/star recipes you have to log in.",
     "buttons": {
       "login": {
         "login": "Login",
@@ -21,6 +20,9 @@
       "register": {
         "register": "Register",
         "email": "Register"
+      },
+      "verify_email": {
+        "resend": "Resend verification"
       },
       "logout": {
         "logout": "Logout"
@@ -46,16 +48,24 @@
     "errors": {
       "auth/user-not-found": "Invalid email or password!",
       "auth/wrong-password": "Invalid email or password!",
-      "auth/too-many-requests": "The login failed too many times! <br/> Please try again later.",
+      "auth/too-many-requests": "The login failed too many times!<br/>Please try again later.",
       "auth/password-no-match": "The confirmation password must match the password!",
       "auth/email-already-in-use": "An account with this email already exists!",
-      "auth/not-verified": "Please verify your email adress before logging in!"
+      "auth/not-verified": "Please verify your email adress before logging in!",
+      "auth/too-many-verify-email": "Too many verification emails were sent!<br/>Please try again later."
     },
     "login": {
-      "title": "Login"
+      "title": "Login",
+      "desc": "To create/edit/delete your own favourite recipes or to bookmark/star recipes you have to log in."
     },
     "register": {
-      "title": "Register"
+      "title": "Register",
+      "desc": "To create/edit/delete your own favourite recipes or to bookmark/star recipes you have to register."
+    },
+    "verify_email": {
+      "title": "Verify your email",
+      "desc": "Please verify your email to continue",
+      "successfully_send": "Successfully resent the verification link!"
     }
   },
 

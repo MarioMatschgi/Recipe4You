@@ -38,6 +38,7 @@ import { PopoverComponent } from '../libraries/components/popover/popover.compon
 import { ShareButtonsComponent } from '../libraries/components/share-buttons/share-buttons.component';
 import { SettingsComponent } from '../libraries/components/settings/settings.component';
 import { ThemeService } from 'src/libraries/services/theme.service';
+import { AuthVerifyEmailComponent } from 'src/libraries/components/auth/auth-verify-email/auth-verify-email.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { ThemeService } from 'src/libraries/services/theme.service';
     PopoverComponent,
     ShareButtonsComponent,
     SettingsComponent,
+    AuthVerifyEmailComponent,
   ],
   imports: [
     BrowserModule,

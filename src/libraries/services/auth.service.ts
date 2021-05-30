@@ -88,7 +88,6 @@ export class AuthService {
 
     this.afAuth.authState.subscribe(async (user) => {
       // this.signOut();
-      console.log(user);
 
       // If logged out
       if (user == null) {
@@ -103,23 +102,18 @@ export class AuthService {
         this.private_subscription?.unsubscribe();
         this.public_subscription?.unsubscribe();
       } else {
-        console.log('UD');
-
-        console.log(this.userPublicData);
-        console.log(this.userPrivateData);
-
-        if (!user.emailVerified)
-          this.error = { code: 'auth/not-verified', message: '' };
-
-        // IF THERE IS AN ERROR, CANCEL LOGIN
-        if (this.error) {
-          this.signOut(false);
-          return;
-        }
+        this.set_docs(user.uid);
 
         // user public data null (was not logged in)
         if (this.userPublicData == null) {
-          this.set_docs(user.uid);
+          if (!user.emailVerified)
+            this.error = { code: 'auth/not-verified', message: '' };
+
+          // IF THERE IS AN ERROR, CANCEL LOGIN
+          if (this.error) {
+            // this.signOut(false);
+            return;
+          }
 
           const data = (await this.doc_userPublic
             .valueChanges()
@@ -239,9 +233,6 @@ export class AuthService {
     DATA
   */
   set_docs(uid: string) {
-    console.log('SET DOCS');
-    console.log(uid);
-
     this.doc_userPrivate = this.db.collection('users-private').doc(uid);
     this.doc_userPublic = this.db.collection('users-public').doc(uid);
   }
@@ -331,7 +322,6 @@ export class AuthService {
    */
   private successfullySignedIn() {
     this.error = undefined;
-    // console.log('AUTH: successfully signed in with ' + auth);
 
     this.router.nav('home');
   }
@@ -377,7 +367,7 @@ export class AuthService {
     return this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
-        this.SendVerificationMail();
+        this.send_verification_mail();
       })
       .catch((error) => {
         // window.alert(error.message);
@@ -385,11 +375,11 @@ export class AuthService {
       });
   }
   // Send email verfificaiton when new user sign up
-  SendVerificationMail() {
+  send_verification_mail() {
     return this.afAuth.currentUser
       .then((u) => u.sendEmailVerification())
       .then(() => {
-        // this.ar.navigate(['verify-email-address']);
+        this.router.nav_verify_email();
       });
   }
 

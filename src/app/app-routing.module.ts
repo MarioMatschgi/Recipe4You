@@ -15,6 +15,7 @@ import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
 import { NotFoundGeneralComponent } from './components/not-found/not-found-general/not-found-general.component';
 import { StarsComponent } from './components/stars/stars.component';
 import { SettingsComponent } from 'src/libraries/components/settings/settings.component';
+import { AuthVerifyEmailComponent } from 'src/libraries/components/auth/auth-verify-email/auth-verify-email.component';
 
 const routes: Routes = [
   /* HOME */
@@ -39,6 +40,7 @@ const routes: Routes = [
   /* AUTH */
   { path: 'login', component: AuthLoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'verify-email', component: AuthVerifyEmailComponent },
 
   /* SETTINGS */
   { path: 'settings', component: SettingsComponent },

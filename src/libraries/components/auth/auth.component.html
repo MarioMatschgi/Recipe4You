@@ -1,18 +1,26 @@
 <div class="box nostyle">
   <div class="container">
     <form class="container">
-      <h1
-        *ngIf="type == 'login'"
-        [innerHtml]="local.data.auth.login.title"
-      ></h1>
-      <h1
-        *ngIf="type == 'register'"
-        [innerHtml]="local.data.auth.register.title"
-      ></h1>
-      <p [innerHtml]="local.data.auth.desc"></p>
+      <!-- LOGIN -->
+      <section *ngIf="type == 'login'">
+        <h1 [innerHtml]="local.data.auth.login.title"></h1>
+        <p [innerHtml]="local.data.auth.login.desc"></p>
+      </section>
+
+      <!-- REGISTER -->
+      <section *ngIf="type == 'register'">
+        <h1 [innerHtml]="local.data.auth.register.title"></h1>
+        <p [innerHtml]="local.data.auth.register.desc"></p>
+      </section>
+
+      <!-- VERIFY -->
+      <section *ngIf="type == 'verify'">
+        <h1 [innerHtml]="local.data.auth.verify_email.title"></h1>
+        <p [innerHtml]="local.data.auth.verify_email.desc"></p>
+      </section>
 
       <!-- SOCIAL SIGNIN -->
-      <section class="form-group">
+      <section class="form-group" *ngIf="type != 'verify'">
         <!-- GOOGLE SIGNIN -->
         <section class="form-group">
           <button class="signin google" (click)="auth.signIn_google()">
@@ -122,8 +130,11 @@
           >
           </label>
 
-          <!-- LOGIN -->
-          <div *ngIf="type == 'login'" class="flexbox center equal">
+          <!-- LOGIN/VERIFY -->
+          <div
+            *ngIf="type == 'login' || type == 'verify'"
+            class="flexbox center equal"
+          >
             <button class="signin email">
               <img />
               <span [innerHtml]="local.data.auth.buttons.login.email"></span>
@@ -133,9 +144,18 @@
               type="button"
               class="signin email"
               (click)="router.nav_register()"
+              *ngIf="type != 'verify'"
             >
               <img />
               <span [innerHtml]="local.data.auth.buttons.register.email"></span>
+            </button>
+
+            <button
+              type="button"
+              (click)="resend_verification_email()"
+              *ngIf="type == 'verify'"
+            >
+              <p [innerHtml]="local.data.auth.buttons.verify_email.resend"></p>
             </button>
           </div>
           <!-- REGISTER -->

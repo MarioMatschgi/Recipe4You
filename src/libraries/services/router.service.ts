@@ -68,4 +68,7 @@ export class RouterService {
   nav_register() {
     this.router.navigate(['register']);
   }
+  nav_verify_email() {
+    this.router.navigate(['verify-email']);
+  }
 }

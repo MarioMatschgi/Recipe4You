@@ -10,7 +10,7 @@ import { RouterService } from 'src/libraries/services/router.service';
   styleUrls: ['./auth.component.scss'],
 })
 export class AuthComponent implements OnInit {
-  @Input() type: 'login' | 'register' | 'reset';
+  @Input() type: 'login' | 'register' | 'verify' | 'reset';
 
   email_data = { email: '', password: '', confirm_password: '' };
 
@@ -28,7 +28,7 @@ export class AuthComponent implements OnInit {
     // IF FORM INVALID RETURN
     if (!form.valid) return;
 
-    if (this.type == 'login') {
+    if (this.type == 'login' || this.type == 'verify') {
       this.auth.signIn_email(this.email_data.email, this.email_data.password);
     } else if (this.type == 'register') {
       this.auth.signUp_email(
@@ -37,5 +37,17 @@ export class AuthComponent implements OnInit {
         this.email_data.confirm_password
       );
     }
+  }
+  resend_verification_email() {
+    this.auth
+      .send_verification_mail()
+      .then(() => {
+        confirm(this.local.data.auth.verify_email.successfully_send);
+      })
+      .catch((err) => {
+        if (err.code == 'auth/too-many-requests')
+          err.code = 'auth/too-many-verify-email';
+        this.auth.error = err;
+      });
   }
 }

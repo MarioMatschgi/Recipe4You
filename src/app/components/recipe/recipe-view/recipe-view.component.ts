@@ -57,9 +57,6 @@ export class RecipeViewComponent implements OnInit {
 
       if (recipe != null) {
         this.recipe_data = RecipeHelper.getData(this.recipe);
-        console.log('RD');
-        console.log(this.recipe);
-        console.log(this.recipe_data);
 
         this.recipe_date_added = new Date(recipe.date_added).toLocaleString();
         this.recipe_date_edited = new Date(recipe.date_edited).toLocaleString();
