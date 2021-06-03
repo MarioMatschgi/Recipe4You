@@ -16,13 +16,11 @@ import { NotFoundGeneralComponent } from './components/not-found/not-found-gener
 import { NotFoundRecipeComponent } from './components/not-found/not-found-recipe/not-found-recipe.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RecipeCreateComponent } from './components/recipe/recipe-create/recipe-create.component';
-import { RecipeDeleteComponent } from './components/recipe/recipe-delete/recipe-delete.component';
 import { RecipeEditComponent } from './components/recipe/recipe-edit/recipe-edit.component';
 import { RecipeIngredientsListComponent } from './components/recipe/recipe-ingredients-list/recipe-ingredients-list.component';
-import { RecipeListComponent } from './components/recipe/recipe-list/recipe-list.component';
-import { RecipePreviewComponent } from './components/recipe/recipe-list/recipe-preview/recipe-preview.component';
-import { RecipeViewComponent } from './components/recipe/recipe-view/recipe-view.component';
-import { RecipeComponent } from './components/recipe/recipe.component';
+import { RecipesListComponent } from './components/recipes/recipes-list/recipes-list.component';
+import { RecipePreviewComponent } from './components/recipe/recipe-preview/recipe-preview.component';
+import { RecipesViewComponent } from './components/recipes/recipes-view/recipes-view.component';
 import { RecipesComponent } from './components/recipes/recipes.component';
 import { AuthenticationModule } from './libraries/authentication/authentication.module';
 import { PopoverModule } from './libraries/popover/popover.module';
@@ -32,31 +30,42 @@ import { UtilModule } from './libraries/util/util.module';
 import { ProfileStarsComponent } from './components/profile/profile-stars/profile-stars.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProfileSettingsComponent } from './components/profile/profile-settings/profile-settings.component';
+import { RecipeBaseComponent } from './components/recipe/recipe-base/recipe-base.component';
+import { RecipeDeleteComponent } from './components/recipe/recipe-delete/recipe-delete.component';
+import { RecipeComponent } from './components/recipe/recipe.component';
 
 @NgModule({
   declarations: [
     /* COMPONENTS-GENERAL */
     AppComponent,
-
-    /* COMPONENTS */
-    RecipeComponent,
-    NotFoundComponent,
     HomeComponent,
-    RecipeCreateComponent,
-    RecipeEditComponent,
-    RecipeDeleteComponent,
-    RecipesComponent,
-    RecipeViewComponent,
-    RecipePreviewComponent,
     MenubarComponent,
-    ProfileBookmarksComponent,
+
+    /* NOT-FOUND */
+    NotFoundComponent,
     NotFoundGeneralComponent,
     NotFoundRecipeComponent,
-    RecipeListComponent,
-    ProfileStarsComponent,
+
+    /* RECIPE */
+    RecipeComponent,
+    RecipesViewComponent,
+    RecipeBaseComponent,
+    RecipeEditComponent,
+    RecipeDeleteComponent,
+    RecipeCreateComponent,
+    RecipePreviewComponent,
+
+    /* RECIPES */
+    RecipesComponent,
+    RecipesViewComponent,
+    RecipesListComponent,
     RecipeIngredientsListComponent,
+
+    /* PROFILE */
     ProfileComponent,
     ProfileSettingsComponent,
+    ProfileStarsComponent,
+    ProfileBookmarksComponent,
   ],
   imports: [
     CommonModule,

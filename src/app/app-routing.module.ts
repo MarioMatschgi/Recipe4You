@@ -1,9 +1,4 @@
 import { ProfileSettingsComponent } from './components/profile/profile-settings/profile-settings.component';
-import { RecipeEditComponent } from './components/recipe/recipe-edit/recipe-edit.component';
-import { RecipeDeleteComponent } from './components/recipe/recipe-delete/recipe-delete.component';
-import { RecipeCreateComponent } from './components/recipe/recipe-create/recipe-create.component';
-import { RecipeViewComponent } from './components/recipe/recipe-view/recipe-view.component';
-import { RecipesComponent } from './components/recipes/recipes.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -16,34 +11,35 @@ import { AuthRegisterComponent } from './libraries/authentication/components/aut
 import { AuthVerifyEmailComponent } from './libraries/authentication/components/auth-verify-email/auth-verify-email.component';
 import { ProfileStarsComponent } from './components/profile/profile-stars/profile-stars.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { RecipeComponent } from './components/recipe/recipe.component';
+import { RecipeEditComponent } from './components/recipe/recipe-edit/recipe-edit.component';
+import { RecipeDeleteComponent } from './components/recipe/recipe-delete/recipe-delete.component';
+import { RecipeCreateComponent } from './components/recipe/recipe-create/recipe-create.component';
+import { RecipesComponent } from './components/recipes/recipes.component';
+import { RecipesViewComponent } from './components/recipes/recipes-view/recipes-view.component';
 
 const routes: Routes = [
   /* HOME */
   { path: '', component: HomeComponent },
 
   /* RECIPES */
-  { path: 'recipes', component: RecipesComponent },
-  { path: 'recipes/:id', component: RecipeViewComponent },
+  {
+    path: 'recipes',
+    component: RecipesComponent,
+    children: [{ path: ':id', component: RecipesViewComponent }],
+  },
 
   /* RECIPE */
   {
-    path: 'recipe/edit/:id',
-    component: RecipeEditComponent,
+    path: 'recipe',
+    component: RecipeComponent,
+    children: [
+      { path: 'edit/:id', component: RecipeEditComponent },
+      { path: 'delete/:id', component: RecipeDeleteComponent },
+      { path: 'create', redirectTo: 'create/new' },
+      { path: 'create/new', component: RecipeCreateComponent },
+    ],
     canActivate: [AuthLoginGuard],
-  },
-  {
-    path: 'recipe/delete/:id',
-    component: RecipeDeleteComponent,
-    canActivate: [AuthLoginGuard],
-  },
-  {
-    path: 'recipe/create/new',
-    component: RecipeCreateComponent,
-    canActivate: [AuthLoginGuard],
-  },
-  {
-    path: 'recipe/create',
-    redirectTo: 'recipe/create/new',
   },
 
   /* PROFILE: user own stuff */

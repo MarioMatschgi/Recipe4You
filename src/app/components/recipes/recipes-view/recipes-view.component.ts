@@ -1,4 +1,4 @@
-import { RecipeData } from './../../../model/recipe.model';
+import { RecipeData } from '../../../model/recipe.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
@@ -14,10 +14,10 @@ import { LocalizationService } from 'src/app/libraries/util/services/localizatio
 
 @Component({
   selector: 'recipe-view',
-  templateUrl: './recipe-view.component.html',
-  styleUrls: ['./recipe-view.component.scss'],
+  templateUrl: './recipes-view.component.html',
+  styleUrls: ['./recipes-view.component.scss'],
 })
-export class RecipeViewComponent implements OnInit {
+export class RecipesViewComponent implements OnInit {
   get setup(): boolean {
     for (const key of Object.keys(this.setups)) {
       if (!this.setups[key]) return false;
