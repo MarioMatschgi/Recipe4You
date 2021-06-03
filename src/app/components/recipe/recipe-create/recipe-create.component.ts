@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeModel } from 'src/app/model/recipe.model';
 import { NgForm } from '@angular/forms';
-import { DatabaseService } from 'src/libraries/services/database.service';
-import { RouterService } from 'src/libraries/services/router.service';
+import { DatabaseService } from 'src/app/libraries/services/database.service';
+import { RouterService } from 'src/app/libraries/services/router.service';
 
 @Component({
   selector: 'recipe-create',

@@ -22,29 +22,29 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FormsModule } from '@angular/forms';
 import { RecipePreviewComponent } from './components/recipe/recipe-list/recipe-preview/recipe-preview.component';
 import { MenubarComponent } from './components/menubar/menubar.component';
-import { AuthComponent } from '../libraries/components/auth/auth.component';
-import { AuthLoginComponent } from '../libraries/components/auth/auth-login/auth-login.component';
-import { RegisterComponent } from '../libraries/components/auth/auth-register/auth-register.component';
-import { AuthProfileComponent } from '../libraries/components/auth/auth-profile/auth-profile.component';
-import { ClickOutsideDirective } from '../libraries/directives/click-outside.directive';
-import { ClickInsideOutsideDirective } from '../libraries/directives/click-inside-outside.directive';
+import { ClickOutsideDirective } from './libraries/directives/click-outside.directive';
+import { ClickInsideOutsideDirective } from './libraries/directives/click-inside-outside.directive';
 import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
 import { NotFoundGeneralComponent } from './components/not-found/not-found-general/not-found-general.component';
 import { NotFoundRecipeComponent } from './components/not-found/not-found-recipe/not-found-recipe.component';
 import { RecipeListComponent } from './components/recipe/recipe-list/recipe-list.component';
 import { StarsComponent } from './components/stars/stars.component';
 import { RecipeIngredientsListComponent } from './components/recipe/recipe-ingredients-list/recipe-ingredients-list.component';
-import { PopoverComponent } from '../libraries/components/popover/popover.component';
-import { ShareButtonsComponent } from '../libraries/components/share-buttons/share-buttons.component';
-import { SettingsComponent } from '../libraries/components/settings/settings.component';
-import { ThemeService } from 'src/libraries/services/theme.service';
-import { AuthVerifyEmailComponent } from 'src/libraries/components/auth/auth-verify-email/auth-verify-email.component';
+import { PopoverComponent } from './libraries/components/popover/popover.component';
+import { ShareButtonsComponent } from './libraries/components/share-buttons/share-buttons.component';
+import { SettingsComponent } from './libraries/components/settings/settings.component';
+import { ThemeService } from 'src/app/libraries/services/theme.service';
+import { AuthenticationModule } from './libraries/authentication/authentication.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    /* DIRECTIVES */
     ClickOutsideDirective,
     ClickInsideOutsideDirective,
+
+    /* COMPONENTS-GENERAL */
+    AppComponent,
+
     RecipeComponent,
     NotFoundComponent,
     HomeComponent,
@@ -55,10 +55,6 @@ import { AuthVerifyEmailComponent } from 'src/libraries/components/auth/auth-ver
     RecipeViewComponent,
     RecipePreviewComponent,
     MenubarComponent,
-    AuthComponent,
-    AuthLoginComponent,
-    RegisterComponent,
-    AuthProfileComponent,
     BookmarksComponent,
     NotFoundGeneralComponent,
     NotFoundRecipeComponent,
@@ -68,7 +64,6 @@ import { AuthVerifyEmailComponent } from 'src/libraries/components/auth/auth-ver
     PopoverComponent,
     ShareButtonsComponent,
     SettingsComponent,
-    AuthVerifyEmailComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,6 +77,9 @@ import { AuthVerifyEmailComponent } from 'src/libraries/components/auth/auth-ver
       enabled: environment.production,
       registrationStrategy: 'registerWhenStable:2500',
     }),
+
+    /* AUTH */
+    AuthenticationModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

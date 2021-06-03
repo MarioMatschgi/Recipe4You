@@ -1,3 +1,5 @@
+import firebase from 'firebase/app';
+
 export interface AuthData {
   readonly uid: string;
   readonly email: string;
@@ -14,11 +16,13 @@ export const emptyUserPrivateData: UserPrivateData = {
   bookmarks: [''],
   lang: 'auto',
   theme: 0,
+  user: undefined,
 };
 export interface UserPrivateData {
   bookmarks: [string];
   lang: string;
   theme: number;
+  user: firebase.User;
 }
 export const emptyUserPublicData: UserPublicData = {
   uid: '',

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RecipeModel } from 'src/app/model/recipe.model';
-import { AuthService } from 'src/libraries/services/auth.service';
-import { DatabaseService } from 'src/libraries/services/database.service';
-import { LocalizationService } from 'src/libraries/services/localization.service';
-import { RouterService } from 'src/libraries/services/router.service';
+import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
+import { DatabaseService } from 'src/app/libraries/services/database.service';
+import { LocalizationService } from 'src/app/libraries/services/localization.service';
+import { RouterService } from 'src/app/libraries/services/router.service';
 
 @Component({
   selector: 'bookmarks',

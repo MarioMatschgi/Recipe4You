@@ -1,15 +1,15 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthService } from 'src/libraries/services/auth.service';
-import { LocalizationService } from 'src/libraries/services/localization.service';
-import { RouterService } from 'src/libraries/services/router.service';
+import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
+import { LocalizationService } from 'src/app/libraries/services/localization.service';
+import { RouterService } from 'src/app/libraries/services/router.service';
 
 @Component({
-  selector: 'auth',
-  templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss'],
+  selector: 'auth-base',
+  templateUrl: './auth-base.component.html',
+  styleUrls: ['./auth-base.component.scss'],
 })
-export class AuthComponent implements OnInit {
+export class AuthBaseComponent implements OnInit {
   @Input() type: 'login' | 'register' | 'verify' | 'reset';
 
   email_data = { email: '', password: '', confirm_password: '' };
@@ -20,7 +20,12 @@ export class AuthComponent implements OnInit {
     public router: RouterService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.auth.loggedIn) {
+      this.router.nav('home');
+      return;
+    }
+  }
 
   submit_email(form: NgForm) {
     form.form.markAllAsTouched();

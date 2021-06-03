@@ -62,13 +62,17 @@ export class RouterService {
 
   // TODO: URL GO THERE AFTER LOGIN
   nav_login() {
-    this.router.navigate(['login']);
+    this.router.navigate(['auth/login']);
+  }
+  // TODO: NAV BACK
+  nav_login_back() {
+    this.router.navigate(['']);
   }
   // TODO: URL GO THERE AFTER REGISTER
   nav_register() {
-    this.router.navigate(['register']);
+    this.router.navigate(['auth/register']);
   }
   nav_verify_email() {
-    this.router.navigate(['verify-email']);
+    this.router.navigate(['auth/verify-email']);
   }
 }

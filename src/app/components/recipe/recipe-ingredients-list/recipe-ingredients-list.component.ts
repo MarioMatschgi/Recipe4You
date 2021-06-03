@@ -1,4 +1,4 @@
-import { LocalizationService } from './../../../../libraries/services/localization.service';
+import { LocalizationService } from '../../../libraries/services/localization.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { RecipeIngredientData } from 'src/app/model/recipe.model';

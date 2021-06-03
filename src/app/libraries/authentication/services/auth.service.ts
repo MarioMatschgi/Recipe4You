@@ -6,8 +6,8 @@ import {
   UserPrivateData,
   UserPublicData,
   emptyUserPrivateData,
-} from '../../app/model/user.model';
-import { RouterService } from './router.service';
+} from '../../../model/user.model';
+import { RouterService } from '../../services/router.service';
 import {
   AngularFirestore,
   AngularFirestoreDocument,
@@ -17,8 +17,8 @@ import { Event, Router, RouterLink } from '@angular/router';
 
 import firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { DatabaseService } from './database.service';
-import { RecipeModel } from '../../app/model/recipe.model';
+import { DatabaseService } from '../../services/database.service';
+import { RecipeModel } from '../../../model/recipe.model';
 import { Subscription } from 'rxjs';
 
 type Error = { code: string; message: string };
@@ -33,6 +33,7 @@ export class AuthService {
   private changed_userPublicData = new EventEmitter<UserPublicData>();
   doc_userPrivate: AngularFirestoreDocument<any>;
   doc_userPublic: AngularFirestoreDocument<any>;
+  userData: firebase.User;
 
   get displayName_or_email(): string {
     if (!this.userPublicData) return '';
@@ -80,6 +81,7 @@ export class AuthService {
       ...emptyUserPublicData,
       ...JSON.parse(localStorage.getItem('userPublicData')),
     };
+    this.userData = JSON.parse(localStorage.getItem('userData'));
 
     this.changed_userPrivateData.emit(this.userPrivateData);
     this.changed_userPublicData.emit(this.userPublicData);
@@ -88,9 +90,12 @@ export class AuthService {
 
     this.afAuth.authState.subscribe(async (user) => {
       // this.signOut();
+      this.userData = user;
+      localStorage.setItem('userData', JSON.stringify(user));
 
-      // If logged out
       if (user == null) {
+        // USER LOGGED OUT
+
         this.userPrivateData = null;
         this.userPublicData = null;
         localStorage.setItem('userPrivateData', null);
@@ -102,10 +107,13 @@ export class AuthService {
         this.private_subscription?.unsubscribe();
         this.public_subscription?.unsubscribe();
       } else {
+        // USER IS LOGGED IN
+
         this.set_docs(user.uid);
 
-        // user public data null (was not logged in)
         if (this.userPublicData == null) {
+          // USER WAS NOT LOGGED IN BUT IS NOW
+
           if (!user.emailVerified)
             this.error = { code: 'auth/not-verified', message: '' };
 
@@ -132,7 +140,9 @@ export class AuthService {
 
             await this.doc_userPublic.set(data);
           }
+
           this.userPublicData = { ...emptyUserPublicData, ...data };
+
           localStorage.setItem(
             'userPublicData',
             JSON.stringify(this.userPublicData)
@@ -140,6 +150,8 @@ export class AuthService {
 
           this.successfullySignedIn();
         } else {
+          // USER WAS LOGGED IN AND IS NOW AS WELL
+
           // UPDATE DATA
           this.userPublicData.uid = user.uid;
 
@@ -222,12 +234,6 @@ export class AuthService {
   }
 
   private debugUsers = ['mariomatschgi@gmail.com', 'marioelsnig@gmail.com'];
-  private async setup() {
-    if (!this.loggedIn) return;
-
-    // Debug user
-    this.isDebugUser = this.debugUsers.includes(this.userPublicData.email);
-  }
 
   /*
     DATA
@@ -308,9 +314,11 @@ export class AuthService {
   }
 
   get loggedIn(): boolean {
-    return this.userPublicData !== null && this.userPublicData.uid != ''
-      ? true
-      : false;
+    return (
+      this.userPublicData !== null &&
+      this.userPublicData.uid != '' &&
+      this.userData?.emailVerified
+    );
   }
 
   getEmptyUser(): AuthData {

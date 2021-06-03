@@ -4,8 +4,8 @@ import {
   RecipeHelper,
   RecipeModel,
 } from 'src/app/model/recipe.model';
-import { LocalizationService } from 'src/libraries/services/localization.service';
-import { RouterService } from 'src/libraries/services/router.service';
+import { LocalizationService } from 'src/app/libraries/services/localization.service';
+import { RouterService } from 'src/app/libraries/services/router.service';
 
 @Component({
   selector: 'recipe-preview',
