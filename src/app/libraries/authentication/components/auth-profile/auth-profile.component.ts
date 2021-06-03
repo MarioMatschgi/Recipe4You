@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
-import { LocalizationService } from '../../../services/localization.service';
-import { RouterService } from '../../../services/router.service';
+import { LocalizationService } from 'src/app/libraries/util/services/localization.service';
+import { RouterService } from 'src/app/libraries/util/services/router.service';
 
 @Component({
   selector: 'auth-profile',

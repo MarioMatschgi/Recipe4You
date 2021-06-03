@@ -16,13 +16,13 @@ export class RouterService {
   loaded = false;
   private m_urls: { [name: string]: string[] } = {
     home: [''],
-    bookmarks: ['bookmarks'],
-    stars: ['stars'],
+    bookmarks: ['profile', 'bookmarks'],
+    stars: ['profile', 'stars'],
+    settings: ['profile', 'settings'],
     recipes: ['recipes'],
     recipe_edit: ['recipe', 'edit'],
     recipe_delete: ['recipe', 'delete'],
     recipe_create: ['recipe', 'create'],
-    settings: ['settings'],
   };
   get_url_arr(name: string, params: string[] = []): string[] {
     return this.m_urls[name].concat(params);

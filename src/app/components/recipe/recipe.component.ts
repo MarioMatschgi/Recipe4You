@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
-import { DatabaseService } from 'src/app/libraries/services/database.service';
-import { RouterService } from 'src/app/libraries/services/router.service';
-import { LocalizationService } from 'src/app/libraries/services/localization.service';
+import { DatabaseService } from 'src/app/libraries/util/services/database.service';
+import { RouterService } from 'src/app/libraries/util/services/router.service';
+import { LocalizationService } from 'src/app/libraries/util/services/localization.service';
 
 @Component({
   selector: 'recipe',

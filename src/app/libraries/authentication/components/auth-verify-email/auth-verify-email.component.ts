@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { LocalizationService } from 'src/app/libraries/services/localization.service';
 
 @Component({
   selector: 'auth-verify-email',

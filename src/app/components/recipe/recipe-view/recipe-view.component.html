@@ -1,5 +1,5 @@
-<ng-template [ngIf]="setup" [ngIfElse]="loading">
-  <ng-template [ngIf]="recipe" [ngIfElse]="no_recipe">
+<div *ngIf="setup; else loading">
+  <div *ngIf="recipe; else no_recipe">
     <div class="box nostyle">
       <!-- 
         TOP-TOOLBAR
@@ -31,7 +31,7 @@
               <i class="fas" aria-hidden="true">&#xf044;</i>
             </a>
 
-            <lib-popover [position]="'center'" #pop_share>
+            <pop-popover [position]="'center'" #pop_share>
               <a class="nostyle pop_btn" (click)="pop_share.toggle()">
                 <i class="fas" aria-hidden="true">&#xf14d;</i>
               </a>
@@ -39,7 +39,7 @@
               <div class="pop_cnt">
                 <share-buttons [recipe]="recipe"></share-buttons>
               </div>
-            </lib-popover>
+            </pop-popover>
 
             <a class="nostyle" (click)="star()">
               <i class="far" aria-hidden="true" *ngIf="!starred">&#xf005;</i>
@@ -99,14 +99,14 @@
         ></p>
       </div>
     </div>
-  </ng-template>
+  </div>
 
   <ng-template #no_recipe>
     <div class="box nostyle">
       <not-found-recipe></not-found-recipe>
     </div>
   </ng-template>
-</ng-template>
+</div>
 
 <ng-template #loading>
   <p>LOADING DATA</p>

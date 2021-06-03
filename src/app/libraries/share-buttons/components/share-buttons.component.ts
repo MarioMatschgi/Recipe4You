@@ -1,8 +1,8 @@
 import { RecipeData, RecipeHelper } from '../../../model/recipe.model';
 import { RecipeViewComponent } from '../../../components/recipe/recipe-view/recipe-view.component';
 import { Component, Input, OnInit } from '@angular/core';
-import { LocalizationService } from 'src/app/libraries/services/localization.service';
 import { RecipeModel } from 'src/app/model/recipe.model';
+import { LocalizationService } from '../../util/services/localization.service';
 
 @Component({
   selector: 'share-buttons',

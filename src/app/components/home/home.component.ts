@@ -1,11 +1,9 @@
-import { take } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RecipeModel } from 'src/app/model/recipe.model';
-import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
-import { RouterService } from 'src/app/libraries/services/router.service';
-import { DatabaseService } from 'src/app/libraries/services/database.service';
-import { LocalizationService } from 'src/app/libraries/services/localization.service';
+import { RouterService } from 'src/app/libraries/util/services/router.service';
+import { DatabaseService } from 'src/app/libraries/util/services/database.service';
+import { LocalizationService } from 'src/app/libraries/util/services/localization.service';
 
 @Component({
   selector: 'home',
@@ -18,7 +16,6 @@ export class HomeComponent implements OnInit {
   constructor(
     public router: RouterService,
     public db: DatabaseService,
-    private auth: AuthService,
     public local: LocalizationService
   ) {}
 

@@ -1,9 +1,9 @@
 import { RecipeHelper } from 'src/app/model/recipe.model';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 import { Injectable } from '@angular/core';
-import * as data_en from '../../../lang/english.json';
-import * as data_de from '../../../lang/german.json';
-import { AuthService } from '../authentication/services/auth.service';
+import * as data_en from '../../../../lang/english.json';
+import * as data_de from '../../../../lang/german.json';
+import { AuthService } from '../../authentication/services/auth.service';
 
 @Injectable({
   providedIn: 'root',

@@ -1,5 +1,5 @@
 <div class="profile">
-  <lib-popover [position]="'normal'" [align]="'right'" #pop_profile>
+  <pop-popover [position]="'normal'" [align]="'right'" #pop_profile>
     <div class="pop_btn">
       <div
         *ngIf="auth.loggedIn; else notLoggedIn"
@@ -60,37 +60,5 @@
         ></button>
       </div>
     </div>
-  </lib-popover>
+  </pop-popover>
 </div>
-
-<!-- 
-<div class="profile" (clickOutside)="popover = false">
-  <div *ngIf="auth.loggedIn; else notLoggedIn" (click)="popover = !popover">
-    <img
-      *ngIf="auth.userPublicData.photoURL; else noProfileImg"
-      [src]="auth.userPublicData.photoURL"
-      alt="profile"
-    />
-
-    <ng-template #noProfileImg>
-      <i class="fas" aria-hidden="true">&#xf2bd;</i>
-    </ng-template>
-  </div>
-  <ng-template #notLoggedIn>
-    <button
-      class="tiny"
-      (click)="router.nav_login()"
-      [innerHtml]="local.data.auth.buttons.login.login"
-    ></button>
-  </ng-template>
-
-  <div class="popover box blur small" *ngIf="popover">
-    <img [src]="auth.userPublicData.photoURL" alt="profile" />
-    <h3>{{ auth.displayName_or_email }}</h3>
-    <button
-      (click)="auth.signOut(); popover = false"
-      [innerHtml]="local.data.auth.buttons.logout.logout"
-    ></button>
-  </div>
-</div> 
--->

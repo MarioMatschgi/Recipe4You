@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { RecipeModel } from 'src/app/model/recipe.model';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
-import { DatabaseService } from 'src/app/libraries/services/database.service';
-import { LocalizationService } from 'src/app/libraries/services/localization.service';
-import { RouterService } from 'src/app/libraries/services/router.service';
+import { DatabaseService } from 'src/app/libraries/util/services/database.service';
+import { RouterService } from 'src/app/libraries/util/services/router.service';
+import { LocalizationService } from 'src/app/libraries/util/services/localization.service';
 
 @Component({
-  selector: 'bookmarks',
-  templateUrl: './bookmarks.component.html',
-  styleUrls: ['./bookmarks.component.scss'],
+  selector: 'profile-bookmarks',
+  templateUrl: './profile-bookmarks.component.html',
+  styleUrls: ['./profile-bookmarks.component.scss'],
 })
-export class BookmarksComponent implements OnInit {
+export class ProfileBookmarksComponent implements OnInit {
   recipes: RecipeModel[];
 
   constructor(

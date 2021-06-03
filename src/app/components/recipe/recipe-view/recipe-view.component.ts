@@ -1,6 +1,4 @@
 import { RecipeData } from './../../../model/recipe.model';
-import { emptyUserPublicData } from './../../../model/user.model';
-import { take } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
@@ -10,9 +8,9 @@ import {
 } from 'src/app/model/recipe.model';
 
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
-import { DatabaseService } from 'src/app/libraries/services/database.service';
-import { RouterService } from 'src/app/libraries/services/router.service';
-import { LocalizationService } from 'src/app/libraries/services/localization.service';
+import { DatabaseService } from 'src/app/libraries/util/services/database.service';
+import { RouterService } from 'src/app/libraries/util/services/router.service';
+import { LocalizationService } from 'src/app/libraries/util/services/localization.service';
 
 @Component({
   selector: 'recipe-view',
@@ -43,7 +41,7 @@ export class RecipeViewComponent implements OnInit {
     public db: DatabaseService,
     public router: RouterService,
     private route: ActivatedRoute,
-    private auth: AuthService,
+    public auth: AuthService,
     public local: LocalizationService
   ) {}
 

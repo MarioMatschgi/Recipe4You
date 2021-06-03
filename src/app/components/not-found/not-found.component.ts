@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { LocalizationService } from 'src/app/libraries/services/localization.service';
+import { LocalizationService } from 'src/app/libraries/util/services/localization.service';
 
 @Component({
   selector: 'not-found',

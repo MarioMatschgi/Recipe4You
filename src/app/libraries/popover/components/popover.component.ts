@@ -1,7 +1,7 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'lib-popover',
+  selector: 'pop-popover',
   templateUrl: './popover.component.html',
   styleUrls: ['./popover.component.scss'],
 })

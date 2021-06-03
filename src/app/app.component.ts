@@ -1,5 +1,5 @@
+import { ThemesService } from './libraries/themes/services/themes.service';
 import { Component, OnInit } from '@angular/core';
-import { ThemeService } from 'src/app/libraries/services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { ThemeService } from 'src/app/libraries/services/theme.service';
 export class AppComponent implements OnInit {
   title = 'Recipe4you';
 
-  constructor(public ts: ThemeService) {}
+  constructor(public ts: ThemesService) {}
 
   ngOnInit() {}
 }

@@ -7,19 +7,16 @@ import {
   UserPublicData,
   emptyUserPrivateData,
 } from '../../../model/user.model';
-import { RouterService } from '../../services/router.service';
 import {
   AngularFirestore,
   AngularFirestoreDocument,
 } from '@angular/fire/firestore';
 import { EventEmitter, Injectable } from '@angular/core';
-import { Event, Router, RouterLink } from '@angular/router';
 
 import firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { DatabaseService } from '../../services/database.service';
-import { RecipeModel } from '../../../model/recipe.model';
 import { Subscription } from 'rxjs';
+import { RouterService } from '../../util/services/router.service';
 
 type Error = { code: string; message: string };
 
@@ -68,8 +65,6 @@ export class AuthService {
 
   constructor(
     public afAuth: AngularFireAuth,
-    private afs: AngularFirestore,
-    private ar: Router,
     private router: RouterService,
     private db: AngularFirestore
   ) {

@@ -1,3 +1,4 @@
+import { ProfileSettingsComponent } from './components/profile/profile-settings/profile-settings.component';
 import { RecipeEditComponent } from './components/recipe/recipe-edit/recipe-edit.component';
 import { RecipeDeleteComponent } from './components/recipe/recipe-delete/recipe-delete.component';
 import { RecipeCreateComponent } from './components/recipe/recipe-create/recipe-create.component';
@@ -6,15 +7,15 @@ import { RecipesComponent } from './components/recipes/recipes.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthLoginComponent } from './libraries/components/auth/auth-login/auth-login.component';
-import { AuthRegisterComponent } from './libraries/components/auth/auth-register/auth-register.component';
-import { BookmarksComponent } from './components/bookmarks/bookmarks.component';
+import { ProfileBookmarksComponent } from './components/profile/profile-bookmarks/profile-bookmarks.component';
 import { NotFoundGeneralComponent } from './components/not-found/not-found-general/not-found-general.component';
-import { StarsComponent } from './components/stars/stars.component';
-import { SettingsComponent } from 'src/app/libraries/components/settings/settings.component';
-import { AuthVerifyEmailComponent } from 'src/app/libraries/components/auth/auth-verify-email/auth-verify-email.component';
-import { AuthLoginGuard } from 'src/app/libraries/authentication/guards/auth-login.guard';
-import { AuthComponent } from 'src/app/libraries/components/auth/auth.component';
+import { AuthLoginGuard } from './libraries/authentication/guards/auth-login.guard';
+import { AuthComponent } from './libraries/authentication/components/auth.component';
+import { AuthLoginComponent } from './libraries/authentication/components/auth-login/auth-login.component';
+import { AuthRegisterComponent } from './libraries/authentication/components/auth-register/auth-register.component';
+import { AuthVerifyEmailComponent } from './libraries/authentication/components/auth-verify-email/auth-verify-email.component';
+import { ProfileStarsComponent } from './components/profile/profile-stars/profile-stars.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   /* HOME */
@@ -45,17 +46,19 @@ const routes: Routes = [
     redirectTo: 'recipe/create/new',
   },
 
-  /* BOOKMARKS */
+  /* PROFILE: user own stuff */
   {
-    path: 'bookmarks',
-    component: BookmarksComponent,
+    path: 'profile',
+    component: ProfileComponent,
+    children: [
+      { path: 'settings', component: ProfileSettingsComponent },
+      { path: 'stars', component: ProfileStarsComponent },
+      { path: 'bookmarks', component: ProfileBookmarksComponent },
+    ],
     canActivate: [AuthLoginGuard],
   },
 
-  /* STARS */
-  { path: 'stars', component: StarsComponent, canActivate: [AuthLoginGuard] },
-
-  /* AUTH */
+  /* AUTH: authentication stuff */
   {
     path: 'auth',
     component: AuthComponent,
@@ -66,13 +69,6 @@ const routes: Routes = [
     ],
     canActivate: [AuthLoginGuard],
     data: { inverted: true },
-  },
-
-  /* SETTINGS */
-  {
-    path: 'settings',
-    component: SettingsComponent,
-    canActivate: [AuthLoginGuard],
   },
 
   /* NOT FOUND */

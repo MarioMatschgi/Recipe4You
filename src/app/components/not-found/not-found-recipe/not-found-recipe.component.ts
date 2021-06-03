@@ -1,5 +1,5 @@
-import { LocalizationService } from '../../../libraries/services/localization.service';
 import { Component, OnInit } from '@angular/core';
+import { LocalizationService } from 'src/app/libraries/util/services/localization.service';
 
 @Component({
   selector: 'not-found-recipe',

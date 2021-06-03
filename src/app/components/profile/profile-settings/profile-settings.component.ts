@@ -1,20 +1,19 @@
-import { ThemeService } from '../../services/theme.service';
 import { Component, OnInit } from '@angular/core';
-import { ThemeModel } from 'src/app/libraries/models/theme.model';
-import { LocalizationService } from 'src/app/libraries/services/localization.service';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
+import { ThemesService } from 'src/app/libraries/themes/services/themes.service';
+import { LocalizationService } from 'src/app/libraries/util/services/localization.service';
 
 @Component({
-  selector: 'settings-settings',
-  templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.scss'],
+  selector: 'profile-settings',
+  templateUrl: './profile-settings.component.html',
+  styleUrls: ['./profile-settings.component.scss'],
 })
-export class SettingsComponent implements OnInit {
+export class ProfileSettingsComponent implements OnInit {
   lang;
 
   constructor(
     public local: LocalizationService,
-    public ts: ThemeService,
+    public ts: ThemesService,
     public auth: AuthService
   ) {
     this.auth.sub_userPrivateData(() => {

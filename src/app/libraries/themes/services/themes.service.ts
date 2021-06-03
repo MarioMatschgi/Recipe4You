@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { ThemeModel } from '../models/theme.model';
-import { AuthService } from '../authentication/services/auth.service';
+import { AuthService } from '../../authentication/services/auth.service';
+import { ThemeModel } from '../../util/models/theme.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ThemeService {
+export class ThemesService {
   private tran;
   themes: ThemeModel[] = [
     new ThemeModel('Sky&shy;blue', '#6cdbeb'),
