@@ -51,18 +51,22 @@ export class RecipesViewComponent implements OnInit {
     });
 
     this.db.get_recipe(this.recipe_id).subscribe(async (recipe) => {
-      this.recipe = { ...emptyRecipeModel, ...recipe };
+      if (recipe != undefined) {
+        this.recipe = { ...emptyRecipeModel, ...recipe };
 
-      if (recipe != null) {
-        this.recipe_data = RecipeHelper.getData(this.recipe);
+        if (recipe != null) {
+          this.recipe_data = RecipeHelper.getData(this.recipe);
 
-        this.recipe_date_added = new Date(recipe.date_added).toLocaleString();
-        this.recipe_date_edited = new Date(recipe.date_edited).toLocaleString();
+          this.recipe_date_added = new Date(recipe.date_added).toLocaleString();
+          this.recipe_date_edited = new Date(
+            recipe.date_edited
+          ).toLocaleString();
 
-        const res = await Promise.all([
-          this.auth.get_displayname_or_email(this.recipe.author),
-        ]);
-        this.author = res[0];
+          const res = await Promise.all([
+            this.auth.get_displayname_or_email(this.recipe.author),
+          ]);
+          this.author = res[0];
+        }
       }
 
       this.setups.recipe = true;

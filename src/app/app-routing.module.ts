@@ -48,11 +48,21 @@ const routes: Routes = [
     component: ProfileComponent,
     children: [
       { path: 'settings', component: ProfileSettingsComponent },
+      // { path: 'created', component: },
       { path: 'stars', component: ProfileStarsComponent },
       { path: 'bookmarks', component: ProfileBookmarksComponent },
     ],
     canActivate: [AuthLoginGuard],
   },
+
+  /* USER: user info stuff */
+  // {
+  //   path: 'user',
+  //   component: ,
+  //   children: [
+  //     { path: ':id', component: }
+  //   ]
+  // }
 
   /* AUTH: authentication stuff */
   {
@@ -62,6 +72,7 @@ const routes: Routes = [
       { path: 'login', component: AuthLoginComponent },
       { path: 'register', component: AuthRegisterComponent },
       { path: 'verify-email', component: AuthVerifyEmailComponent },
+      // { path: 'reset-password', component: },
     ],
     canActivate: [AuthLoginGuard],
     data: { inverted: true },
