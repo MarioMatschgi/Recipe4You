@@ -98,6 +98,15 @@
     "desc": "Below are all recipes that you have bookmarked so you can find your favourites more easily."
   },
 
+  "creations": {
+    "title": "Creations",
+    "desc": "Below are all recipes that you have created so you can see all your beautiful creations.",
+    "new_recipe": {
+      "title": "Create a new recipe",
+      "desc": "Click here to create a new recipe"
+    }
+  },
+
   "home": {
     "recipe": {
       "title": "Recipes",

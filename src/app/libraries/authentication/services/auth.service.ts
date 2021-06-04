@@ -6,7 +6,7 @@ import {
   UserPrivateData,
   UserPublicData,
   emptyUserPrivateData,
-} from '../../../model/user.model';
+} from '../models/user.model';
 import {
   AngularFirestore,
   AngularFirestoreDocument,
@@ -24,13 +24,14 @@ type Error = { code: string; message: string };
   providedIn: 'root',
 })
 export class AuthService {
+  userData: firebase.User;
   userPrivateData: UserPrivateData;
   userPublicData: UserPublicData;
+  private changed_userData = new EventEmitter<firebase.User>();
   private changed_userPrivateData = new EventEmitter<UserPrivateData>();
   private changed_userPublicData = new EventEmitter<UserPublicData>();
   doc_userPrivate: AngularFirestoreDocument<any>;
   doc_userPublic: AngularFirestoreDocument<any>;
-  userData: firebase.User;
 
   get displayName_or_email(): string {
     if (!this.userPublicData) return '';
@@ -78,6 +79,7 @@ export class AuthService {
     };
     this.userData = JSON.parse(localStorage.getItem('userData'));
 
+    this.changed_userData.emit(this.userData);
     this.changed_userPrivateData.emit(this.userPrivateData);
     this.changed_userPublicData.emit(this.userPublicData);
 
@@ -87,6 +89,7 @@ export class AuthService {
       // this.signOut();
       this.userData = user;
       localStorage.setItem('userData', JSON.stringify(user));
+      this.changed_userData.emit(this.userData);
 
       if (user == null) {
         // USER LOGGED OUT
@@ -238,6 +241,12 @@ export class AuthService {
     this.doc_userPublic = this.db.collection('users-public').doc(uid);
   }
 
+  sub_userData(func: (data: firebase.User) => void) {
+    func(this.userData);
+    this.changed_userData.subscribe((data) => {
+      func(data);
+    });
+  }
   sub_userPrivateData(func: (data: UserPrivateData) => void) {
     func(this.userPrivateData);
     this.changed_userPrivateData.subscribe((data) => {

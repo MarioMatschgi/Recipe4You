@@ -6,7 +6,6 @@ import {
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import * as firebase from 'firebase/app';
-import { LocalizationService } from './localization.service';
 import {
   RecipeData,
   RecipeHelper,
@@ -23,7 +22,7 @@ export class DatabaseService {
   col_usersPrivate: AngularFirestoreCollection<any>;
   col_usersPublic: AngularFirestoreCollection<any>;
 
-  constructor(public db: AngularFirestore, private local: LocalizationService) {
+  constructor(public db: AngularFirestore) {
     this.col_recipes = this.db.collection(this.path_recipes);
     this.col_usersPrivate = this.db.collection('users-private');
     this.col_usersPublic = this.db.collection('users-public');
@@ -40,6 +39,14 @@ export class DatabaseService {
     return this.db
       .collection(this.path_recipes, (ref) =>
         ref.where(firebase.default.firestore.FieldPath.documentId(), 'in', arr)
+      )
+      .get();
+  }
+
+  get_recipes_for(user_id: string) {
+    return this.db
+      .collection(this.path_recipes, (ref) =>
+        ref.where('author', '==', user_id)
       )
       .get();
   }

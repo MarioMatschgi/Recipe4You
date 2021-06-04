@@ -95,7 +95,16 @@
 
   "bookmarks": {
     "title": "Lesezeichen",
-    "desc": "Hier sind alle Rezepte, die mit Lesezeichen markiert wurden, so dass du deine Rezepte einfach finden kannst."
+    "desc": "Hier sind alle Rezepte, die mit Lesezeichen markiert wurden, sodass du deine Rezepte einfach finden kannst."
+  },
+
+  "creations": {
+    "title": "Kreationen",
+    "desc": "Hier sind alle Rezepte, die du erstellst hast, sodass du alle deine wunderbaren Rezepte sehen kannst.",
+    "new_recipe": {
+      "title": "Neues Rezept erstellen",
+      "desc": "Klicke hier um ein neues Rezept zu erstellen"
+    }
   },
 
   "home": {

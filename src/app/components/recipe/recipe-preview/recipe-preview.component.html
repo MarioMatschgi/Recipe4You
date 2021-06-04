@@ -4,11 +4,9 @@
 >
   <div class="recipe box clickable">
     <div class="text">
-      <h2>{{ recipe_data.name }}</h2>
+      <h2 [innerHtml]="recipe_data.name"></h2>
 
-      <p>
-        {{ recipe_data.description }}
-      </p>
+      <p [innerHtml]="recipe_data.description"></p>
     </div>
   </div>
 </a>
