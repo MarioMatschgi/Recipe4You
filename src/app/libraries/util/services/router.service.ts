@@ -8,27 +8,32 @@ import {
 } from '@angular/router';
 import { Location } from '@angular/common';
 
+export enum RouterUrls {
+  home = '',
+
+  recipes = 'recipes',
+
+  recipe_edit = 'recipe/edit',
+  recipe_delete = 'recipe/delete',
+  recipe_create = 'recipe/create',
+
+  profile_settings = 'profile/settings',
+  profile_creations = 'profile/creations',
+  profile_stars = 'profile/stars',
+  profile_bookmarks = 'profile/bookmarks',
+}
+
 @Injectable({
   providedIn: 'root',
 })
 export class RouterService {
   k_loc = 'router.loc';
   loaded = false;
-  private m_urls: { [name: string]: string[] } = {
-    home: [''],
-    bookmarks: ['profile', 'bookmarks'],
-    stars: ['profile', 'stars'],
-    settings: ['profile', 'settings'],
-    recipes: ['recipes'],
-    recipe_edit: ['recipe', 'edit'],
-    recipe_delete: ['recipe', 'delete'],
-    recipe_create: ['recipe', 'create'],
-  };
-  get_url_arr(name: string, params: string[] = []): string[] {
-    return this.m_urls[name].concat(params);
+  get_url(url: RouterUrls, params: string[] = []): string {
+    return '/' + url + '/' + params.join('/');
   }
-  get_url(name: string, params: string[] = []): string {
-    return '/' + this.get_url_arr(name, params).join('/');
+  get_url_arr(url: RouterUrls, params: string[] = []): string[] {
+    return url.split('/').concat(params);
   }
 
   constructor(public router: Router, public location: Location) {
@@ -44,8 +49,8 @@ export class RouterService {
       });
   }
 
-  nav(name: string, params: string[] = []) {
-    this.router.navigate(this.get_url_arr(name, params));
+  nav(url: RouterUrls, params: string[] = []) {
+    this.router.navigate(this.get_url_arr(url, params));
   }
 
   nav_old() {

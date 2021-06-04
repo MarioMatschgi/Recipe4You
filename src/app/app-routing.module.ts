@@ -17,6 +17,7 @@ import { RecipeDeleteComponent } from './components/recipe/recipe-delete/recipe-
 import { RecipeCreateComponent } from './components/recipe/recipe-create/recipe-create.component';
 import { RecipesComponent } from './components/recipes/recipes.component';
 import { RecipesViewComponent } from './components/recipes/recipes-view/recipes-view.component';
+import { ProfileCreationsComponent } from './components/profile/profile-creations/profile-creations.component';
 
 const routes: Routes = [
   /* HOME */
@@ -48,7 +49,7 @@ const routes: Routes = [
     component: ProfileComponent,
     children: [
       { path: 'settings', component: ProfileSettingsComponent },
-      // { path: 'created', component: },
+      { path: 'creations', component: ProfileCreationsComponent },
       { path: 'stars', component: ProfileStarsComponent },
       { path: 'bookmarks', component: ProfileBookmarksComponent },
     ],

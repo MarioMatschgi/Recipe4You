@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
 import { LocalizationService } from 'src/app/libraries/util/services/localization.service';
-import { RouterService } from 'src/app/libraries/util/services/router.service';
+import {
+  RouterService,
+  RouterUrls,
+} from 'src/app/libraries/util/services/router.service';
 
 @Component({
   selector: 'auth-profile',
@@ -9,6 +12,7 @@ import { RouterService } from 'src/app/libraries/util/services/router.service';
   styleUrls: ['./auth-profile.component.scss'],
 })
 export class AuthProfileComponent implements OnInit {
+  RouterUrls = RouterUrls;
   popover: boolean;
 
   constructor(

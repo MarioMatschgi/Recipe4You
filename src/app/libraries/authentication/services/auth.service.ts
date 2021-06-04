@@ -16,7 +16,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Subscription } from 'rxjs';
-import { RouterService } from '../../util/services/router.service';
+import { RouterService, RouterUrls } from '../../util/services/router.service';
 
 type Error = { code: string; message: string };
 
@@ -326,7 +326,8 @@ export class AuthService {
   private successfullySignedIn() {
     this.error = undefined;
 
-    this.router.nav('home');
+    // this.router.nav(RouterUrls.home);
+    this.router.nav_login_back();
   }
   async signIn_google() {
     return await this.afAuth
@@ -388,6 +389,6 @@ export class AuthService {
 
   async signOut(redir = true) {
     await this.afAuth.signOut();
-    if (redir) this.router.nav('home');
+    if (redir) this.router.nav(RouterUrls.home);
   }
 }

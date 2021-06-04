@@ -2,7 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
 import { LocalizationService } from 'src/app/libraries/util/services/localization.service';
-import { RouterService } from 'src/app/libraries/util/services/router.service';
+import {
+  RouterService,
+  RouterUrls,
+} from 'src/app/libraries/util/services/router.service';
 
 @Component({
   selector: 'auth-base',
@@ -22,7 +25,7 @@ export class AuthBaseComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.auth.loggedIn) {
-      this.router.nav('home');
+      this.router.nav(RouterUrls.home);
       return;
     }
   }

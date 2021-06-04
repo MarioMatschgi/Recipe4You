@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LocalizationService } from 'src/app/libraries/util/services/localization.service';
-import { RouterService } from 'src/app/libraries/util/services/router.service';
+import {
+  RouterService,
+  RouterUrls,
+} from 'src/app/libraries/util/services/router.service';
 import {
   RecipeData,
   RecipeHelper,
@@ -13,6 +16,8 @@ import {
   styleUrls: ['./recipe-preview.component.scss'],
 })
 export class RecipePreviewComponent implements OnInit {
+  RouterUrls = RouterUrls;
+
   @Input('recipe') recipe: RecipeModel;
   recipe_data: RecipeData;
 

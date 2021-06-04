@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterService } from 'src/app/libraries/util/services/router.service';
+import {
+  RouterService,
+  RouterUrls,
+} from 'src/app/libraries/util/services/router.service';
 
 @Component({
   selector: 'menubar',
@@ -7,6 +10,8 @@ import { RouterService } from 'src/app/libraries/util/services/router.service';
   styleUrls: ['./menubar.component.scss'],
 })
 export class MenubarComponent implements OnInit {
+  RouterUrls = RouterUrls;
+
   constructor(public router: RouterService) {}
 
   ngOnInit(): void {}

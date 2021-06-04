@@ -9,7 +9,10 @@ import { take } from 'rxjs/operators';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
 import { DatabaseService } from 'src/app/libraries/util/services/database.service';
-import { RouterService } from 'src/app/libraries/util/services/router.service';
+import {
+  RouterService,
+  RouterUrls,
+} from 'src/app/libraries/util/services/router.service';
 import { LocalizationService } from 'src/app/libraries/util/services/localization.service';
 
 @Component({
@@ -66,10 +69,10 @@ export class RecipeBaseComponent implements OnInit {
 
   cancel() {
     if (this.recipe.id == undefined) {
-      this.router.nav('home');
+      this.router.nav(RouterUrls.home);
       return;
     }
-    this.router.nav('recipes', [this.recipe.id]);
+    this.router.nav(RouterUrls.recipes, [this.recipe.id]);
   }
 
   change_lang() {
@@ -94,7 +97,7 @@ export class RecipeBaseComponent implements OnInit {
       this.recipe.id = doc.id;
       await this.db.edit_recipe(doc.id, this.recipe);
 
-      this.router.nav('recipes', [doc.id]);
+      this.router.nav(RouterUrls.recipes, [doc.id]);
     } else if (this.type == 'edit') {
       // IF NOT RECIPE AUTHOR RETURN
       if (!this.auth.is_author_or_admin(this.recipe.author)) return;
@@ -102,7 +105,7 @@ export class RecipeBaseComponent implements OnInit {
       this.recipe.date_edited = new Date();
 
       await this.db.edit_recipe(this.recipe.id, this.recipe);
-      this.router.nav('recipes', [this.recipe.id]);
+      this.router.nav(RouterUrls.recipes, [this.recipe.id]);
     } else if (this.type == 'delete') {
       // IF NOT RECIPE AUTHOR RETURN
       if (!this.auth.is_author_or_admin(this.recipe.author)) return;
@@ -116,7 +119,7 @@ export class RecipeBaseComponent implements OnInit {
         )
       ) {
         this.db.remove_recipe(this.recipe.id);
-        this.router.nav('home');
+        this.router.nav(RouterUrls.home);
       }
     }
   }

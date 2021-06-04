@@ -1,3 +1,4 @@
+import { RouterUrls } from './../../../libraries/util/services/router.service';
 import { RecipeData } from '../../../model/recipe.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -18,6 +19,8 @@ import { LocalizationService } from 'src/app/libraries/util/services/localizatio
   styleUrls: ['./recipes-view.component.scss'],
 })
 export class RecipesViewComponent implements OnInit {
+  RouterUrls = RouterUrls;
+
   get setup(): boolean {
     for (const key of Object.keys(this.setups)) {
       if (!this.setups[key]) return false;

@@ -33,6 +33,7 @@ import { ProfileSettingsComponent } from './components/profile/profile-settings/
 import { RecipeBaseComponent } from './components/recipe/recipe-base/recipe-base.component';
 import { RecipeDeleteComponent } from './components/recipe/recipe-delete/recipe-delete.component';
 import { RecipeComponent } from './components/recipe/recipe.component';
+import { ProfileCreationsComponent } from './components/profile/profile-creations/profile-creations.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { RecipeComponent } from './components/recipe/recipe.component';
     ProfileSettingsComponent,
     ProfileStarsComponent,
     ProfileBookmarksComponent,
+    ProfileCreationsComponent,
   ],
   imports: [
     CommonModule,
