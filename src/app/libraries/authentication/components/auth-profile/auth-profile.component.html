@@ -19,7 +19,7 @@
         <button
           class="tiny"
           (click)="router.nav_login()"
-          [innerHtml]="local.data.auth.buttons.login.login"
+          [innerHtml]="local.data.lib.auth.buttons.login.login"
         ></button>
       </ng-template>
     </div>
@@ -54,11 +54,11 @@
           (click)="
             router.nav(RouterUrls.profile_settings); pop_profile.set(false)
           "
-          [innerHtml]="local.data.settings.buttons.settings"
+          [innerHtml]="local.data.profile.settings.buttons.settings"
         ></button>
         <button
           (click)="auth.signOut(); pop_profile.set(false)"
-          [innerHtml]="local.data.auth.buttons.logout.logout"
+          [innerHtml]="local.data.lib.auth.buttons.logout.logout"
         ></button>
       </div>
     </div>

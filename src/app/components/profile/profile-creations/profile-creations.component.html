@@ -1,14 +1,14 @@
 <div class="container">
   <div class="box nostyle">
-    <h1 [innerHtml]="local.data.creations.title"></h1>
-    <p [innerHtml]="local.data.creations.desc"></p>
+    <h1 [innerHtml]="local.data.profile.creations.title"></h1>
+    <p [innerHtml]="local.data.profile.creations.desc"></p>
   </div>
 
   <section>
     <a class="nostyle" [routerLink]="router.get_url(RouterUrls.recipe_create)">
       <section class="box clickable">
-        <h2 [innerHtml]="local.data.creations.new_recipe.title"></h2>
-        <p [innerHtml]="local.data.creations.new_recipe.desc"></p>
+        <h2 [innerHtml]="local.data.profile.creations.new_recipe.title"></h2>
+        <p [innerHtml]="local.data.profile.creations.new_recipe.desc"></p>
       </section>
     </a>
   </section>

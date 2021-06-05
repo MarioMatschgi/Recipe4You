@@ -38,8 +38,8 @@ export class ShareButtonsComponent implements OnInit {
 
   get_url(page: string): string {
     return this.base_urls[page]
-      .replace('%txt%', this.local.data.share.txt)
-      .replace('%ttl%', this.local.data.share.ttl)
+      .replace('%txt%', this.local.data.lib.share.txt)
+      .replace('%ttl%', this.local.data.lib.share.ttl)
       .replace('%nam%', this.name)
       .replace('%url%', this.url);
   }

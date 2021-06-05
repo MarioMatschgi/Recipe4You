@@ -3,20 +3,20 @@
     <form class="container">
       <!-- LOGIN -->
       <section *ngIf="type == 'login'">
-        <h1 [innerHtml]="local.data.auth.login.title"></h1>
-        <p [innerHtml]="local.data.auth.login.desc"></p>
+        <h1 [innerHtml]="local.data.lib.auth.login.title"></h1>
+        <p [innerHtml]="local.data.lib.auth.login.desc"></p>
       </section>
 
       <!-- REGISTER -->
       <section *ngIf="type == 'register'">
-        <h1 [innerHtml]="local.data.auth.register.title"></h1>
-        <p [innerHtml]="local.data.auth.register.desc"></p>
+        <h1 [innerHtml]="local.data.lib.auth.register.title"></h1>
+        <p [innerHtml]="local.data.lib.auth.register.desc"></p>
       </section>
 
       <!-- VERIFY -->
       <section *ngIf="type == 'verify'">
-        <h1 [innerHtml]="local.data.auth.verify_email.title"></h1>
-        <p [innerHtml]="local.data.auth.verify_email.desc"></p>
+        <h1 [innerHtml]="local.data.lib.auth.verify_email.title"></h1>
+        <p [innerHtml]="local.data.lib.auth.verify_email.desc"></p>
       </section>
 
       <!-- SOCIAL SIGNIN -->
@@ -25,7 +25,7 @@
         <section class="form-group">
           <button class="signin google" (click)="auth.signIn_google()">
             <img />
-            <span [innerHtml]="local.data.auth.buttons.login.google"></span>
+            <span [innerHtml]="local.data.lib.auth.buttons.login.google"></span>
           </button>
         </section>
       </section>
@@ -43,13 +43,13 @@
           <label
             class="required"
             for="email_email"
-            [innerHtml]="local.data.auth.fields.email.label"
+            [innerHtml]="local.data.lib.auth.fields.email.label"
           ></label>
           <label
             [hidden]="email_email.valid || email_email.untouched"
             class="alert alert-danger"
             for="email_email"
-            [innerHtml]="local.data.auth.fields.email.error"
+            [innerHtml]="local.data.lib.auth.fields.email.error"
           >
           </label>
 
@@ -57,7 +57,7 @@
             type="text"
             class="form-control"
             id="email_email"
-            [placeholder]="local.data.auth.fields.email.placeholder"
+            [placeholder]="local.data.lib.auth.fields.email.placeholder"
             required
             [(ngModel)]="email_data.email"
             name="email_email"
@@ -70,13 +70,13 @@
           <label
             for="email_password"
             class="required"
-            [innerHtml]="local.data.auth.fields.password.label"
+            [innerHtml]="local.data.lib.auth.fields.password.label"
           ></label>
           <label
             [hidden]="email_password.valid || email_password.untouched"
             class="alert alert-danger"
             for="email_password"
-            [innerHtml]="local.data.auth.fields.password.error"
+            [innerHtml]="local.data.lib.auth.fields.password.error"
           >
           </label>
 
@@ -84,7 +84,7 @@
             type="password"
             class="form-control"
             id="email_password"
-            [placeholder]="local.data.auth.fields.password.placeholder"
+            [placeholder]="local.data.lib.auth.fields.password.placeholder"
             required
             [(ngModel)]="email_data.password"
             name="email_password"
@@ -126,7 +126,7 @@
           <label
             [hidden]="!auth.error"
             class="alert alert-danger"
-            [innerHtml]="auth.get_localized_error(local.data.auth.errors)"
+            [innerHtml]="auth.get_localized_error(local.data.lib.auth.errors)"
           >
           </label>
 
@@ -137,7 +137,9 @@
           >
             <button class="signin email">
               <img />
-              <span [innerHtml]="local.data.auth.buttons.login.email"></span>
+              <span
+                [innerHtml]="local.data.lib.auth.buttons.login.email"
+              ></span>
             </button>
 
             <button

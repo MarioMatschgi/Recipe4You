@@ -50,7 +50,7 @@ export class AuthBaseComponent implements OnInit {
     this.auth
       .send_verification_mail()
       .then(() => {
-        confirm(this.local.data.auth.verify_email.successfully_send);
+        confirm(this.local.data.lib.auth.verify_email.successfully_send);
       })
       .catch((err) => {
         if (err.code == 'auth/too-many-requests')
