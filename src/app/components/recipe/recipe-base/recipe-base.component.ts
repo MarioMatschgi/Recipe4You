@@ -112,7 +112,7 @@ export class RecipeBaseComponent implements OnInit {
 
       if (
         confirm(
-          this.local.data.recipe.delete.confirm.replace(
+          this.local.data.recipe.delete.confirm.replaceAll(
             '%recipe%',
             RecipeHelper.getData(this.recipe).name
           )

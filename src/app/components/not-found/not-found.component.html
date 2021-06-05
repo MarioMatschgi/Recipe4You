@@ -1,4 +1,4 @@
 <div class="box nostyle not-found">
   <h1>404</h1>
-  <p [innerHtml]="local.data.not_found.desc.replace('%what%', what)"></p>
+  <p [innerHtml]="local.data.not_found.desc.replaceAll('%what%', what)"></p>
 </div>

@@ -36,16 +36,16 @@
       <h3
         [innerHtml]="
           auth.displayName_or_email
-            .replace('.', '&shy;.')
-            .replace('@', '&shy;@')
+            .replaceAll('.', '&shy;.')
+            .replaceAll('@', '&shy;@')
         "
       ></h3>
       <p
         *ngIf="auth.userPublicData?.displayName"
         [innerHtml]="
           auth.userPublicData.email
-            .replace('.', '&shy;.')
-            .replace('@', '&shy;@')
+            .replaceAll('.', '&shy;.')
+            .replaceAll('@', '&shy;@')
         "
       ></p>
 

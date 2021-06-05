@@ -8,7 +8,7 @@
         <div>
           <p
             [innerHtml]="
-              local.data.recipe.view.author.replace('%author%', author)
+              local.data.recipe.view.author.replaceAll('%author%', author)
             "
           ></p>
         </div>
@@ -62,7 +62,9 @@
       <article class="recipe">
         <section class="title">
           <h2>{{ recipe_data.name }}</h2>
-          <p [innerHtml]="recipe_data.description.replace('\n', '<br />')"></p>
+          <p
+            [innerHtml]="recipe_data.description.replaceAll('\n', '<br/>')"
+          ></p>
         </section>
         <section class="ingredients">
           <h2 [innerHtml]="local.data.recipe.fields.ingredients.label"></h2>
@@ -73,11 +75,11 @@
         </section>
         <section class="method">
           <h2 [innerHtml]="local.data.recipe.fields.method.label"></h2>
-          <p [innerHtml]="recipe_data.method.replace('\n', '<br />')"></p>
+          <p [innerHtml]="recipe_data.method.replaceAll('\n', '<br />')"></p>
         </section>
         <section class="notes" *ngIf="recipe_data.notes">
           <h2 [innerHtml]="local.data.recipe.fields.notes.label"></h2>
-          <p [innerHtml]="recipe_data.notes.replace('\n', '<br />')"></p>
+          <p [innerHtml]="recipe_data.notes.replaceAll('\n', '<br />')"></p>
         </section>
       </article>
 
@@ -90,13 +92,19 @@
         <p
           id="created"
           [innerHtml]="
-            local.data.recipe.view.created.replace('%date%', recipe_date_added)
+            local.data.recipe.view.created.replaceAll(
+              '%date%',
+              recipe_date_added
+            )
           "
         ></p>
         <p
           id="edited"
           [innerHtml]="
-            local.data.recipe.view.edited.replace('%date%', recipe_date_edited)
+            local.data.recipe.view.edited.replaceAll(
+              '%date%',
+              recipe_date_edited
+            )
           "
         ></p>
       </div>

@@ -19,7 +19,7 @@
     <p
       *ngIf="type == 'delete'"
       [innerHtml]="
-        local.data.recipe.delete.desc.replace(
+        local.data.recipe.delete.desc.replaceAll(
           '%recipe%',
           recipe.langs[lang].name
         )
