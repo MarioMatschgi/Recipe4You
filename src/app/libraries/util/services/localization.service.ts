@@ -26,17 +26,22 @@ export class LocalizationService {
 
   update_lang(lang: string) {
     this.lang = lang;
-    RecipeHelper.lang = this.lang;
+    RecipeHelper.lang = this.get_eval_lang(this.lang);
 
     this.data = this.langs[this.lang] || this.langs['en'];
   }
 
-  get_lang() {
+  get_lang(): string {
     let lang = this.auth.userPrivateData?.lang;
 
     if (!lang || lang == '' || lang == 'auto')
       lang = window.navigator.language.substr(0, 2);
 
+    return lang;
+  }
+  get_eval_lang(lang: string): string {
+    if (!lang || lang == '' || lang == 'auto')
+      return window.navigator.language.substr(0, 2);
     return lang;
   }
 
