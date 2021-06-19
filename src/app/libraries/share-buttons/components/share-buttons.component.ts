@@ -1,6 +1,6 @@
-import { RecipeData, RecipeHelper } from '../../../model/recipe.model';
+import { RecipeData, RecipeHelper } from '../../../app/model/recipe.model';
 import { Component, Input, OnInit } from '@angular/core';
-import { RecipeModel } from 'src/app/model/recipe.model';
+import { RecipeModel } from 'src/app/app/model/recipe.model';
 import { LocalizationService } from '../../util/services/localization.service';
 
 @Component({

@@ -1,0 +1,43 @@
+#st-main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#st-main > div:first-child {
+  margin: var(--unit-auto);
+  background: var(--bg-glass);
+  box-shadow: var(--bs-glass);
+  border-radius: var(--unit-normal);
+}
+#st-main > div:last-child {
+  overflow: hidden;
+}
+
+header {
+  padding: var(--unit-normal);
+  padding-top: var(--unit-large);
+  padding-bottom: var(--unit-small);
+
+  border-radius: var(--unit-normal) var(--unit-normal) 0 0;
+}
+
+main {
+  margin-top: var(--unit-normal);
+  padding-right: max(var(--unit-auto), env(safe-area-inset-right));
+  padding-left: max(var(--unit-auto), env(safe-area-inset-left));
+  padding-bottom: var(--unit-auto);
+}
+
+footer {
+  margin: 0 var(--unit-auto);
+  padding-top: var(--unit-normal);
+  padding-bottom: var(--unit-normal);
+
+  padding-right: max(var(--unit-auto), env(safe-area-inset-right));
+  padding-left: max(var(--unit-auto), env(safe-area-inset-left));
+
+  background: var(--bg-glass);
+  box-shadow: var(--bs-glass);
+  border-radius: var(--unit-normal) var(--unit-normal) 0 0;
+}

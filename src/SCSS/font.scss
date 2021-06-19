@@ -33,6 +33,7 @@ h4,
 h5,
 h6 {
   color: var(--color-font-headline);
+  margin-top: 0;
 }
 h1 {
   font-size: var(--font-size-h1);
@@ -41,6 +42,10 @@ h1 {
 h2 {
   font-size: var(--font-size-h2);
   font-weight: 600;
+}
+
+p {
+  margin: 0;
 }
 
 a {

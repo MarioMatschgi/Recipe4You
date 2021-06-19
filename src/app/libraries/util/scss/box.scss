@@ -31,6 +31,10 @@
 .container {
   @include units;
 
+  section > *:not(:last-child) {
+    margin-bottom: var(--unit-small);
+  }
+
   > *:not(:last-child) {
     margin-bottom: var(--unit);
   }
@@ -46,4 +50,21 @@ section {
   @include units;
 
   margin-bottom: var(--unit);
+}
+
+.indent {
+  @include units;
+
+  padding: var(--unit);
+  &.vertical {
+    padding: var(--unit) 0;
+  }
+  &.horizontal {
+    padding: 0 var(--unit);
+  }
+}
+.outdent {
+  @include units;
+
+  margin: calc(0px - var(--unit)) !important;
 }

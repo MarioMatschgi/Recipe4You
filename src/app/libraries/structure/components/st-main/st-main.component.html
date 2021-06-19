@@ -1,0 +1,17 @@
+<div id="st-main">
+  <div>
+    <header class="box small">
+      <ng-content select="#header"></ng-content>
+    </header>
+
+    <main>
+      <ng-content select="#main"></ng-content>
+    </main>
+  </div>
+
+  <div #wrapper_footer>
+    <footer #footer>
+      <ng-content select="#footer"></ng-content>
+    </footer>
+  </div>
+</div>

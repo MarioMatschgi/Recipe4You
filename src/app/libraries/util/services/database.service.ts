@@ -10,7 +10,7 @@ import {
   RecipeData,
   RecipeHelper,
   RecipeModel,
-} from 'src/app/model/recipe.model';
+} from 'src/app/app/model/recipe.model';
 
 @Injectable({
   providedIn: 'root',

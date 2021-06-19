@@ -1,0 +1,34 @@
+<st-content [data-head-path]="local.data.profile.settings">
+  <section>
+    <h2 [innerHtml]="local.data.profile.settings.sections.lang.title"></h2>
+    <p [innerHtml]="local.data.profile.settings.sections.lang.desc"></p>
+
+    <!-- 
+      LANGUAGE SELECTOR
+     -->
+    <section>
+      <select (change)="change_lang()" [(ngModel)]="lang" name="lang_picker">
+        <option value="auto">Auto</option>
+        <option *ngFor="let l of local.lang_list" [value]="l">
+          {{ local.data.general.lang[l] }}
+        </option>
+      </select>
+    </section>
+  </section>
+
+  <st-content
+    [data-head-path]="local.data.profile.settings.sections.themes"
+    [data-level]="2"
+  >
+    <div class="flexbox resize equal themes">
+      <div
+        class="theme flexbox column nospace clickable"
+        *ngFor="let theme of ts.themes"
+        (click)="ts.switch_theme(theme)"
+      >
+        <div class="box" [style.background-color]="theme.color"></div>
+        <p [innerHtml]="theme.name"></p>
+      </div>
+    </div>
+  </st-content>
+</st-content>

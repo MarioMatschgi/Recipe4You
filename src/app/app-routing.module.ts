@@ -1,23 +1,23 @@
-import { ProfileSettingsComponent } from './components/profile/profile-settings/profile-settings.component';
-import { HomeComponent } from './components/home/home.component';
+import { ProfileSettingsComponent } from './app/components/profile/profile-settings/profile-settings.component';
+import { HomeComponent } from './app/components/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProfileBookmarksComponent } from './components/profile/profile-bookmarks/profile-bookmarks.component';
-import { NotFoundGeneralComponent } from './components/not-found/not-found-general/not-found-general.component';
+import { ProfileBookmarksComponent } from './app/components/profile/profile-bookmarks/profile-bookmarks.component';
+import { NotFoundGeneralComponent } from './app/components/not-found/not-found-general/not-found-general.component';
 import { AuthLoginGuard } from './libraries/authentication/guards/auth-login.guard';
 import { AuthComponent } from './libraries/authentication/components/auth.component';
 import { AuthLoginComponent } from './libraries/authentication/components/auth-login/auth-login.component';
 import { AuthRegisterComponent } from './libraries/authentication/components/auth-register/auth-register.component';
 import { AuthVerifyEmailComponent } from './libraries/authentication/components/auth-verify-email/auth-verify-email.component';
-import { ProfileStarsComponent } from './components/profile/profile-stars/profile-stars.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { RecipeComponent } from './components/recipe/recipe.component';
-import { RecipeEditComponent } from './components/recipe/recipe-edit/recipe-edit.component';
-import { RecipeDeleteComponent } from './components/recipe/recipe-delete/recipe-delete.component';
-import { RecipeCreateComponent } from './components/recipe/recipe-create/recipe-create.component';
-import { RecipesComponent } from './components/recipes/recipes.component';
-import { RecipesViewComponent } from './components/recipes/recipes-view/recipes-view.component';
-import { ProfileCreationsComponent } from './components/profile/profile-creations/profile-creations.component';
+import { ProfileStarsComponent } from './app/components/profile/profile-stars/profile-stars.component';
+import { ProfileComponent } from './app/components/profile/profile.component';
+import { RecipeComponent } from './app/components/recipe/recipe.component';
+import { RecipeEditComponent } from './app/components/recipe/recipe-edit/recipe-edit.component';
+import { RecipeDeleteComponent } from './app/components/recipe/recipe-delete/recipe-delete.component';
+import { RecipeCreateComponent } from './app/components/recipe/recipe-create/recipe-create.component';
+import { RecipesComponent } from './app/components/recipes/recipes.component';
+import { RecipesViewComponent } from './app/components/recipes/recipes-view/recipes-view.component';
+import { ProfileCreationsComponent } from './app/components/profile/profile-creations/profile-creations.component';
 import { AuthResetComponent } from './libraries/authentication/components/auth-reset/auth-reset.component';
 
 const routes: Routes = [

@@ -1,4 +1,4 @@
-import { RecipeHelper } from 'src/app/model/recipe.model';
+import { RecipeHelper } from 'src/app/app/model/recipe.model';
 import { environment } from '../../../../environments/environment';
 import { Injectable } from '@angular/core';
 import * as data_en from '../../../../lang/english.json';

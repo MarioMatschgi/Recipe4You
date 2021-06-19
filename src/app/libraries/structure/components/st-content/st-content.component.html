@@ -1,0 +1,14 @@
+<div [class]="'container' + (data_level == 1 ? ' indent' : '')">
+  <section>
+    <h1 [innerHtml]="data_head?.title" *ngIf="data_level == 1"></h1>
+    <h2 [innerHtml]="data_head?.title" *ngIf="data_level == 2"></h2>
+    <h3 [innerHtml]="data_head?.title" *ngIf="data_level == 3"></h3>
+    <h4 [innerHtml]="data_head?.title" *ngIf="data_level == 4"></h4>
+    <h5 [innerHtml]="data_head?.title" *ngIf="data_level == 5"></h5>
+    <h6 [innerHtml]="data_head?.title" *ngIf="data_level == 6"></h6>
+
+    <p [innerHtml]="data_head?.desc"></p>
+  </section>
+
+  <ng-content></ng-content>
+</div>

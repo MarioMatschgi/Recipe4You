@@ -1,0 +1,52 @@
+<div class="menubar container">
+  <div class="flexbox tiny">
+    <div>
+      <div class="flexbox tiny">
+        <a class="nostyle" [routerLink]="router.get_url(RouterUrls.home)">
+          Recipe4you
+        </a>
+
+        <a class="nostyle" (click)="router.nav_backward()">
+          <i class="fas" aria-hidden="true">&#xf053;</i>
+        </a>
+
+        <a class="nostyle" (click)="router.nav_forward()">
+          <i class="fas" aria-hidden="true">&#xf054;</i>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <div class="flexbox tiny">
+        <a id="install" class="nostyle" hidden>
+          <i class="fas" aria-hidden="true">&#xf019;</i>
+        </a>
+
+        <a
+          class="nostyle"
+          [routerLink]="router.get_url(RouterUrls.profile_creations)"
+        >
+          <i class="fas" aria-hidden="true">&#xf0fe;</i>
+        </a>
+
+        <a
+          class="nostyle"
+          [routerLink]="router.get_url(RouterUrls.profile_stars)"
+        >
+          <i class="fas" aria-hidden="true">&#xf005;</i>
+        </a>
+
+        <a
+          class="nostyle"
+          [routerLink]="router.get_url(RouterUrls.profile_bookmarks)"
+        >
+          <i class="fas" aria-hidden="true">&#xf02e;</i>
+        </a>
+
+        <div class="profile">
+          <auth-profile></auth-profile>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
