@@ -9,6 +9,7 @@ import { AuthComponent } from './components/auth.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { PopoverModule } from '../popover/popover.module';
+import { AuthResetComponent } from './components/auth-reset/auth-reset.component';
 
 const components = [
   AuthComponent,
@@ -17,6 +18,7 @@ const components = [
   AuthVerifyEmailComponent,
   AuthRegisterComponent,
   AuthLoginComponent,
+  AuthResetComponent,
 ];
 
 @NgModule({

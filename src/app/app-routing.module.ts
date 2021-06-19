@@ -18,6 +18,7 @@ import { RecipeCreateComponent } from './components/recipe/recipe-create/recipe-
 import { RecipesComponent } from './components/recipes/recipes.component';
 import { RecipesViewComponent } from './components/recipes/recipes-view/recipes-view.component';
 import { ProfileCreationsComponent } from './components/profile/profile-creations/profile-creations.component';
+import { AuthResetComponent } from './libraries/authentication/components/auth-reset/auth-reset.component';
 
 const routes: Routes = [
   /* HOME */
@@ -73,7 +74,7 @@ const routes: Routes = [
       { path: 'login', component: AuthLoginComponent },
       { path: 'register', component: AuthRegisterComponent },
       { path: 'verify-email', component: AuthVerifyEmailComponent },
-      // { path: 'reset-password', component: },
+      { path: 'reset-password', component: AuthResetComponent },
     ],
     canActivate: [AuthLoginGuard],
     data: { inverted: true },

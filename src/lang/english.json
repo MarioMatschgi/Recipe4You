@@ -126,11 +126,14 @@
           "register": "Register",
           "email": "Register"
         },
+        "logout": {
+          "logout": "Logout"
+        },
         "verify_email": {
           "resend": "Resend verification"
         },
-        "logout": {
-          "logout": "Logout"
+        "reset_password": {
+          "reset": "Reset password"
         }
       },
       "fields": {
@@ -170,7 +173,12 @@
       "verify_email": {
         "title": "Verify your email",
         "desc": "Please verify your email to continue",
-        "successfully_send": "Successfully resent the verification link!"
+        "successfully_sent": "Successfully resent the verification link!"
+      },
+      "reset_password": {
+        "title": "Reset your password",
+        "desc": "Please enter your email",
+        "successfully_sent": "Successfully resent the reset mail!"
       }
     },
     "share": {

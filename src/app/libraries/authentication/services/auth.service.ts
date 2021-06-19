@@ -393,7 +393,21 @@ export class AuthService {
       .then((u) => u.sendEmailVerification())
       .then(() => {
         this.router.nav_verify_email();
+      })
+      .catch((err) => {
+        if (err.code == 'auth/too-many-requests')
+          err.code = 'auth/too-many-verify-email';
+        this.error = err;
       });
+  }
+
+  send_reset_password_email(email: string) {
+    return this.afAuth.sendPasswordResetEmail(email).then(
+      () => {},
+      (error) => {
+        this.error = this.get_error(error);
+      }
+    );
   }
 
   async signOut(redir = true) {

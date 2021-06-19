@@ -19,8 +19,14 @@
         <p [innerHtml]="local.data.lib.auth.verify_email.desc"></p>
       </section>
 
+      <!-- RESET -->
+      <section *ngIf="type == 'reset'">
+        <h1 [innerHtml]="local.data.lib.auth.reset_password.title"></h1>
+        <p [innerHtml]="local.data.lib.auth.reset_password.desc"></p>
+      </section>
+
       <!-- SOCIAL SIGNIN -->
-      <section class="form-group" *ngIf="type != 'verify'">
+      <section class="form-group" *ngIf="type != 'verify' && type != 'reset'">
         <!-- GOOGLE SIGNIN -->
         <section class="form-group">
           <button class="signin google" (click)="auth.signIn_google()">
@@ -66,7 +72,7 @@
         </section>
 
         <!-- PASSWORD -->
-        <section class="form-group">
+        <section class="form-group" *ngIf="type != 'reset'">
           <label
             for="email_password"
             class="required"
@@ -77,8 +83,7 @@
             class="alert alert-danger"
             for="email_password"
             [innerHtml]="local.data.lib.auth.fields.password.error"
-          >
-          </label>
+          ></label>
 
           <input
             type="password"
@@ -97,7 +102,7 @@
           <label
             for="email_confirm_password"
             class="required"
-            [innerHtml]="local.data.auth.fields.confirm_password.label"
+            [innerHtml]="local.data.lib.auth.fields.confirm_password.label"
           ></label>
           <label
             [hidden]="
@@ -105,7 +110,7 @@
             "
             class="alert alert-danger"
             for="email_confirm_password"
-            [innerHtml]="local.data.auth.fields.confirm_password.error"
+            [innerHtml]="local.data.lib.auth.fields.confirm_password.error"
           >
           </label>
 
@@ -113,7 +118,9 @@
             type="password"
             class="form-control"
             id="email_confirm_password"
-            [placeholder]="local.data.auth.fields.confirm_password.placeholder"
+            [placeholder]="
+              local.data.lib.auth.fields.confirm_password.placeholder
+            "
             required
             [(ngModel)]="email_data.confirm_password"
             name="email_confirm_password"
@@ -130,12 +137,15 @@
           >
           </label>
 
-          <!-- LOGIN/VERIFY -->
+          <!-- LOGIN/VERIFY/RESET -->
           <div
-            *ngIf="type == 'login' || type == 'verify'"
+            *ngIf="type == 'login' || type == 'verify' || type == 'reset'"
             class="flexbox center equal"
           >
-            <button class="signin email">
+            <button
+              class="signin email"
+              *ngIf="type == 'login' || type == 'verify'"
+            >
               <img />
               <span
                 [innerHtml]="local.data.lib.auth.buttons.login.email"
@@ -146,10 +156,22 @@
               type="button"
               class="signin email"
               (click)="router.nav_register()"
-              *ngIf="type != 'verify'"
+              *ngIf="type == 'login'"
             >
               <img />
-              <span [innerHtml]="local.data.auth.buttons.register.email"></span>
+              <span
+                [innerHtml]="local.data.lib.auth.buttons.register.email"
+              ></span>
+            </button>
+
+            <button
+              type="button"
+              (click)="router.nav_reset()"
+              *ngIf="type == 'login'"
+            >
+              <span
+                [innerHtml]="local.data.lib.auth.buttons.reset_password.reset"
+              ></span>
             </button>
 
             <button
@@ -157,9 +179,22 @@
               (click)="resend_verification_email()"
               *ngIf="type == 'verify'"
             >
-              <p [innerHtml]="local.data.auth.buttons.verify_email.resend"></p>
+              <p
+                [innerHtml]="local.data.lib.auth.buttons.verify_email.resend"
+              ></p>
+            </button>
+
+            <button
+              type="button"
+              (click)="reset_password(form_email)"
+              *ngIf="type == 'reset'"
+            >
+              <p
+                [innerHtml]="local.data.lib.auth.buttons.reset_password.reset"
+              ></p>
             </button>
           </div>
+
           <!-- REGISTER -->
           <div *ngIf="type == 'register'" class="flexbox center equal">
             <button
@@ -168,12 +203,16 @@
               (click)="router.nav_login()"
             >
               <img />
-              <span [innerHtml]="local.data.auth.buttons.login.email"></span>
+              <span
+                [innerHtml]="local.data.lib.auth.buttons.login.email"
+              ></span>
             </button>
 
             <button class="signin email">
               <img />
-              <span [innerHtml]="local.data.auth.buttons.register.email"></span>
+              <span
+                [innerHtml]="local.data.lib.auth.buttons.register.email"
+              ></span>
             </button>
           </div>
         </section>

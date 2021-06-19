@@ -126,11 +126,14 @@
           "register": "Registrieren",
           "email": "Registrieren"
         },
+        "logout": {
+          "logout": "Abmelden"
+        },
         "verify_email": {
           "resend": "E-Mail erneut senden"
         },
-        "logout": {
-          "logout": "Abmelden"
+        "reset_password": {
+          "reset": "Passwort zurücksetzen"
         }
       },
       "fields": {
@@ -170,7 +173,12 @@
       "verify_email": {
         "title": "Bestätige deine E-Mail",
         "desc": "Bitte bestätige deine E-Mail um fortzufahren",
-        "successfully_send": "Die E-Mail wurde erneut gesendet!"
+        "successfully_sent": "Die E-Mail wurde erneut gesendet!"
+      },
+      "reset_password": {
+        "title": "Passwort zurücksetzen",
+        "desc": "Bitte gib deine E-Mail-Adresse ein",
+        "successfully_sent": "Die E-Mail wurde erneut gesendet!"
       }
     },
     "share": {

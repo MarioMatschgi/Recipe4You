@@ -77,6 +77,11 @@ export class RouterService {
   nav_register() {
     this.router.navigate(['auth/register']);
   }
+  // TODO: URL GO THERE AFTER REGISTER
+  nav_reset() {
+    this.router.navigate(['auth/reset-password']);
+  }
+  // TODO: URL GO THERE AFTER VERIFY
   nav_verify_email() {
     this.router.navigate(['auth/verify-email']);
   }
