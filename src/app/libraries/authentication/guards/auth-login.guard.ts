@@ -36,6 +36,7 @@ export class AuthLoginGuard implements CanActivate {
       }
 
       this.router.nav_login();
+
       return false;
     }
   }

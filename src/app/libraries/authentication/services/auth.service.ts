@@ -146,7 +146,7 @@ export class AuthService {
             JSON.stringify(this.userPublicData)
           );
 
-          this.successfullySignedIn();
+          this.successfullySignedIn(true);
         } else {
           // USER WAS LOGGED IN AND IS NOW AS WELL
 
@@ -177,7 +177,7 @@ export class AuthService {
             JSON.stringify(this.userPublicData)
           );
 
-          this.successfullySignedIn();
+          this.successfullySignedIn(false);
         }
       }
 
@@ -338,11 +338,10 @@ export class AuthService {
   /*
     SIGNIN STUFF
    */
-  private successfullySignedIn() {
+  private successfullySignedIn(redir: boolean) {
     this.error = undefined;
 
-    // this.router.nav(RouterUrls.home);
-    this.router.nav_login_back();
+    if (redir) this.router.nav_login_back();
   }
   async signIn_google() {
     return await this.afAuth
