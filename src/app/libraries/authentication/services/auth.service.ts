@@ -117,18 +117,18 @@ export class AuthService {
 
           // IF THERE IS AN ERROR, CANCEL LOGIN
           if (this.error) {
-            // this.signOut(false);
+            this.signOut(false);
             return;
           }
 
-          const data = (await this.doc_userPublic
+          let data = (await this.doc_userPublic
             .valueChanges()
             .pipe(take(1))
             .toPromise()) as Object;
 
           // not in database, create new user
           if (data == undefined) {
-            const data: UserPublicData = {
+            data = {
               ...emptyUserPublicData,
               uid: user.uid,
               email: user.email,
@@ -172,6 +172,12 @@ export class AuthService {
           if (changes) {
             this.doc_userPublic.set(this.userPublicData, { merge: true });
           }
+          localStorage.setItem(
+            'userPublicData',
+            JSON.stringify(this.userPublicData)
+          );
+
+          this.successfullySignedIn();
         }
       }
 
@@ -382,9 +388,9 @@ export class AuthService {
       .then((result) => {
         this.send_verification_mail();
       })
-      .catch((error) => {
-        // window.alert(error.message);
-        this.error = error;
+      .catch((err) => {
+        if (err.code == 'auth/not-verified') return;
+        this.error = err;
       });
   }
   // Send email verfificaiton when new user sign up
@@ -395,6 +401,8 @@ export class AuthService {
         this.router.nav_verify_email();
       })
       .catch((err) => {
+        if (err.code == 'auth/not-verified') return;
+
         if (err.code == 'auth/too-many-requests')
           err.code = 'auth/too-many-verify-email';
         this.error = err;
@@ -411,6 +419,7 @@ export class AuthService {
   }
 
   async signOut(redir = true) {
+    this.error = undefined;
     await this.afAuth.signOut();
     if (redir) this.router.nav(RouterUrls.home);
   }
