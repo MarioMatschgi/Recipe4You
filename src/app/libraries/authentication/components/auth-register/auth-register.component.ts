@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+/**
+ * Component for registering
+ */
 @Component({
   selector: 'auth-register',
   templateUrl: './auth-register.component.html',

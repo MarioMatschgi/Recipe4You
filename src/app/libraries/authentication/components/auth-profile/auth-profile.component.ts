@@ -6,6 +6,9 @@ import {
   RouterUrls,
 } from 'src/app/libraries/util/services/router.service';
 
+/**
+ * Component for profile
+ */
 @Component({
   selector: 'auth-profile',
   templateUrl: './auth-profile.component.html',
@@ -15,6 +18,12 @@ export class AuthProfileComponent implements OnInit {
   RouterUrls = RouterUrls;
   popover: boolean;
 
+  /**
+   * Constructor
+   * @param auth Service for Authentication
+   * @param router Service for Routing
+   * @param local Service for Localization
+   */
   constructor(
     public auth: AuthService,
     public router: RouterService,

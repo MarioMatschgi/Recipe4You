@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+/**
+ * Component for verifying email
+ */
 @Component({
   selector: 'auth-verify-email',
   templateUrl: './auth-verify-email.component.html',

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+/**
+ * Component for authentication route
+ */
 @Component({
   selector: 'auth',
   templateUrl: './auth.component.html',

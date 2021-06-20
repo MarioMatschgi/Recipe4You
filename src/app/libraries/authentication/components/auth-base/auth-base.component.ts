@@ -7,16 +7,38 @@ import {
   RouterUrls,
 } from 'src/app/libraries/util/services/router.service';
 
+/**
+ * Base component for login, register, verify email and reset password
+ */
 @Component({
   selector: 'auth-base',
   templateUrl: './auth-base.component.html',
   styleUrls: ['./auth-base.component.scss'],
 })
 export class AuthBaseComponent implements OnInit {
+  /**
+   * Type of the authentication
+   * - login: Component for logging in
+   * - register: Component for registering
+   * - verify: Component for verifying email adress
+   * - reset: Component for resetting password
+   */
   @Input() type: 'login' | 'register' | 'verify' | 'reset';
 
+  /**
+   * Data for email
+   * - email: Entered email
+   * - password: Entered password
+   * - confirm_password: Entered confirmation password
+   */
   email_data = { email: '', password: '', confirm_password: '' };
 
+  /**
+   * Constructor
+   * @param auth Service for Authentication
+   * @param local Service for Localization
+   * @param router Service for Routing
+   */
   constructor(
     public auth: AuthService,
     public local: LocalizationService,
@@ -30,7 +52,11 @@ export class AuthBaseComponent implements OnInit {
     }
   }
 
-  submit_email(form: NgForm) {
+  /**
+   * Callback for submitting the email-form
+   * @param form form
+   */
+  submit_email(form: NgForm): void {
     form.form.markAllAsTouched();
 
     // IF FORM INVALID RETURN
@@ -46,12 +72,21 @@ export class AuthBaseComponent implements OnInit {
       );
     }
   }
-  resend_verification_email() {
+
+  /**
+   * Callback for resending verification email
+   */
+  resend_verification_email(): void {
     this.auth.send_verification_mail().then(() => {
       confirm(this.local.data.lib.auth.verify_email.successfully_sent);
     });
   }
-  reset_password(form: NgForm) {
+
+  /**
+   * Callback for resetting password
+   * @param form form
+   */
+  reset_password(form: NgForm): void {
     form.form.markAllAsTouched();
 
     // IF FORM INVALID RETURN

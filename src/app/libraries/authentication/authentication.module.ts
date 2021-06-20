@@ -21,6 +21,9 @@ const components = [
   AuthResetComponent,
 ];
 
+/**
+ * Module for Authentication
+ */
 @NgModule({
   declarations: components,
   imports: [CommonModule, AppRoutingModule, PopoverModule, FormsModule],

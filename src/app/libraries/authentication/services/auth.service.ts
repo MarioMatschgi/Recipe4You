@@ -18,21 +18,62 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Subscription } from 'rxjs';
 import { RouterService, RouterUrls } from '../../util/services/router.service';
 
+/**
+ * Type for authentication error
+ */
 type Error = { code: string; message: string };
 
+/**
+ * Service for Authentication
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  /**
+   * Data for user
+   */
   userData: firebase.User;
+
+  /**
+   * Data for private user
+   */
   userPrivateData: UserPrivateData;
+
+  /**
+   * Data for public user
+   */
   userPublicData: UserPublicData;
+
+  /**
+   * Event for changed user data
+   */
   private changed_userData = new EventEmitter<firebase.User>();
+
+  /**
+   * Event for changed private user data
+   */
   private changed_userPrivateData = new EventEmitter<UserPrivateData>();
+
+  /**
+   * Event for changed public user data
+   */
   private changed_userPublicData = new EventEmitter<UserPublicData>();
+
+  /**
+   * Document for private user data
+   */
   doc_userPrivate: AngularFirestoreDocument<any>;
+
+  /**
+   * Document for public user data
+   */
   doc_userPublic: AngularFirestoreDocument<any>;
 
+  /**
+   * Returns the displayname or the email if no displayname was given
+   * @returns The displayname or email for the current user
+   */
   get displayName_or_email(): string {
     if (!this.userPublicData) return '';
 
@@ -43,17 +84,55 @@ export class AuthService {
     else return displayName;
   }
 
-  is_auth_setup = false;
-  is_userPrivate_setup = false;
-  is_userPublic_setup = false;
-  setup_event = new EventEmitter();
-  setup_userPrivate_event = new EventEmitter<UserPrivateData>();
-  setup_userPublic_event = new EventEmitter<UserPublicData>();
+  /**
+   * Whether the user data is setup
+   */
+  private is_auth_setup = false;
 
-  private_subscription: Subscription;
-  public_subscription: Subscription;
+  /**
+   * Whether the private user data is setup
+   */
+  private is_userPrivate_setup = false;
 
+  /**
+   * Whether the public user data is setup
+   */
+  private is_userPublic_setup = false;
+
+  /**
+   * Setup for user data
+   */
+  private setup_event = new EventEmitter();
+
+  /**
+   * Setup for private user data
+   */
+  private setup_userPrivate_event = new EventEmitter<UserPrivateData>();
+
+  /**
+   * Setup for public user data
+   */
+  private setup_userPublic_event = new EventEmitter<UserPublicData>();
+
+  /**
+   * Subscription for private user data
+   */
+  private private_subscription: Subscription;
+  /**
+   * Subscription for public user data
+   */
+  private public_subscription: Subscription;
+
+  /**
+   * The current authentication error
+   */
   error: { code: string; message: string } = undefined;
+
+  /**
+   * Returns the localized error
+   * @param errors_data Error data
+   * @returns Returns the localized error
+   */
   get_localized_error(errors_data): string {
     if (!this.error) return '';
     if (Object.keys(errors_data).includes(this.error.code))
@@ -62,8 +141,12 @@ export class AuthService {
     return this.error.message;
   }
 
-  isDebugUser: boolean = false;
-
+  /**
+   * Constructor
+   * @param afAuth Service for Firebase Authentication
+   * @param router Service for Routing
+   * @param db Service for Firestore
+   */
   constructor(
     public afAuth: AngularFireAuth,
     private router: RouterService,
@@ -237,28 +320,44 @@ export class AuthService {
     });
   }
 
-  private debugUsers = ['mariomatschgi@gmail.com', 'marioelsnig@gmail.com'];
-
   /*
     DATA
   */
+  /**
+   * Sets the docs for the given user
+   * @param uid Uid of the user
+   */
   set_docs(uid: string) {
     this.doc_userPrivate = this.db.collection('users-private').doc(uid);
     this.doc_userPublic = this.db.collection('users-public').doc(uid);
   }
 
+  /**
+   * Subscribes to the user data and calls the function when data is set
+   * @param func Callback
+   */
   sub_userData(func: (data: firebase.User) => void) {
     func(this.userData);
     this.changed_userData.subscribe((data) => {
       func(data);
     });
   }
+
+  /**
+   * Subscribes to the private user data and calls the function when data is set
+   * @param func Callback
+   */
   sub_userPrivateData(func: (data: UserPrivateData) => void) {
     func(this.userPrivateData);
     this.changed_userPrivateData.subscribe((data) => {
       func(data);
     });
   }
+
+  /**
+   * Subscribes to the public user data and calls the function when data is set
+   * @param func Callback
+   */
   sub_userPublicData(func: (data: UserPublicData) => void) {
     func(this.userPublicData);
     this.changed_userPublicData.subscribe((data) => {
@@ -269,13 +368,29 @@ export class AuthService {
   /*
     ERROR
   */
-  // TODO: REMOVE
+  /**
+   * Returns the localized error for the given error
+   * @param error The error
+   * @returns Returns the error
+   */
   get_error({ code, message }: Error): Error {
     return { code: code, message: this.get_error_msg(code) || message };
   }
+
+  /**
+   * Returns the error for the given error code
+   * @param code The code of the error
+   * @returns Returns the error
+   */
   get_error_by_code(code: string): Error {
     return { code: code, message: this.get_error_msg(code) };
   }
+
+  /**
+   * Returns the error message for the given error code
+   * @param code The code of the error
+   * @returns Returns the message
+   */
   get_error_msg(code: string): string {
     let msg = undefined;
     switch (code) {
@@ -296,17 +411,36 @@ export class AuthService {
   /*
     USER STUFF
   */
+  /**
+   * Returns whether the user is the author or an admin
+   * @returns Whether the user is the author or an admin
+   */
   is_author_or_admin(author): boolean {
     return this.is_author(author) || this.is_admin();
   }
+
+  /**
+   * Returns whether the user is the author
+   * @returns Whether the user is the author
+   */
   is_author(author): boolean {
     return this.is_user(author);
   }
+
+  /**
+   * Returns whether the user is an admin
+   * @returns Whether the user is an admin
+   */
   is_admin(): boolean {
     return this.loggedIn && this.userPublicData.role == Role.admin;
   }
 
-  async get_displayname_or_email(uid: string) {
+  /**
+   * Returns the displayname or the email if no displayname was given
+   * @param uid Uid of the user
+   * @returns The displayname or email for the given user
+   */
+  async get_displayname_or_email(uid: string): Promise<string> {
     const d = await this.db
       .collection('users-public')
       .doc(uid)
@@ -317,12 +451,21 @@ export class AuthService {
     if (d['displayName'] == null || d['displayName'] == '') return d['email'];
     else return d['displayName'];
   }
+
+  /**
+   * Returns `true` if a user with the id exists
+   * @param id Uid of the user to check
+   * @returns Whether a user with the given id exists
+   */
   is_user(id: string): boolean {
     if (!this.loggedIn) return false;
 
     return this.userPublicData.uid === id;
   }
 
+  /**
+   * Returns `true` if the user is logged in
+   */
   get loggedIn(): boolean {
     return (
       this.userPublicData !== null &&
@@ -331,18 +474,22 @@ export class AuthService {
     );
   }
 
-  getEmptyUser(): AuthData {
-    return { uid: null, email: null };
-  }
-
   /*
     SIGNIN STUFF
+   */
+  /**
+   * Resets the error and navigates back
+   * @param redir Whether the user should be redirected back
    */
   private successfullySignedIn(redir: boolean) {
     this.error = undefined;
 
     if (redir) this.router.nav_login_back();
   }
+
+  /**
+   * Signs in with google
+   */
   async signIn_google() {
     return await this.afAuth
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
@@ -354,6 +501,11 @@ export class AuthService {
       });
   }
 
+  /**
+   * Signs in with email
+   * @param email Email to sign up with
+   * @param password Password to sign up with
+   */
   async signIn_email(email: string, password: string) {
     return this.afAuth
       .signInWithEmailAndPassword(email, password)
@@ -365,17 +517,15 @@ export class AuthService {
       });
   }
 
-  async canSignIn_email(email: string) {
-    return await this.afAuth
-      .fetchSignInMethodsForEmail(email)
-      .then((signInMethods) => {
-        return signInMethods.includes('password');
-      });
-  }
-
   /*
     SIGNUP STUFF
   */
+  /**
+   * Signs up with email
+   * @param email Email to sign up with
+   * @param password Password to sign up with
+   * @param confirm_password Confimation password
+   */
   async signUp_email(email, password, confirm_password) {
     if (confirm_password != password) {
       this.error = { code: 'auth/password-no-match', message: '' };
@@ -392,7 +542,10 @@ export class AuthService {
         this.error = err;
       });
   }
-  // Send email verfificaiton when new user sign up
+
+  /**
+   * Sends an email verfificaiton when new user sign up
+   */
   send_verification_mail() {
     return this.afAuth.currentUser
       .then((u) => u.sendEmailVerification())
@@ -408,6 +561,10 @@ export class AuthService {
       });
   }
 
+  /**
+   * Sends the password reset email
+   * @param email Email to send the mail to
+   */
   send_reset_password_email(email: string) {
     return this.afAuth.sendPasswordResetEmail(email).then(
       () => {},
@@ -417,6 +574,10 @@ export class AuthService {
     );
   }
 
+  /**
+   * Signs out the current user
+   * @param redir Whether the user should be redirected afterwards
+   */
   async signOut(redir = true) {
     this.error = undefined;
     await this.afAuth.signOut();
