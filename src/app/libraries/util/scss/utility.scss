@@ -2,7 +2,7 @@
   cursor: pointer;
   transition: transform 0.4s;
 
-  &:hover {
+  &.hoverable:hover {
     transform: scale(1.05);
   }
 }

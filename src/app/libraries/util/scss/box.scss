@@ -62,6 +62,9 @@ section {
   &.horizontal {
     padding: 0 var(--unit);
   }
+  &:not(.all) {
+    padding-top: 0;
+  }
 }
 .outdent {
   @include units;

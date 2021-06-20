@@ -9,6 +9,13 @@ export class LoadService {
     return this.m_loads.length;
   }
 
+  get isLoading(): boolean {
+    return this.loads > 0;
+  }
+  get finished(): boolean {
+    return !this.isLoading;
+  }
+
   constructor() {}
 
   load(id: string): void {

@@ -19,6 +19,7 @@ import { RecipesComponent } from './app/components/recipes/recipes.component';
 import { RecipesViewComponent } from './app/components/recipes/recipes-view/recipes-view.component';
 import { ProfileCreationsComponent } from './app/components/profile/profile-creations/profile-creations.component';
 import { AuthResetComponent } from './libraries/authentication/components/auth-reset/auth-reset.component';
+import { LoadLoaderComponent } from './libraries/loading/components/load-loader/load-loader.component';
 
 const routes: Routes = [
   /* HOME */

@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/libraries/authentication/services/auth.serv
 import { DatabaseService } from 'src/app/libraries/util/services/database.service';
 import { RouterService } from 'src/app/libraries/util/services/router.service';
 import { LocalizationService } from 'src/app/libraries/util/services/localization.service';
+import { LoadService } from 'src/app/libraries/loading/services/load.service';
 
 @Component({
   selector: 'recipe-view',
@@ -20,15 +21,6 @@ import { LocalizationService } from 'src/app/libraries/util/services/localizatio
 })
 export class RecipesViewComponent implements OnInit {
   RouterUrls = RouterUrls;
-
-  get setup(): boolean {
-    for (const key of Object.keys(this.setups)) {
-      if (!this.setups[key]) return false;
-    }
-
-    return true;
-  }
-  setups: { [key: string]: boolean } = { recipe: false };
 
   recipe: RecipeModel;
   recipe_data: RecipeData;
@@ -45,10 +37,13 @@ export class RecipesViewComponent implements OnInit {
     public router: RouterService,
     private route: ActivatedRoute,
     public auth: AuthService,
-    public local: LocalizationService
+    public local: LocalizationService,
+    public loader: LoadService
   ) {}
 
   ngOnInit(): void {
+    this.loader.load('recipes/view');
+
     this.route.params.subscribe((params) => {
       this.recipe_id = params['id'];
     });
@@ -72,7 +67,7 @@ export class RecipesViewComponent implements OnInit {
         }
       }
 
-      this.setups.recipe = true;
+      this.loader.unload('recipes/view');
     });
 
     if (this.auth.loggedIn) {

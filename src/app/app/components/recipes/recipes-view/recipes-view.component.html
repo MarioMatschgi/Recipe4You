@@ -1,4 +1,4 @@
-<div *ngIf="setup; else loading">
+<div *ngIf="loader.finished">
   <div *ngIf="recipe; else no_recipe">
     <div class="indent">
       <!-- 
@@ -117,7 +117,3 @@
     </div>
   </ng-template>
 </div>
-
-<ng-template #loading>
-  <p>LOADING DATA</p>
-</ng-template>

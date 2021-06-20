@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadService } from '../libraries/loading/services/load.service';
 import { ThemesService } from '../libraries/themes/services/themes.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { ThemesService } from '../libraries/themes/services/themes.service';
 export class AppComponent implements OnInit {
   title = 'Recipe4you';
 
-  constructor(public ts: ThemesService) {}
+  constructor(public ts: ThemesService, public loader: LoadService) {}
 
   ngOnInit() {}
 }
