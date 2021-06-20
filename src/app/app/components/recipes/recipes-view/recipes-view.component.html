@@ -1,4 +1,4 @@
-<div *ngIf="loader.finished">
+<div *ngIf="loader.finished()">
   <div *ngIf="recipe; else no_recipe">
     <div class="indent">
       <!-- 

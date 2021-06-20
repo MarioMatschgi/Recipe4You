@@ -42,7 +42,7 @@ export class RecipesViewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loader.load('recipes/view');
+    this.loader.load();
 
     this.route.params.subscribe((params) => {
       this.recipe_id = params['id'];
@@ -67,7 +67,7 @@ export class RecipesViewComponent implements OnInit {
         }
       }
 
-      this.loader.unload('recipes/view');
+      this.loader.unload();
     });
 
     if (this.auth.loggedIn) {

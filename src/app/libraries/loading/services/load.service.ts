@@ -4,25 +4,27 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class LoadService {
-  private m_loads: string[] = [];
-  get loads(): number {
-    return this.m_loads.length;
+  private m_loads: { [loader: string]: number } = {};
+  loads(id: string): number {
+    return this.m_loads[id] ? this.m_loads[id] : 0;
   }
 
-  get isLoading(): boolean {
-    return this.loads > 0;
+  isLoading(id: string = 'main'): boolean {
+    return this.loads(id) > 0;
   }
-  get finished(): boolean {
-    return !this.isLoading;
+  finished(id: string = 'main'): boolean {
+    return !this.isLoading(id);
   }
 
   constructor() {}
 
-  load(id: string): void {
-    this.m_loads.push(id);
+  load(id: string = 'main'): void {
+    if (!Object.keys(this.m_loads).includes(id)) this.m_loads[id] = 1;
+    else this.m_loads[id]++;
   }
 
-  unload(id: string): void {
-    this.m_loads.splice(this.m_loads.indexOf(id), 1);
+  unload(id: string = 'main'): void {
+    if (!this.m_loads[id] || this.m_loads[id] == 1) delete this.m_loads[id];
+    else this.m_loads[id]--;
   }
 }

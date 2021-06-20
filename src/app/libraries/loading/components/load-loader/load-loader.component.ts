@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  Input,
   OnInit,
   ViewChild,
 } from '@angular/core';
@@ -14,6 +15,8 @@ import { LoadService } from '../../services/load.service';
   styleUrls: ['./load-loader.component.scss'],
 })
 export class LoadLoaderComponent implements OnInit, AfterViewInit {
+  @Input('loader-id') loader_id = 'main';
+
   @ViewChild('loader_parent') loader_parent: ElementRef;
 
   loader_idx: number;

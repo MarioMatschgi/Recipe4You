@@ -1,12 +1,14 @@
-<div class="outdent">
-  <ul *ngIf="async" class="recipe-list nostyle">
-    <li *ngFor="let recipe of recipes | async; index as i">
-      <recipe-preview [recipe]="recipe"></recipe-preview>
-    </li>
-  </ul>
-  <ul *ngIf="!async" class="recipe-list nostyle">
-    <li *ngFor="let recipe of recipes; index as i">
-      <recipe-preview [recipe]="recipe"></recipe-preview>
-    </li>
-  </ul>
-</div>
+<load-loader [loader-id]="loader_id">
+  <div class="outdent" *ngIf="loader.finished(loader_id)">
+    <ul *ngIf="async" class="recipe-list nostyle">
+      <li *ngFor="let recipe of recipes | async; index as i">
+        <recipe-preview [recipe]="recipe"></recipe-preview>
+      </li>
+    </ul>
+    <ul *ngIf="!async" class="recipe-list nostyle">
+      <li *ngFor="let recipe of recipes; index as i">
+        <recipe-preview [recipe]="recipe"></recipe-preview>
+      </li>
+    </ul>
+  </div>
+</load-loader>

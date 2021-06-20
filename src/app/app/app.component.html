@@ -4,10 +4,9 @@
   </div>
 
   <div id="main">
-    <div class="indent all" *ngIf="loader.isLoading">
-      <load-loader></load-loader>
-    </div>
-    <router-outlet></router-outlet>
+    <load-loader>
+      <router-outlet></router-outlet>
+    </load-loader>
   </div>
 
   <!-- <div id="footer">

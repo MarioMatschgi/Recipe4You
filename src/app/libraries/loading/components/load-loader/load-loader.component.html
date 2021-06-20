@@ -1,4 +1,4 @@
-<div *ngIf="loader.loads != []">
+<div *ngIf="loader.loads(loader_id) != []">
   <div class="loader_parent" #loader_parent>
     <div *ngIf="loader_idx == 0" class="loader">
       <svg viewBox="0 0 80 80">
@@ -19,3 +19,5 @@
     </div>
   </div>
 </div>
+
+<ng-content></ng-content>
