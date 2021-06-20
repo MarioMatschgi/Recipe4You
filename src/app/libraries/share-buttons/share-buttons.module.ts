@@ -4,6 +4,9 @@ import { ShareButtonsComponent } from './components/share-buttons.component';
 
 const modules = [ShareButtonsComponent];
 
+/**
+ * Module for ShareButtons
+ */
 @NgModule({
   declarations: modules,
   imports: [CommonModule],

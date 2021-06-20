@@ -1,17 +1,36 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 
+/**
+ * Component for Popovers
+ */
 @Component({
   selector: 'pop-popover',
   templateUrl: './popover.component.html',
   styleUrls: ['./popover.component.scss'],
 })
 export class PopoverComponent implements OnInit {
+  /**
+   * List of all popovers
+   */
   static popovers = [];
 
-  isOpen: boolean;
-  @Input() position: 'normal' | 'center' = 'normal';
   /**
-   * align only possible if position is `normal`
+   * Whether the popover is open
+   */
+  isOpen: boolean;
+
+  /**
+   * The position of the popover
+   * - normal: Position at button
+   */
+  @Input() position: 'normal' | 'center' = 'normal';
+
+  /**
+   * The alignment of the popover
+   * Align only possible if position is `normal`
+   * - center: Centered on the screen
+   * - left: Left on the screen
+   * - right: Right on the screen
    */
   @Input() align: 'center' | 'left' | 'right' = 'center';
 
@@ -19,6 +38,10 @@ export class PopoverComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  /**
+   * Keydown event
+   * @param event Event
+   */
   @HostListener('window:keyup.escape', ['$event'])
   keydown(event: KeyboardEvent) {
     // Check if this is the front-most popover
@@ -26,10 +49,17 @@ export class PopoverComponent implements OnInit {
       this.set(false);
   }
 
+  /**
+   * Toggles the visibility of the popover
+   */
   toggle() {
     this.set(!this.isOpen);
   }
 
+  /**
+   * Sets the visibility of the popover
+   * @param isOpen Whether the popover should be open
+   */
   set(isOpen) {
     setTimeout(() => {
       this.isOpen = isOpen;
@@ -43,6 +73,9 @@ export class PopoverComponent implements OnInit {
     }, 0);
   }
 
+  /**
+   * Hides the popover if it is open
+   */
   hide_if_open() {
     if (this.isOpen) this.set(false);
   }

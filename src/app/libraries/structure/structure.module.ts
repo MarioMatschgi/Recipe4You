@@ -5,6 +5,9 @@ import { StContentComponent } from './components/st-content/st-content.component
 
 const components = [StMainComponent, StContentComponent];
 
+/**
+ * Module for Structure
+ */
 @NgModule({
   declarations: components,
   imports: [CommonModule],

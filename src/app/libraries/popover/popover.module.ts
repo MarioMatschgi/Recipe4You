@@ -5,6 +5,9 @@ import { UtilModule } from '../util/util.module';
 
 const components = [PopoverComponent];
 
+/**
+ * Module for Popovers
+ */
 @NgModule({
   declarations: components,
   imports: [CommonModule, UtilModule],

@@ -1,11 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
+import { RouterUrls } from 'src/app/libraries/util/models/router.model';
 import { LocalizationService } from 'src/app/libraries/util/services/localization.service';
-import {
-  RouterService,
-  RouterUrls,
-} from 'src/app/libraries/util/services/router.service';
+import { RouterService } from 'src/app/libraries/util/services/router.service';
 
 /**
  * Base component for login, register, verify email and reset password

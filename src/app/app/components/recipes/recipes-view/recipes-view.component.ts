@@ -1,4 +1,3 @@
-import { RouterUrls } from '../../../../libraries/util/services/router.service';
 import { RecipeData } from '../../../model/recipe.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -13,6 +12,7 @@ import { DatabaseService } from 'src/app/libraries/util/services/database.servic
 import { RouterService } from 'src/app/libraries/util/services/router.service';
 import { LocalizationService } from 'src/app/libraries/util/services/localization.service';
 import { LoadService } from 'src/app/libraries/loading/services/load.service';
+import { RouterUrls } from 'src/app/libraries/util/models/router.model';
 
 @Component({
   selector: 'recipe-view',

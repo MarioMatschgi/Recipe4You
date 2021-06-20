@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 
 const modules = [];
 
+/**
+ * Module for Themes
+ */
 @NgModule({
   declarations: modules,
   imports: [CommonModule],

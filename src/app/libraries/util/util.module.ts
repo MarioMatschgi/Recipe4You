@@ -5,6 +5,9 @@ import { ClickOutsideDirective } from './directives/click-outside.directive';
 
 const components = [ClickInsideOutsideDirective, ClickOutsideDirective];
 
+/**
+ * Module for Utilities
+ */
 @NgModule({
   declarations: components,
   imports: [CommonModule],

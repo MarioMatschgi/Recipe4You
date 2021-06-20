@@ -4,6 +4,9 @@ import { LoadLoaderComponent } from './components/load-loader/load-loader.compon
 
 const components = [LoadLoaderComponent];
 
+/**
+ * Module for Loading
+ */
 @NgModule({
   declarations: components,
   imports: [CommonModule],

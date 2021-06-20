@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  RouterService,
-  RouterUrls,
-} from 'src/app/libraries/util/services/router.service';
+import { RouterUrls } from 'src/app/libraries/util/models/router.model';
+import { RouterService } from 'src/app/libraries/util/services/router.service';
 
 @Component({
   selector: 'menubar',

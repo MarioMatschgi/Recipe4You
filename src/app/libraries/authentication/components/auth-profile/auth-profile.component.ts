@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
+import { RouterUrls } from 'src/app/libraries/util/models/router.model';
 import { LocalizationService } from 'src/app/libraries/util/services/localization.service';
-import {
-  RouterService,
-  RouterUrls,
-} from 'src/app/libraries/util/services/router.service';
+import { RouterService } from 'src/app/libraries/util/services/router.service';
 
 /**
  * Component for profile

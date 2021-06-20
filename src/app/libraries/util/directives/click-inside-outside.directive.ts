@@ -7,18 +7,24 @@ import {
   EventEmitter,
 } from '@angular/core';
 
+/**
+ * Directive for detecting inside and outside clicks
+ */
 @Directive({
   selector: '[clickInsideOutside]',
 })
 export class ClickInsideOutsideDirective {
   constructor(private _elementRef: ElementRef) {}
 
-  @Output('clickInsideOutside') clickOutside: EventEmitter<any> =
+  /**
+   * Callback for clicking inside or outside
+   */
+  @Output('clickInsideOutside') clickInsideOutside: EventEmitter<any> =
     new EventEmitter();
 
   @HostListener('document:click', ['$event.target'])
   onMouseEnter(targetElement) {
-    this.clickOutside.emit(
+    this.clickInsideOutside.emit(
       this._elementRef.nativeElement.contains(targetElement)
     );
   }

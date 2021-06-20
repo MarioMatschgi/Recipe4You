@@ -2,26 +2,36 @@ import { Injectable } from '@angular/core';
 import { AuthService } from '../../authentication/services/auth.service';
 import { ThemeModel } from '../../util/models/theme.model';
 
+/**
+ * Service for Themes
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class ThemesService {
-  private tran;
+  /**
+   * Temporary transition value
+   */
+  private transition;
+
+  /**
+   * List of all theme colors and names
+   */
   themes: ThemeModel[] = [
-    new ThemeModel('Sky&shy;blue', '#6cdbeb'),
-    new ThemeModel('Tomato&shy;red', '#eb6c6c'),
-    new ThemeModel('Pink', '#df6ceb'),
-    new ThemeModel('Purple', '#7b6ceb'),
-    new ThemeModel('Sea&shy;blue', '#6c8ceb'),
-    new ThemeModel('Turqouse', '#6ceba6'),
-    new ThemeModel('Green', '#6ceb71'),
-    new ThemeModel('Banana&shy;yellow', '#d6eb6c'),
-    new ThemeModel('Orange-orange', '#ebae6c'),
+    { name: 'Sky&shy;blue', color: '#6cdbeb' },
+    { name: 'Tomato&shy;red', color: '#eb6c6c' },
+    { name: 'Pink', color: '#df6ceb' },
+    { name: 'Purple', color: '#7b6ceb' },
+    { name: 'Sea&shy;blue', color: '#6c8ceb' },
+    { name: 'Turqouse', color: '#6ceba6' },
+    { name: 'Green', color: '#6ceb71' },
+    { name: 'Banana&shy;yellow', color: '#d6eb6c' },
+    { name: 'Orange-orange', color: '#ebae6c' },
   ];
 
   constructor(public auth: AuthService) {
     const body = this.get_el('body');
-    this.tran = getComputedStyle(body).getPropertyValue(
+    this.transition = getComputedStyle(body).getPropertyValue(
       '--tran-background-color'
     );
     body.style.setProperty('transition', 'none');
@@ -37,14 +47,25 @@ export class ThemesService {
       );
     });
   }
+
+  /**
+   * Returns an element by name
+   * @param nam Name
+   * @returns Returns an element by name
+   */
   private get_el(nam: string): HTMLElement {
     return document.querySelector(nam) as HTMLElement;
   }
 
+  /**
+   * Switches to a Theme
+   * @param theme Theme data to switch to
+   * @param save Whether the Theme should be saved to private user data
+   */
   switch_theme(theme: ThemeModel, save: boolean = true) {
     this.get_el(':root').style.setProperty('--color-background', theme.color);
     setTimeout(() => {
-      this.get_el('body').style.setProperty('transition', this.tran);
+      this.get_el('body').style.setProperty('transition', this.transition);
     });
 
     if (save) {

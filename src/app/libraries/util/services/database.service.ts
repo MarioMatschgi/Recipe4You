@@ -12,14 +12,31 @@ import {
   RecipeModel,
 } from 'src/app/app/model/recipe.model';
 
+/**
+ * Service for Database
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class DatabaseService {
+  /**
+   * Database path for recipes
+   */
   path_recipes = 'recipes';
 
+  /**
+   * Collection of recipes
+   */
   col_recipes: AngularFirestoreCollection<any>;
+
+  /**
+   * Collection of private user data
+   */
   col_usersPrivate: AngularFirestoreCollection<any>;
+
+  /**
+   * Collection of public user data
+   */
   col_usersPublic: AngularFirestoreCollection<any>;
 
   constructor(public db: AngularFirestore) {
@@ -28,21 +45,35 @@ export class DatabaseService {
     this.col_usersPublic = this.db.collection('users-public');
   }
 
+  /**
+   * Returns all recipes
+   * @returns Returns all recipes
+   */
   get_all_recipes(): Observable<RecipeModel[]> {
     return this.col_recipes.valueChanges();
   }
 
-  get_recipes(arr: string[]) {
-    for (let i = 0; i < arr.length; i++)
-      if (!arr[i] || arr[i] == '') arr.splice(i, 1);
+  /**
+   * Returns all recipes by uids
+   * @param ids List of ids
+   * @returns Returns all recipes by uids
+   */
+  get_recipes(ids: string[]) {
+    for (let i = 0; i < ids.length; i++)
+      if (!ids[i] || ids[i] == '') ids.splice(i, 1);
 
     return this.db
       .collection(this.path_recipes, (ref) =>
-        ref.where(firebase.default.firestore.FieldPath.documentId(), 'in', arr)
+        ref.where(firebase.default.firestore.FieldPath.documentId(), 'in', ids)
       )
       .get();
   }
 
+  /**
+   * Returns recipes of a user
+   * @param user_id Author's uid
+   * @returns Returns recipes of a user
+   */
   get_recipes_for(user_id: string) {
     return this.db
       .collection(this.path_recipes, (ref) =>
@@ -51,26 +82,50 @@ export class DatabaseService {
       .get();
   }
 
+  /**
+   * Returns the recipe
+   * @param id Recipe's uid
+   * @returns Returns the recipe
+   */
   get_recipe(id: string): Observable<RecipeModel> {
     return this.col_recipes.doc(id).valueChanges();
   }
 
+  /**
+   * Adds a recipe
+   * @param data Recipe data to add
+   * @returns Returns the added recipe
+   */
   add_recipe(data: RecipeModel): Promise<DocumentReference<any>> {
     data = this.trim_recipe(data);
 
     return this.col_recipes.add(RecipeHelper.to_object(data));
   }
 
+  /**
+   * Edits a recipe
+   * @param id Recipe's uid
+   * @param newData New recipe's data
+   */
   edit_recipe(id: string, newData: RecipeModel) {
     newData = this.trim_recipe(newData);
 
     this.col_recipes.doc(id).set(RecipeHelper.to_object(newData));
   }
 
+  /**
+   * Removes the recipe
+   * @param id Uid of the recipe to remove
+   */
   remove_recipe(id: string) {
     this.col_recipes.doc(id).delete();
   }
 
+  /**
+   * Trims the recipe
+   * @param data Recipe data to trim
+   * @returns Returns the trimmed recipe
+   */
   trim_recipe(data: RecipeModel): RecipeModel {
     let newLangs: { [lang: string]: RecipeData } = {};
     for (const key of Object.keys(data.langs)) {

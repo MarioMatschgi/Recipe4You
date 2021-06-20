@@ -1,14 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { LocalizationService } from 'src/app/libraries/util/services/localization.service';
-import {
-  RouterService,
-  RouterUrls,
-} from 'src/app/libraries/util/services/router.service';
+import { RouterService } from 'src/app/libraries/util/services/router.service';
 import {
   RecipeData,
   RecipeHelper,
   RecipeModel,
 } from 'src/app/app/model/recipe.model';
+import { RouterUrls } from 'src/app/libraries/util/models/router.model';
 
 @Component({
   selector: 'recipe-preview',

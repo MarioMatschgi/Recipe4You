@@ -37,6 +37,9 @@ import { ProfileCreationsComponent } from './app/components/profile/profile-crea
 import { LoadingModule } from './libraries/loading/loading.module';
 import { StructureModule } from './libraries/structure/structure.module';
 
+/**
+ * Module for general things
+ */
 @NgModule({
   declarations: [
     /* COMPONENTS-GENERAL */

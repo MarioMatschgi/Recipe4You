@@ -16,7 +16,8 @@ import { EventEmitter, Injectable } from '@angular/core';
 import firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Subscription } from 'rxjs';
-import { RouterService, RouterUrls } from '../../util/services/router.service';
+import { RouterService } from '../../util/services/router.service';
+import { RouterUrls } from '../../util/models/router.model';
 
 /**
  * Type for authentication error

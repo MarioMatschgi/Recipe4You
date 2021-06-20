@@ -1,12 +1,10 @@
-import {
-  RouterService,
-  RouterUrls,
-} from '../../../../libraries/util/services/router.service';
+import { RouterService } from '../../../../libraries/util/services/router.service';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/libraries/authentication/services/auth.service';
 import { DatabaseService } from 'src/app/libraries/util/services/database.service';
 import { LocalizationService } from 'src/app/libraries/util/services/localization.service';
 import { RecipeModel } from 'src/app/app/model/recipe.model';
+import { RouterUrls } from 'src/app/libraries/util/models/router.model';
 
 @Component({
   selector: 'profile-creations',
