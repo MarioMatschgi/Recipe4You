@@ -49,7 +49,7 @@ export class AuthLoginGuard implements CanActivate {
         return true;
       }
 
-      this.router.nav_login();
+      this.router.nav_login(state.url);
 
       return false;
     }

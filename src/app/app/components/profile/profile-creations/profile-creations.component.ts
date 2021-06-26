@@ -24,11 +24,13 @@ export class ProfileCreationsComponent implements OnInit {
 
   ngOnInit(): void {
     this.auth.sub_userData((data) => {
-      this.db.get_recipes_for(data.uid).subscribe((recipes) => {
-        this.recipes = recipes.docs.map((dataItem) =>
-          dataItem.data()
-        ) as RecipeModel[];
-      });
+      if (data) {
+        this.db.get_recipes_for(data.uid).subscribe((recipes) => {
+          this.recipes = recipes.docs.map((dataItem) =>
+            dataItem.data()
+          ) as RecipeModel[];
+        });
+      }
     });
   }
 }

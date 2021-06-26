@@ -20,11 +20,13 @@ export class ProfileBookmarksComponent implements OnInit {
 
   ngOnInit(): void {
     this.auth.sub_userPrivateData((data) => {
-      this.db.get_recipes(data.bookmarks).subscribe((recipes) => {
-        this.recipes = recipes.docs.map((dataItem) =>
-          dataItem.data()
-        ) as RecipeModel[];
-      });
+      if (data) {
+        this.db.get_recipes(data.bookmarks).subscribe((recipes) => {
+          this.recipes = recipes.docs.map((dataItem) =>
+            dataItem.data()
+          ) as RecipeModel[];
+        });
+      }
     });
   }
 }

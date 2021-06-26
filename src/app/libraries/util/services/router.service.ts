@@ -14,6 +14,10 @@ export class RouterService {
    * Key for router location in localStorage
    */
   private k_loc = 'router.loc';
+  /**
+   * Key for login location in localStorage
+   */
+  private k_login_loc = 'router.auth.login.loc';
 
   /**
    * Whether the page was loaded
@@ -84,41 +88,49 @@ export class RouterService {
     this.location.forward();
   }
 
-  // TODO: URL GO THERE AFTER LOGIN
   /**
    * Navigates to the login page
    */
-  nav_login() {
+  nav_login(url: string = this.router.url) {
+    localStorage.setItem(this.k_login_loc, url);
+
     this.router.navigate(['auth/login']);
   }
 
-  // TODO: NAV BACK
   /**
    * Navigates to the page before the login page
    */
   nav_login_back() {
-    this.router.navigate(['']);
+    let route = localStorage.getItem(this.k_login_loc);
+    if (route == '/') route = '';
+
+    this.router.navigate(route.split('/'));
   }
 
-  // TODO: URL GO THERE AFTER REGISTER
   /**
    * Navigates to the register page
    */
-  nav_register() {
+  nav_register(url: string = this.router.url) {
+    localStorage.setItem(this.k_login_loc, url);
+
     this.router.navigate(['auth/register']);
   }
-  // TODO: URL GO THERE AFTER REGISTER
+
   /**
    * Navigates to the reset password page
    */
-  nav_reset() {
+  nav_reset(url: string = this.router.url) {
+    localStorage.setItem(this.k_login_loc, url);
+
     this.router.navigate(['auth/reset-password']);
   }
-  // TODO: URL GO THERE AFTER VERIFY
+
   /**
    * Navigates to the verify email page
    */
-  nav_verify_email() {
+  nav_verify_email(url: string = this.router.url) {
+    localStorage.setItem(this.k_login_loc, url);
+
     this.router.navigate(['auth/verify-email']);
   }
 }
