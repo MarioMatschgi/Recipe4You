@@ -4,7 +4,7 @@
    -->
   <div class="ingredients flexbox small write" *ngIf="type == 'write'">
     <div class="ingredient" *ngFor="let ing of ingredients; let i = index">
-      <div class="write flexbox small">
+      <div class="write flexbox small" [id]="'ing-' + i">
         <input
           type="text"
           class="form-control ingredient-name"
