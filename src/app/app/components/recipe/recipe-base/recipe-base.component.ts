@@ -1,3 +1,4 @@
+import { LoadService } from './../../../../libraries/loading/services/load.service';
 import { Component, Input, OnInit } from '@angular/core';
 import {
   RecipeData,
@@ -23,13 +24,15 @@ export class RecipeBaseComponent implements OnInit {
 
   lang: string;
   recipe: RecipeModel;
+  loader_id = 'recipe/base';
 
   constructor(
     private db: DatabaseService,
     private router: RouterService,
     private route: ActivatedRoute,
     private auth: AuthService,
-    public local: LocalizationService
+    public local: LocalizationService,
+    public loader: LoadService
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +40,7 @@ export class RecipeBaseComponent implements OnInit {
   }
 
   async setup() {
+    this.loader.load();
     // IF NOT LOGGED IN REDIRECT TO LOGIN
     if (!this.auth.loggedIn) {
       this.router.nav_login();
@@ -63,6 +67,7 @@ export class RecipeBaseComponent implements OnInit {
     if (!this.recipe.langs) this.recipe.langs = {};
     if (!this.recipe.langs[this.lang])
       this.recipe.langs[this.lang] = new RecipeData();
+    this.loader.unload();
   }
 
   cancel() {
@@ -78,7 +83,7 @@ export class RecipeBaseComponent implements OnInit {
       this.recipe.langs[this.lang] = new RecipeData();
   }
 
-  async onSubmit(form: NgForm) {
+  async onSubmit(form: NgForm, btn: HTMLButtonElement) {
     form.form.markAllAsTouched();
 
     // IF FORM INVALID RETURN
@@ -86,6 +91,7 @@ export class RecipeBaseComponent implements OnInit {
     // IF NOT LOGGED IN RETURN
     if (!this.auth.loggedIn) return;
 
+    this.loader.load(this.loader_id);
     if (this.type == 'create') {
       this.recipe.date_added = new Date();
       this.recipe.date_edited = this.recipe.date_added;
@@ -95,6 +101,7 @@ export class RecipeBaseComponent implements OnInit {
       this.recipe.id = doc.id;
       await this.db.edit_recipe(doc.id, this.recipe);
 
+      this.loader.unload(this.loader_id);
       this.router.nav(RouterUrls.recipes, [doc.id]);
     } else if (this.type == 'edit') {
       // IF NOT RECIPE AUTHOR RETURN
@@ -103,6 +110,8 @@ export class RecipeBaseComponent implements OnInit {
       this.recipe.date_edited = new Date();
 
       await this.db.edit_recipe(this.recipe.id, this.recipe);
+
+      this.loader.unload(this.loader_id);
       this.router.nav(RouterUrls.recipes, [this.recipe.id]);
     } else if (this.type == 'delete') {
       // IF NOT RECIPE AUTHOR RETURN
